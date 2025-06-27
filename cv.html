@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV | Loucas Rongeart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shared/project-styles.css">
+</head>
+<body>
+    <a href="index.html" class="back-button">← BACK</a>
+    
+    <!-- Banner Section -->
+    <div class="project-banner" style="background-image: url('./img/deviljho_bg.jpg');">
+        <div class="banner-overlay">
+            <h1 class="project-title">Curriculum Vitae</h1>
+            <p class="project-subtitle">Professional Experience & Skills</p>
+        </div>
+    </div>
+    
+    <!-- CV Content -->
+    <div style="background-color: black; min-height: 60vh; padding: 4rem 2rem;">
+        <!-- CV Download Section -->
+        <section style="
+            text-align: center; 
+            border-bottom: 1px solid rgb(40, 40, 40);
+            padding-bottom: 4rem;
+            margin-bottom: 4rem;
+        ">
+            <div style="max-width: 800px; margin: 0 auto;">
+                <a href="#" onclick="alert('CV download will be available soon!')" style="
+                    display: inline-block;
+                    background: linear-gradient(135deg, rgb(40, 40, 40), rgb(25, 25, 25));
+                    color: white;
+                    text-decoration: none;
+                    padding: 1.2rem 3rem;
+                    border: 2px solid rgb(60, 60, 60);
+                    border-radius: 0px;
+                    font-size: 1.3rem;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    letter-spacing: 2px;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                    position: relative;
+                    overflow: hidden;
+                " onmouseover="
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.7)';
+                    this.style.borderColor = 'rgb(100, 100, 100)';
+                " onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+                    this.style.borderColor = 'rgb(60, 60, 60)';
+                ">
+                    <span style="position: relative; z-index: 2;">📄 Download CV</span>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Additional Information Section -->
+        <section style="max-width: 1000px; margin: 0 auto;">
+            <div class="project-container" style="padding: 0;">
+                <h2 class="section-title">Professional Summary</h2>
+                <p class="project-description" style="text-align: left; margin-bottom: 3rem;">
+                    [Your professional summary text will go here. This section will contain a brief overview of your career highlights, key skills, and professional achievements in the field of creature and character art.]
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                    <div>
+                        <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Key Skills</h3>
+                        <div style="color: #aaa; line-height: 1.6;">
+                            <p>• Digital Concept Art</p>
+                            <p>• Creature Design</p>
+                            <p>• Character Development</p>
+                            <p>• Anatomical Studies</p>
+                            <p>• Environment Design</p>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: white; font-size: 1.5rem; margin-bottom: 1rem;">Software Expertise</h3>
+                        <div style="color: #aaa; line-height: 1.6;">
+                            <p>• Photoshop</p>
+                            <p>• ZBrush</p>
+                            <p>• Blender</p>
+                            <p>• Maya</p>
+                            <p>• Substance Painter</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="shared/project-scripts.js"></script>
+</body>
+</html>

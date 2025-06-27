@@ -2,23 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, ini                    // Add hover effects
-                                transition: opacity 0.3s ease;
-                            ")                 card.addEventListener('mouseenter', () => {
-                        card.style.transform = 'translateY(-2px)';
-                        card.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.7)';
-                        const overlay = card.querySelector('.hover-overlay');
-                        if (overlay) overlay.style.opacity = '1';
-                    });
-                    
-                    card.addEventListener('mouseleave', () => {
-                        card.style.transform = 'translateY(0)';
-                        card.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
-                        const overlay = card.querySelector('.hover-overlay');
-                        if (overlay) overlay.style.opacity = '0';
-                    });
-                    
-                    // Update hover effects to include overlay.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -36,18 +20,54 @@
             <h3 style="margin: 0; color: rgb(139, 139, 139);">Creature & Character Artist</h3>
         </div>
         <nav>
-            <ul style="list-style: none; display: flex; margin: 0; padding: 0; font-size: 1.5rem;">
-                <li style="margin: 0 1rem;"><a href="about.html" style="color: white; text-decoration: none;">About</a></li>
-                <li style="margin: 0 1rem;"><a href="portfolio.html" style="color: white; text-decoration: none;">Portfolio</a></li>
-                <li style="margin: 0 1rem;"><a href="contact.html" style="color: white; text-decoration: none;">Contact</a></li>
+            <ul style="list-style: none; display: flex; margin: 0; padding: 0; font-size: 0.75rem;">
+                <li style="margin: 0 1rem;"><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase;">Home</a></li>
+                <li style="margin: 0 1rem;"><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase;">Showreel</a></li>
+                <li style="margin: 0 1rem;"><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase;">Tutorial & Scripting</a></li>
+                <li style="margin: 0 1rem;"><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase;">About</a></li>
+                <li style="margin: 0 1rem;"><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase;">CV</a></li>
+                <li style="margin: 0 1rem;"><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase;">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- About Section -->
-    <section id="about" style="display: none;">
-        <h2>About Me</h2>
-        <p>Brief introduction about yourself, your skills, and experience.</p>
+    <!-- Showreel Section -->
+    <section id="showreel" style="
+        background-color: black; 
+        padding: 2rem; 
+        text-align: center; 
+        border-bottom: 1px solid rgb(40, 40, 40);
+        display: block !important;
+    ">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <a href="https://vimeo.com/895353165" target="_blank" style="
+                display: inline-block;
+                background: linear-gradient(135deg, rgb(40, 40, 40), rgb(25, 25, 25));
+                color: white;
+                text-decoration: none;
+                padding: 1.2rem 3rem;
+                border: 2px solid rgb(60, 60, 60);
+                border-radius: 0px;
+                font-size: 1.3rem;
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                position: relative;
+                overflow: hidden;
+            " onmouseover="
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.7)';
+                this.style.borderColor = 'rgb(100, 100, 100)';
+            " onmouseout="
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+                this.style.borderColor = 'rgb(60, 60, 60)';
+            ">
+                <span style="position: relative; z-index: 2;">▶ Watch Showreel</span>
+            </a>
+        </div>
     </section>
 
     <!-- Portfolio Gallery Section -->
@@ -57,11 +77,6 @@
             <div style="color: gray; text-align: center; padding: 2rem; grid-column: 1 / -1;">Loading portfolio...</div>
         </div>
     </section>
-
-    <!-- Website Version -->
-    <div id="website-version" style="color: white; text-align: center; padding: 0.5rem;">
-        <p>Website Version: 1.0.12</p>
-    </div>
 
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
@@ -76,9 +91,9 @@
     <script>
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(section => {
-                // Portfolio gallery is always visible, others are controlled by hash
-                if (section.id === 'portfolio-gallery') {
-                    return; // Don't hide the portfolio gallery
+                // Portfolio gallery and showreel are always visible, others are controlled by hash
+                if (section.id === 'portfolio-gallery' || section.id === 'showreel') {
+                    return; // Don't hide the portfolio gallery or showreel
                 }
                 
                 // Show the requested section or hide all others

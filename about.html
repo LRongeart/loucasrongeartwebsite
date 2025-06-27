@@ -3,33 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>About | Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shared/project-styles.css">
+    <style>
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .photo-section {
+            text-align: center;
+        }
+        
+        .photo-section img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        .bio-section h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .bio-section p {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info {
+            background: rgb(25, 25, 25);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+        
+        .contact-info h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #aaa;
+        }
+        
+        .contact-item strong {
+            color: white;
+            margin-right: 1rem;
+            min-width: 60px;
+        }
+        
+        @media (max-width: 768px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav style="background-color: black; color: white; padding: 1rem;">
-            <ul>
-                <li><a href="index.html" style="color: white;">Home</a></li>
-                <li><a href="portfolio.html" style="color: white;">Portfolio</a></li>
-                <li><a href="contact.html" style="color: white;">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Brief introduction about yourself, your skills, and experience.</p>
-    </section>
-
-    <!-- Include Footer -->
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+    <a href="index.html" class="back-button">← BACK</a>
+    
+    <!-- Banner Section -->
+    <div class="project-banner" style="background-image: url('./img/deviljho_bg.jpg');">
+        <div class="banner-overlay">
+            <h1 class="project-title">About Me</h1>
+            <p class="project-subtitle">Creature & Character Artist</p>
+        </div>
+    </div>
+    
+    <!-- About Content -->
+    <div style="background-color: black; min-height: 60vh;">
+        <div class="about-container">
+            <!-- Photo Section -->
+            <div class="photo-section">
+                <img src="./img/LR_PP_v01_100.jpeg" alt="Loucas Rongeart" />
+            </div>
+            
+            <!-- Bio Section -->
+            <div class="bio-section">
+                <h2>Loucas Rongeart</h2>
+                <p>
+                    Passionate creature and character artist with extensive experience in digital art, concept design, and creative storytelling. Specializing in bringing mythical beings and fantasy characters to life through detailed anatomical studies and dynamic visual narratives.
+                </p>
+                <p>
+                    My work spans across various mediums including concept art, character design, and environmental storytelling. I combine traditional artistic principles with cutting-edge digital techniques to create compelling visual experiences that captivate and inspire.
+                </p>
+                
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <span>loucas.rongeart@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Phone:</strong>
+                        <span>+33 6 12 34 56 78</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="shared/project-scripts.js"></script>
 </body>
 </html>

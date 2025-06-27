@@ -3,33 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact | Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shared/project-styles.css">
+    <style>
+        .contact-main {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid rgb(40, 40, 40);
+        }
+        
+        .contact-title {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+        
+        .contact-box {
+            background: rgb(25, 25, 25);
+            border: 2px solid rgb(60, 60, 60);
+            border-radius: 8px;
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            text-align: left;
+        }
+        
+        .contact-info-item {
+            color: #aaa;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info-item strong {
+            color: white;
+            display: block;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .social-links {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .social-links h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .social-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: inline-block;
+            background: linear-gradient(135deg, rgb(40, 40, 40), rgb(25, 25, 25));
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 2px solid rgb(60, 60, 60);
+            border-radius: 0px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .social-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.8);
+            border-color: rgb(100, 100, 100);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-title {
+                font-size: 2rem;
+            }
+            
+            .contact-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .social-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav style="background-color: black; color: white; padding: 1rem;">
-            <ul>
-                <li><a href="index.html" style="color: white;">Home</a></li>
-                <li><a href="about.html" style="color: white;">About</a></li>
-                <li><a href="portfolio.html" style="color: white;">Portfolio</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Feel free to reach out via email or social media.</p>
-    </section>
-
-    <!-- Include Footer -->
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+    <a href="index.html" class="back-button">← BACK</a>
+    
+    <!-- Banner Section -->
+    <div class="project-banner" style="background-image: url('./img/deviljho_bg.jpg');">
+        <div class="banner-overlay">
+            <h1 class="project-title">Contact</h1>
+            <p class="project-subtitle">Let's Work Together</p>
+        </div>
+    </div>
+    
+    <!-- Contact Content -->
+    <div style="background-color: black; min-height: 60vh;">
+        <!-- Main Contact Section -->
+        <div class="contact-main">
+            <h2 class="contact-title">Get in Touch</h2>
+            
+            <div class="contact-box">
+                <div class="contact-info-grid">
+                    <div class="contact-info-item">
+                        <strong>Location</strong>
+                        <span>Toulouse, France</span>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <strong>Phone</strong>
+                        <span>+33 6 28 02 66 18</span>
+                    </div>
+                    
+                    <div class="contact-info-item" style="grid-column: 1 / -1;">
+                        <strong>Email</strong>
+                        <span>loucas.rongeart@gmail.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Social Links Section -->
+        <div class="social-links">
+            <h3>Follow My Work</h3>
+            <div class="social-grid">
+                <a href="https://www.linkedin.com/in/loucasrongeart/" target="_blank" class="social-link">
+                    LinkedIn
+                </a>
+                <a href="https://vimeo.com/895353165" target="_blank" class="social-link">
+                    Vimeo
+                </a>
+                <a href="https://www.imdb.com/name/nm12212240/" target="_blank" class="social-link">
+                    IMDb
+                </a>
+                <a href="https://www.youtube.com/@LoucasRongeart" target="_blank" class="social-link">
+                    YouTube
+                </a>
+                <a href="https://www.artstation.com/loucasrongeart" target="_blank" class="social-link">
+                    ArtStation
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="shared/project-scripts.js"></script>
 </body>
 </html>
