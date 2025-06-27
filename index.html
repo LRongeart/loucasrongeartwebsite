@@ -2,7 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, ini                    // Add hover effects
+                                transition: opacity 0.3s ease;
+                            ")                 card.addEventListener('mouseenter', () => {
+                        card.style.transform = 'translateY(-2px)';
+                        card.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.7)';
+                        const overlay = card.querySelector('.hover-overlay');
+                        if (overlay) overlay.style.opacity = '1';
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'translateY(0)';
+                        card.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+                        const overlay = card.querySelector('.hover-overlay');
+                        if (overlay) overlay.style.opacity = '0';
+                    });
+                    
+                    // Update hover effects to include overlay.0">
     <title>Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -28,28 +44,23 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" style="background-color: rgb(22, 22, 22); padding: 2rem; text-align: left;">
-        <h1 style="margin: 0;">Loucas RONGEART</h1>
-        <h2 style="margin: 0; color: rgb(139, 139, 139);">Creature & Character Artist</h2>
-    </section>
-
     <!-- About Section -->
     <section id="about" style="display: none;">
         <h2>About Me</h2>
         <p>Brief introduction about yourself, your skills, and experience.</p>
     </section>
 
-    <!-- Scrolling List Section -->
-    <section id="scrolling-list" style="overflow-y: auto; max-height: 600px; background-color: black; padding: 1rem; border: 1px solid white;">
-        <ul style="list-style: none; padding: 0; text-align: center;">
-            <!-- Dynamic content will be populated here -->
-        </ul>
+    <!-- Portfolio Gallery Section -->
+    <section id="portfolio-gallery" style="background-color: black; padding: 5px; min-height: 60vh; display: block !important;">
+        <div id="gallery-grid" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; padding: 0;">
+            <!-- Dynamic portfolio content will be populated here -->
+            <div style="color: gray; text-align: center; padding: 2rem; grid-column: 1 / -1;">Loading portfolio...</div>
+        </div>
     </section>
 
     <!-- Website Version -->
     <div id="website-version" style="color: white; text-align: center; padding: 0.5rem;">
-        <p>Website Version: 1.0.11</p>
+        <p>Website Version: 1.0.12</p>
     </div>
 
     <!-- Include Footer -->
@@ -65,6 +76,12 @@
     <script>
         function showSection(sectionId) {
             document.querySelectorAll('section').forEach(section => {
+                // Portfolio gallery is always visible, others are controlled by hash
+                if (section.id === 'portfolio-gallery') {
+                    return; // Don't hide the portfolio gallery
+                }
+                
+                // Show the requested section or hide all others
                 section.style.display = section.id === sectionId ? 'block' : 'none';
             });
         }
@@ -81,29 +98,192 @@
     </script>
 
     <script>
-        fetch('content.json')
-            .then(response => response.json())
+        // Immediate debugging
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, checking gallery elements...');
+            const galleryGrid = document.getElementById('gallery-grid');
+            console.log('Gallery grid found:', galleryGrid);
+            if (galleryGrid) {
+                console.log('Gallery grid innerHTML:', galleryGrid.innerHTML);
+            }
+        });
+        
+        console.log('Starting to load content.json...');
+        fetch(`content.json?v=${Date.now()}`)
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
             .then(data => {
-                const scrollingList = document.getElementById('scrolling-list');
-                const list = scrollingList.querySelector('ul');
-                list.innerHTML = ''; // Clear existing items
+                console.log('Loaded data:', data);
+                const galleryGrid = document.getElementById('gallery-grid');
+                
+                if (!galleryGrid) {
+                    console.error('Could not find gallery grid element');
+                    return;
+                }
+                
+                galleryGrid.innerHTML = ''; // Clear existing items
+                console.log('Processing', data.items.length, 'items');
 
-                data.items.forEach(item => {
-                    const listItem = document.createElement('li');
-                    listItem.style.cssText = 'color: white; margin: 1rem 0; padding: 1rem; background-color: rgb(33, 33, 33); border-radius: 5px;';
+                data.items.forEach((item, index) => {
+                    console.log(`Processing item ${index}:`, item);
                     
-                    // Create content with image and text
-                    const content = `
-                        <div style="display: flex; align-items: center; gap: 1rem;">
-                            <img src="img/${item.image}" alt="${item.text}" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
-                            <span>${item.text}</span>
+                    // Create gallery card
+                    const card = document.createElement('div');
+                    card.style.cssText = `
+                        background-color: rgb(25, 25, 25);
+                        border-radius: 0px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                        cursor: pointer;
+                    `;
+                    
+                    // Add hover effects for overlay only (no card animation)
+                    card.addEventListener('mouseenter', () => {
+                        const overlay = card.querySelector('.hover-overlay');
+                        if (overlay) overlay.style.opacity = '1';
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        const overlay = card.querySelector('.hover-overlay');
+                        if (overlay) overlay.style.opacity = '0';
+                    });
+                    
+                    // Add click functionality to navigate to project page
+                    card.addEventListener('click', () => {
+                        window.location.href = `project/${item.id}/`;
+                    });
+                    
+                    const imgSrc = `./img/${item.image}`;
+                    console.log(`Creating image with src: ${imgSrc}`);
+                    
+                    card.innerHTML = `
+                        <div style="position: relative; aspect-ratio: 16/9; overflow: hidden;">
+                            <img src="${imgSrc}" alt="${item.text}" 
+                                 style="width: 100%; height: 100%; object-fit: cover;"
+                                 onerror="console.error('Image failed to load:', this.src); this.style.background='rgb(60,60,60)'; this.alt='[IMG]';"
+                                 onload="console.log('Image loaded successfully:', this.src)">>
+                            <div class="hover-overlay" style="
+                                position: absolute; 
+                                top: 0; left: 0; right: 0; bottom: 0; 
+                                background-color: rgba(0,0,0,0.6); 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center;
+                                opacity: 0;
+                                transition: opacity 0.3s ease;
+                                pointer-events: none;
+                            ">
+                                <h3 style="
+                                    color: white; 
+                                    margin: 0; 
+                                    font-size: 1.4rem; 
+                                    line-height: 1.4; 
+                                    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+                                    text-transform: uppercase;
+                                    text-align: center;
+                                    padding: 1rem;
+                                ">${item.text}</h3>
+                            </div>
                         </div>
                     `;
-                    listItem.innerHTML = content;
-                    list.appendChild(listItem);
+                    
+                    galleryGrid.appendChild(card);
                 });
+                console.log('Finished adding all items to gallery');
             })
-            .catch(error => console.error('Error loading content:', error));
+            .catch(error => {
+                console.error('Error loading content:', error);
+                // Add a visible error message for debugging
+                const galleryGrid = document.getElementById('gallery-grid');
+                if (galleryGrid) {
+                    galleryGrid.innerHTML = '<div style="color: red; padding: 2rem; text-align: center; grid-column: 1 / -1;">Error loading portfolio: ' + error.message + '</div>';
+                }
+            });
+    </script>
+
+    <!-- Fallback content script -->
+    <script>
+        // Fallback: Add some test content immediately to verify the container works
+        setTimeout(() => {
+            const galleryGrid = document.getElementById('gallery-grid');
+            
+            // If JSON loading failed, add fallback content
+            if (galleryGrid && galleryGrid.innerHTML.includes('Loading portfolio...')) {
+                console.log('JSON loading seems to have failed, adding fallback content');
+                const fallbackItems = [
+                    { id: "deviljho-concept", text: "Test Portfolio Item 1 - Fallback", image: "deviljho_bg.jpg" },
+                    { id: "fantasy-warrior", text: "Test Portfolio Item 2 - Fallback", image: "deviljho_bg.jpg" },
+                    { id: "dragon-anatomy", text: "Test Portfolio Item 3 - Fallback", image: "deviljho_bg.jpg" }
+                ];
+                
+                galleryGrid.innerHTML = ''; // Clear loading message
+                
+                fallbackItems.forEach((item, index) => {
+                    const card = document.createElement('div');
+                    card.style.cssText = `
+                        background-color: rgb(25, 25, 25);
+                        border-radius: 0px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+                        cursor: pointer;
+                    `;
+                    
+                    const imgSrc = `./img/${item.image}`;
+                    card.innerHTML = `
+                        <div style="position: relative; aspect-ratio: 16/9; overflow: hidden;">
+                            <img src="${imgSrc}" alt="${item.text}" 
+                                 style="width: 100%; height: 100%; object-fit: cover;"
+                                 onerror="console.error('Fallback image failed:', this.src); this.style.background='rgb(60,60,60)'; this.alt='[IMG]';">
+                            <div class="hover-overlay" style="
+                                position: absolute; 
+                                top: 0; left: 0; right: 0; bottom: 0; 
+                                background-color: rgba(0,0,0,0.6); 
+                                display: flex; 
+                                align-items: center; 
+                                justify-content: center;
+                                opacity: 0;
+                                transition: opacity 0.3s ease;
+                                pointer-events: none;
+                            ">
+                                <h3 style="
+                                    color: white; 
+                                    margin: 0; 
+                                    font-size: 1.4rem; 
+                                    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+                                    text-transform: uppercase;
+                                    text-align: center;
+                                    padding: 1rem;
+                                ">${item.text}</h3>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add hover effects
+                    card.addEventListener('mouseenter', () => {
+                        const overlay = card.querySelector('.hover-overlay');
+                        if (overlay) overlay.style.opacity = '1';
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        const overlay = card.querySelector('.hover-overlay');
+                        if (overlay) overlay.style.opacity = '0';
+                    });
+                    
+                    // Add click functionality for fallback items
+                    card.addEventListener('click', () => {
+                        window.location.href = `project/${item.id}/`;
+                    });
+                    
+                    galleryGrid.appendChild(card);
+                });
+                console.log('Fallback content added');
+            }
+        }, 2000); // Wait 2 seconds for JSON loading to complete
     </script>
 </body>
 </html>

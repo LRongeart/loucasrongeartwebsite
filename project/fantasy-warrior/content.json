@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Fantasy Warrior Character Design | Loucas Rongeart",
+    "pageTitle": "Fantasy Warrior Character Design",
+    "subtitle": "Character Concept Art"
+  },
+  "banner": {
+    "image": "./IN/deviljho_bg.jpg",
+    "title": "Fantasy Warrior Character Design",
+    "subtitle": "Character Concept Art"
+  },
+  "content": {
+    "description": "Original fantasy warrior character design featuring detailed armor studies, weapon concepts, and character expressions. Exploring themes of nobility and strength in a medieval fantasy setting.",
+    "galleryTitle": "Project Gallery",
+    "detailsTitle": "Project Details",
+    "detailsDescription": "This fantasy warrior character was designed as part of an original IP development project. The design process focused on creating a memorable silhouette while incorporating practical armor elements and expressing the character's noble yet fierce personality through pose and expression."
+  },
+  "gallery": [
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Fantasy warrior full design"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Armor detail studies"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Weapon concepts"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Character expressions"
+    }
+  ],
+  "credits": {
+    "title": "Credits",
+    "client": {
+      "title": "Client",
+      "value": "Original IP Project"
+    },
+    "team": {
+      "title": "Team",
+      "members": [
+        "Loucas Rongeart - Character Designer",
+        "Concept Art Team",
+        "Creative Direction"
+      ]
+    }
+  }
+}

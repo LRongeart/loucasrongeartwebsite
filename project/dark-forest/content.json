@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Dark Forest Environment | Loucas Rongeart",
+    "pageTitle": "Dark Forest Environment",
+    "subtitle": "Environment Concept Art"
+  },
+  "banner": {
+    "image": "./IN/deviljho_bg.jpg",
+    "title": "Dark Forest Environment",
+    "subtitle": "Environment Concept Art"
+  },
+  "content": {
+    "description": "Atmospheric environment design for a mysterious dark forest setting. Focus on mood, lighting, and creating an immersive fantasy world through detailed environmental storytelling.",
+    "galleryTitle": "Project Gallery",
+    "detailsTitle": "Project Details",
+    "detailsDescription": "This dark forest environment was designed to create a sense of mystery and foreboding while maintaining visual appeal. The project emphasized atmospheric lighting, detailed foliage work, and environmental storytelling through carefully placed elements that hint at the forest's secrets."
+  },
+  "gallery": [
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Forest overview"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Lighting studies"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Detailed foliage"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Environmental storytelling"
+    }
+  ],
+  "credits": {
+    "title": "Credits",
+    "client": {
+      "title": "Client",
+      "value": "Game Development Studio"
+    },
+    "team": {
+      "title": "Team",
+      "members": [
+        "Loucas Rongeart - Environment Artist",
+        "Lighting Team",
+        "Environmental Design Team"
+      ]
+    }
+  }
+}

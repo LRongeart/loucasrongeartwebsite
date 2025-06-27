@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Dragon Anatomy Study | Loucas Rongeart",
+    "pageTitle": "Dragon Anatomy Study",
+    "subtitle": "Creature Design & Anatomy"
+  },
+  "banner": {
+    "image": "./IN/deviljho_bg.jpg",
+    "title": "Dragon Anatomy Study",
+    "subtitle": "Creature Design & Anatomy"
+  },
+  "content": {
+    "description": "Comprehensive anatomical study of dragon physiology, exploring realistic bone structure, muscle systems, and wing mechanics. Scientific approach to mythical creature design.",
+    "galleryTitle": "Project Gallery",
+    "detailsTitle": "Project Details",
+    "detailsDescription": "This dragon anatomy study combines scientific accuracy with fantasy elements to create a believable creature design. The project involved extensive research into bat and bird wing structures, reptilian anatomy, and biomechanics to create a plausible framework for a flying dragon."
+  },
+  "gallery": [
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Dragon skeletal structure"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Wing membrane studies"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Muscle system diagram"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Flight mechanics study"
+    }
+  ],
+  "credits": {
+    "title": "Credits",
+    "client": {
+      "title": "Client",
+      "value": "Personal Research Project"
+    },
+    "team": {
+      "title": "Team",
+      "members": [
+        "Loucas Rongeart - Creature Designer",
+        "Anatomy Research",
+        "Scientific Consultation"
+      ]
+    }
+  }
+}

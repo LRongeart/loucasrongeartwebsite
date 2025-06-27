@@ -1,9 +1,34 @@
 {
   "items": [
-    { "text": "Monster Hunter World - Deviljho Concept Art", "image": "deviljho_bg.jpg" },
-    { "text": "Character Design - Fantasy Warrior", "image": "deviljho_bg.jpg" },
-    { "text": "Creature Study - Dragon Anatomy", "image": "deviljho_bg.jpg" },
-    { "text": "Environmental Art - Dark Forest", "image": "deviljho_bg.jpg" },
-    { "text": "Digital Sculpture - Mythical Beast", "image": "deviljho_bg.jpg" }
+    { 
+      "id": "deviljho-concept",
+      "text": "Monster Hunter World - Deviljho Concept Art", 
+      "image": "deviljho_bg.jpg",
+      "description": "Detailed concept art and character design for the iconic Deviljho from Monster Hunter World. This project involved creating anatomical studies, texture work, and multiple pose variations."
+    },
+    { 
+      "id": "fantasy-warrior",
+      "text": "Character Design - Fantasy Warrior", 
+      "image": "deviljho_bg.jpg",
+      "description": "Original character design for a fantasy RPG setting. Features detailed armor design, weapon concepts, and character backstory development."
+    },
+    { 
+      "id": "dragon-anatomy",
+      "text": "Creature Study - Dragon Anatomy", 
+      "image": "deviljho_bg.jpg",
+      "description": "Comprehensive anatomical study of mythical dragon creatures. Includes skeletal structure, musculature, and scale pattern designs."
+    },
+    { 
+      "id": "dark-forest",
+      "text": "Environmental Art - Dark Forest", 
+      "image": "deviljho_bg.jpg",
+      "description": "Atmospheric environment art featuring moody lighting and detailed foliage. Created for a dark fantasy game setting."
+    },
+    { 
+      "id": "mythical-beast",
+      "text": "Digital Sculpture - Mythical Beast", 
+      "image": "deviljho_bg.jpg",
+      "description": "3D digital sculpture of an original creature design. Includes high-poly modeling, texturing, and lighting setup."
+    }
   ]
 }

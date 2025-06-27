@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Loading... | Loucas Rongeart</title>
+    <link rel="stylesheet" href="../shared/project-styles.css">
+</head>
+<body>
+    <a href="../" class="back-button">← BACK</a>
+    
+    <!-- Loading State -->
+    <div id="loading" style="text-align: center; padding: 4rem; color: white;">
+        <p>Loading project...</p>
+    </div>
+    
+    <!-- Banner Section -->
+    <div id="project-banner" class="project-banner" style="display: none;">
+        <div class="banner-overlay">
+            <h1 id="banner-title" class="project-title"></h1>
+            <p id="banner-subtitle" class="project-subtitle"></p>
+        </div>
+    </div>
+    
+    <!-- Content Section -->
+    <div id="project-content" class="project-container" style="display: none;">
+        <p id="project-description" class="project-description"></p>
+        
+        <h2 id="gallery-title" class="section-title">Project Gallery</h2>
+        <div id="image-gallery" class="image-gallery"></div>
+        
+        <div class="project-details">
+            <h3 id="details-title">Project Details</h3>
+            <p id="details-description"></p>
+        </div>
+        
+        <div class="credits-section">
+            <h3 id="credits-title" class="credits-title">Credits</h3>
+            <div class="credits-container">
+                <div class="credits-column">
+                    <h4 id="client-title">Client</h4>
+                    <p id="client-value"></p>
+                </div>
+                <div class="credits-column">
+                    <h4 id="team-title">Team</h4>
+                    <ul id="team-members"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../shared/project-scripts.js"></script>
+    <script>
+        // Load project content from JSON
+        async function loadProjectContent() {
+            try {
+                const response = await fetch('./content.json');
+                const data = await response.json();
+                
+                // Update page title
+                document.getElementById('page-title').textContent = data.meta.title;
+                document.title = data.meta.title;
+                
+                // Update banner
+                const banner = document.getElementById('project-banner');
+                banner.style.backgroundImage = `url('${data.banner.image}')`;
+                document.getElementById('banner-title').textContent = data.banner.title;
+                document.getElementById('banner-subtitle').textContent = data.banner.subtitle;
+                
+                // Update content
+                document.getElementById('project-description').textContent = data.content.description;
+                document.getElementById('gallery-title').textContent = data.content.galleryTitle;
+                document.getElementById('details-title').textContent = data.content.detailsTitle;
+                document.getElementById('details-description').textContent = data.content.detailsDescription;
+                
+                // Build gallery
+                const gallery = document.getElementById('image-gallery');
+                gallery.innerHTML = '';
+                data.gallery.forEach(item => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.innerHTML = `<img src="${item.image}" alt="${item.alt}">`;
+                    gallery.appendChild(galleryItem);
+                });
+                
+                // Update credits
+                document.getElementById('credits-title').textContent = data.credits.title;
+                document.getElementById('client-title').textContent = data.credits.client.title;
+                document.getElementById('client-value').textContent = data.credits.client.value;
+                document.getElementById('team-title').textContent = data.credits.team.title;
+                
+                const teamList = document.getElementById('team-members');
+                teamList.innerHTML = '';
+                data.credits.team.members.forEach(member => {
+                    const li = document.createElement('li');
+                    li.textContent = member;
+                    teamList.appendChild(li);
+                });
+                
+                // Show content and hide loading
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('project-banner').style.display = 'flex';
+                document.getElementById('project-content').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading project content:', error);
+                document.getElementById('loading').innerHTML = '<p style="color: #ff6b6b;">Error loading project content. Please try again.</p>';
+            }
+        }
+        
+        // Load content when page loads
+        document.addEventListener('DOMContentLoaded', loadProjectContent);
+    </script>
+</body>
+</html>

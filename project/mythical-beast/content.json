@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Mythical Beast Design | Loucas Rongeart",
+    "pageTitle": "Mythical Beast Design",
+    "subtitle": "Creature Concept Art"
+  },
+  "banner": {
+    "image": "./IN/deviljho_bg.jpg",
+    "title": "Mythical Beast Design",
+    "subtitle": "Creature Concept Art"
+  },
+  "content": {
+    "description": "Original mythical creature design combining elements from various mythologies. Exploration of unique anatomy, magical abilities, and cultural significance in worldbuilding.",
+    "galleryTitle": "Project Gallery",
+    "detailsTitle": "Project Details",
+    "detailsDescription": "This mythical beast design was created for an original fantasy world, drawing inspiration from global mythologies while maintaining originality. The design process involved extensive research into cultural symbols, animal anatomy, and magical elements to create a creature that feels both familiar and unique."
+  },
+  "gallery": [
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Mythical beast full design"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Magical abilities concept"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Cultural inspiration"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Alternative variations"
+    }
+  ],
+  "credits": {
+    "title": "Credits",
+    "client": {
+      "title": "Client",
+      "value": "Fantasy Publishing House"
+    },
+    "team": {
+      "title": "Team",
+      "members": [
+        "Loucas Rongeart - Creature Designer",
+        "Mythology Research Team",
+        "World Building Consultants"
+      ]
+    }
+  }
+}

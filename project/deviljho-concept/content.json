@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "title": "Monster Hunter World - Deviljho Concept Art | Loucas Rongeart",
+    "pageTitle": "Monster Hunter World - Deviljho Concept Art",
+    "subtitle": "Monster Design & Concept Art"
+  },
+  "banner": {
+    "image": "./IN/deviljho_bg.jpg",
+    "title": "Monster Hunter World - Deviljho Concept Art",
+    "subtitle": "Monster Design & Concept Art"
+  },
+  "content": {
+    "description": "Detailed concept art and character design for the iconic Deviljho from Monster Hunter World. This project involved creating anatomical studies, texture work, and multiple pose variations.",
+    "galleryTitle": "Project Gallery",
+    "detailsTitle": "Project Details",
+    "detailsDescription": "This Deviljho concept art project was created for Monster Hunter World, focusing on bringing the fearsome creature to life through detailed anatomical studies and dynamic pose variations. The design process emphasized the monster's aggressive nature and distinctive features while maintaining biological plausibility within the game's universe."
+  },
+  "gallery": [
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Deviljho concept art"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Anatomical study"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Texture details"
+    },
+    {
+      "image": "./IN/deviljho_bg.jpg",
+      "alt": "Multiple poses"
+    }
+  ],
+  "credits": {
+    "title": "Credits",
+    "client": {
+      "title": "Client",
+      "value": "Capcom"
+    },
+    "team": {
+      "title": "Team",
+      "members": [
+        "Loucas Rongeart - Lead Concept Artist",
+        "Art Direction Team",
+        "Monster Design Team"
+      ]
+    }
+  }
+}
