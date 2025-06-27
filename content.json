@@ -1,0 +1,9 @@
+{
+  "items": [
+    { "text": "Dynamic Item 1", "image": "deviljho_bg.jpg" },
+    { "text": "Dynamic Item 2", "image": "deviljho_bg.jpg" },
+    { "text": "Dynamic Item 3", "image": "deviljho_bg.jpg" },
+    { "text": "Dynamic Item 4", "image": "deviljho_bg.jpg" },
+    { "text": "Dynamic Item 5", "image": "deviljho_bg.jpg" }
+  ]
+}

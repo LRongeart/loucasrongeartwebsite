@@ -43,17 +43,13 @@
     <!-- Scrolling List Section -->
     <section id="scrolling-list" style="overflow-y: auto; max-height: 600px; background-color: black; padding: 1rem; border: 1px solid white;">
         <ul style="list-style: none; padding: 0; text-align: center;">
-            <li style="color: white;">Item 1: Example Text</li>
-            <li style="color: white;">Item 2: Example Text</li>
-            <li style="color: white;">Item 3: Example Text</li>
-            <li style="color: white;">Item 4: Example Text</li>
-            <li style="color: white;">Item 5: Example Text</li>
+            <!-- Dynamic content will be populated here -->
         </ul>
     </section>
 
     <!-- Website Version -->
     <div id="website-version" style="color: white; text-align: center; padding: 0.5rem;">
-        <p>Website Version: 1.0.0009</p>
+        <p>Website Version: 1.0.10</p>
     </div>
 
     <!-- Include Footer -->
@@ -82,6 +78,24 @@
 
         // Initial load
         handleHashChange();
+    </script>
+
+    <script>
+        fetch('content.json')
+            .then(response => response.json())
+            .then(data => {
+                const scrollingList = document.getElementById('scrolling-list');
+                const list = scrollingList.querySelector('ul');
+                list.innerHTML = ''; // Clear existing items
+
+                data.items.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.style.color = 'white';
+                    listItem.textContent = `${item.title}: ${item.description}`;
+                    list.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error loading content:', error));
     </script>
 </body>
 </html>
