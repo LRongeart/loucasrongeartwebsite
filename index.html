@@ -8,10 +8,7 @@
     <style>
         body {
             margin-bottom: calc(33%); /* Ensures footer does not overlap with content */
-            background-image: url('img/deviljho_bg.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-color: black; /* Replace background below the menu with black */
         }
     </style>
 </head>
@@ -39,8 +36,13 @@
         <p>Brief introduction about yourself, your skills, and experience.</p>
     </section>
 
-    <!-- Temporary Image -->
-    <img src="img/deviljho_bg.jpg" alt="Deviljho Background" style="display: block; margin: 0 auto; padding-top: 1rem;">
+    <!-- Scrolling List Section -->
+    <section id="scrolling-list" style="overflow-y: scroll; height: 400px; background-color: black; padding: 1rem;">
+        <ul style="list-style: none; padding: 0;">
+            <li><img src="img/deviljho_bg.jpg" alt="Deviljho Background" style="width: 100%;"></li>
+            <!-- Add other items here later -->
+        </ul>
+    </section>
 
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
