@@ -37,10 +37,15 @@
         <p>Brief introduction about yourself, your skills, and experience.</p>
     </section>
 
-    <!-- Footer -->
-    <footer style="background-color: black; color: white; text-align: center; padding: 0.5rem; position: fixed; bottom: 0; width: 100%;">
-        <p>&copy; 2025 Loucas Rongeart. All rights reserved.</p>
-    </footer>
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
 
     <script>
         function showSection(sectionId) {
