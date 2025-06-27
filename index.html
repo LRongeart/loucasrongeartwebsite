@@ -7,25 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <!-- Hero Section -->
-    <section id="hero">
+    <section id="hero" style="background-color: grey; padding: 2rem;">
         <h1>Welcome to Loucas Rongeart's Portfolio</h1>
         <p>Discover my work and projects</p>
+        <nav style="background-color: black; color: white; padding: 1rem;">
+            <ul>
+                <li><a href="#about" style="color: white;" onclick="showSection('about')">About</a></li>
+                <li><a href="#portfolio" style="color: white;">Portfolio</a></li>
+                <li><a href="#contact" style="color: white;">Contact</a></li>
+            </ul>
+        </nav>
     </section>
 
     <!-- About Section -->
-    <section id="about">
+    <section id="about" style="display: none;">
         <h2>About Me</h2>
         <p>Brief introduction about yourself, your skills, and experience.</p>
     </section>
@@ -48,8 +44,16 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer style="background-color: black; color: white; text-align: center; padding: 1rem;">
         <p>&copy; 2025 Loucas Rongeart. All rights reserved.</p>
     </footer>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = section.id === sectionId ? 'block' : 'none';
+            });
+        }
+    </script>
 </body>
 </html>
