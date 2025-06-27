@@ -13,23 +13,8 @@
     </style>
 </head>
 <body>
-    <!-- Header and Navigation Menu -->
-    <header style="background-color: rgb(15, 15, 15); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
-        <div style="text-align: left;">
-            <h1 style="margin: 0;">Loucas RONGEART</h1>
-            <h3 style="margin: 0; color: rgb(139, 139, 139);">Creature & Character Artist</h3>
-        </div>
-        <nav>
-            <ul style="list-style: none; display: flex; margin: 0; padding: 0; font-size: 0.75rem;">
-                <li style="margin: 0 1rem;"><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase;">Home</a></li>
-                <li style="margin: 0 1rem;"><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase;">Showreel</a></li>
-                <li style="margin: 0 1rem;"><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase;">Tutorial & Scripting</a></li>
-                <li style="margin: 0 1rem;"><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase;">About</a></li>
-                <li style="margin: 0 1rem;"><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase;">CV</a></li>
-                <li style="margin: 0 1rem;"><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase;">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
 
     <!-- Showreel Section -->
     <section id="showreel" style="
@@ -78,15 +63,11 @@
         </div>
     </section>
 
+    <!-- Include Header -->
+    <script src="shared/header-footer-loader.js"></script>
+
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
 
     <script>
         function showSection(sectionId) {
