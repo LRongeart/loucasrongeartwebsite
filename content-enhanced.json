@@ -1,0 +1,39 @@
+{
+  "items": [
+    { 
+      "title": "Monster Hunter World - Deviljho", 
+      "description": "Concept art and character design for the iconic pickle dragon",
+      "image": "deviljho_bg.jpg",
+      "category": "Game Art",
+      "year": "2024"
+    },
+    { 
+      "title": "Fantasy Warrior Character", 
+      "description": "Original character design for fantasy RPG setting",
+      "image": "deviljho_bg.jpg",
+      "category": "Character Design",
+      "year": "2024"
+    },
+    { 
+      "title": "Dragon Anatomy Study", 
+      "description": "Detailed anatomical study of mythical creatures",
+      "image": "deviljho_bg.jpg",
+      "category": "Creature Design",
+      "year": "2023"
+    },
+    { 
+      "title": "Dark Forest Environment", 
+      "description": "Atmospheric environment art with moody lighting",
+      "image": "deviljho_bg.jpg",
+      "category": "Environment Art",
+      "year": "2023"
+    },
+    { 
+      "title": "Mythical Beast Sculpture", 
+      "description": "3D digital sculpture of original creature design",
+      "image": "deviljho_bg.jpg",
+      "category": "3D Art",
+      "year": "2024"
+    }
+  ]
+}
