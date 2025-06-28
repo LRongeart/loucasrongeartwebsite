@@ -15,13 +15,24 @@
     <meta name="cache-version" content="20250628-2">
     
     <title>Loucas Rongeart</title>
-    <link rel="stylesheet" href="styles.css?v=20250628-2">
-    <link rel="stylesheet" href="shared/project-styles.css?v=20250628-2">
+    <script>
+        // Dynamic cache busting - forces fresh content every time
+        const timestamp = Date.now();
+        document.write('<link rel="stylesheet" href="styles.css?v=' + timestamp + '">');
+        document.write('<link rel="stylesheet" href="shared/project-styles.css?v=' + timestamp + '">');
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="shared/header-footer-loader.js?v=20250628-2" as="script">
+    <script>
+        const preloadTimestamp = Date.now();
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = 'shared/header-footer-loader.js?v=' + preloadTimestamp;
+        link.as = 'script';
+        document.head.appendChild(link);
+    </script>
     
     <!-- Service Worker and Performance Scripts -->
     <script>
@@ -213,12 +224,12 @@
             height: auto;
             z-index: 0;
             transform: translate(-50%, -50%) scale(1.1);
-            opacity: 0.8;
+            opacity: 0.9;
             object-fit: cover;
             pointer-events: none;
-            filter: brightness(1.0) contrast(1.2);
+            filter: brightness(1.2) contrast(1.1) saturate(1.1);
         ">
-            <source src="./img/reel/LR_showreel_2023_12.mp4#t=3,126" type="video/mp4">
+            <source src="./img/reel/LR_showreel_2023_12.mp4#t=15,126" type="video/mp4">
             <!-- Fallback for browsers that don't support video -->
         </video>
         
@@ -245,7 +256,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
             z-index: 1;
         "></div>
         
@@ -519,13 +530,19 @@
     </section>
 
     <!-- Include Header -->
-    <script src="shared/header-footer-loader.js?v=20250628-2"></script>
+    <script>
+        const scriptTimestamp = Date.now();
+        document.write('<script src="shared/header-footer-loader.js?v=' + scriptTimestamp + '"><\/script>');
+    </script>
 
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
     
     <!-- Performance Optimization Script -->
-    <script src="js/performance.js?v=20250628-2"></script>
+    <script>
+        const perfTimestamp = Date.now();
+        document.write('<script src="js/performance.js?v=' + perfTimestamp + '"><\/script>');
+    </script>
     
     <!-- Load mobile optimizations CSS asynchronously -->
     <script>
@@ -805,7 +822,7 @@
                 
                 // Simple approach: just try to play after a short delay
                 setTimeout(() => {
-                    video.currentTime = 3; // Start at 3 seconds
+                    video.currentTime = 15; // Start at 15 seconds
                     video.play().then(() => {
                         console.log('Video playing');
                         if (fallback) fallback.style.opacity = '0';
@@ -818,14 +835,14 @@
                 // Simple loop control
                 video.addEventListener('timeupdate', function() {
                     if (video.currentTime >= 126) { // 2:06
-                        video.currentTime = 3; // Jump back to 3 seconds
+                        video.currentTime = 15; // Jump back to 15 seconds
                     }
                 });
                 
                 // Click to play if autoplay failed
                 document.addEventListener('click', function() {
                     if (video.paused) {
-                        video.currentTime = 3;
+                        video.currentTime = 15;
                         video.play();
                     }
                 }, { once: true });
