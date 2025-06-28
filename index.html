@@ -129,8 +129,6 @@
                 this.style.borderColor = 'rgb(100, 100, 100)';
             " ontouchend="
                 this.style.borderColor = 'rgb(60, 60, 60)';
-            "">
-                this.style.borderColor = 'rgb(60, 60, 60)';
             ">
                 <span style="position: relative; z-index: 2;">▶ Watch Showreel</span>
             </a>
@@ -138,14 +136,21 @@
     </section>
 
     <!-- Portfolio Gallery Section -->
-    <section id="portfolio-gallery" style="background-color: black; padding: clamp(5px, 1vw, 5px); min-height: 60vh; display: block !important;">
+    <section id="portfolio-gallery" style="
+        background-color: black; 
+        padding: clamp(5px, 1vw, 5px); 
+        min-height: 60vh; 
+        display: block !important;
+        width: 100%;
+        margin: 0;
+    ">
         <div id="gallery-grid" style="
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
             gap: clamp(2px, 0.5vw, 2px); 
             padding: 0;
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
         ">
             <!-- Dynamic portfolio content will be populated here -->
             <div class="loading-placeholder" style="color: gray; text-align: center; padding: 2rem; grid-column: 1 / -1;">Loading portfolio...</div>
