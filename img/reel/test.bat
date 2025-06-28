@@ -1,0 +1,1 @@
+ffmpeg -i "LR_showreel_2023_12.mp4" -ss 15 -to 126 -vf "scale=1280:720" -c:v libx264 -b:v 4M -maxrate 5M -bufsize 7M -preset medium -an "LR_showreel_background_HQ.mp4

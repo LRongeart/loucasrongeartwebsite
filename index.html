@@ -202,32 +202,27 @@
         overflow: hidden;
         border-bottom: 1px solid rgb(40, 40, 40);
     ">
-        <!-- YouTube Background -->
-        <div id="youtube-bg" style="
+        <!-- Video Background -->
+        <video id="hero-video" autoplay muted loop playsinline style="
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 120vw;
-            height: 120vh;
-            transform: translate(-50%, -50%);
+            min-width: 120%;
+            min-height: 120%;
+            width: auto;
+            height: auto;
             z-index: 0;
-            pointer-events: none;
+            transform: translate(-50%, -50%) scale(1.1);
             opacity: 0.9;
+            object-fit: cover;
+            pointer-events: none;
+            filter: brightness(1.2) contrast(1.1) saturate(1.1);
         ">
-            <iframe id="youtube-player"
-                width="100%" 
-                height="100%"
-                src="https://www.youtube.com/embed/nOY9aZCUjno?autoplay=1&mute=1&loop=1&playlist=nOY9aZCUjno&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&start=15&end=126"
-                title="Loucas Rongeart Showreel Background"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-                style="
-                    pointer-events: none;
-                    filter: brightness(1.2) contrast(1.1) saturate(1.1);
-                ">
-            </iframe>
-        </div>
+            <source src="./img/reel/LR_showreel_background_HQ.mp4" type="video/mp4">
+            <!-- Fallback to lower quality if HQ version not available -->
+            <source src="./img/reel/LR_showreel_2023_12_background.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+        </video>
         
         <!-- Fallback animated background for when video doesn't load -->
         <div id="fallback-bg" style="
@@ -802,46 +797,53 @@
 
     <!-- Essential Scripts for Portfolio and Navigation -->
     <script>
-        // YouTube background handler with fallback
+        // Simple video background handler for optimized video
         document.addEventListener('DOMContentLoaded', function() {
-            const youtubeBg = document.getElementById('youtube-bg');
+            const video = document.querySelector('#hero-video');
             const fallback = document.getElementById('fallback-bg');
             
-            if (youtubeBg && fallback) {
-                console.log('Setting up YouTube background...');
+            if (video) {
+                console.log('Loading optimized background video...');
                 
-                // Initially hide fallback while YouTube loads
-                fallback.style.opacity = '0.3';
+                // Show fallback initially
+                if (fallback) fallback.style.opacity = '0.4';
                 
-                // Check if YouTube loaded properly after 5 seconds
-                setTimeout(() => {
-                    const iframe = youtubeBg.querySelector('iframe');
-                    if (iframe) {
-                        console.log('YouTube background loaded successfully');
-                        fallback.style.opacity = '0'; // Hide fallback
-                    } else {
-                        console.log('YouTube failed to load, showing fallback');
-                        fallback.style.opacity = '0.6'; // Show fallback
+                video.addEventListener('loadeddata', function() {
+                    console.log('Optimized video loaded');
+                    // Since it's already optimized, no need to set specific start time
+                });
+                
+                video.addEventListener('playing', function() {
+                    console.log('Optimized video playing smoothly');
+                    if (fallback) {
+                        fallback.style.transition = 'opacity 1.5s ease';
+                        fallback.style.opacity = '0';
                     }
-                }, 5000);
+                });
                 
-                // Fallback for connection issues
+                video.addEventListener('error', function(e) {
+                    console.log('Video error, using fallback:', e);
+                    if (fallback) fallback.style.opacity = '0.6';
+                });
+                
+                // Minimal error handling since optimized video should be smooth
                 setTimeout(() => {
-                    // If still loading after 10 seconds, assume slow connection
-                    if (fallback.style.opacity !== '0') {
-                        console.log('Slow connection detected, using fallback');
-                        fallback.style.opacity = '0.6';
+                    if (video.paused) {
+                        console.log('Optimized video not playing, trying manual start...');
+                        video.play().catch(error => {
+                            console.log('Manual play failed:', error);
+                            if (fallback) fallback.style.opacity = '0.6';
+                        });
                     }
-                }, 10000);
+                }, 1500);
                 
-                // Error handling for iframe
-                const iframe = youtubeBg.querySelector('iframe');
-                if (iframe) {
-                    iframe.addEventListener('error', function() {
-                        console.log('YouTube iframe error, showing fallback');
-                        if (fallback) fallback.style.opacity = '0.6';
-                    });
-                }
+                // Click handler for manual start if needed
+                document.addEventListener('click', function() {
+                    if (video.paused) {
+                        console.log('User clicked, starting optimized video...');
+                        video.play();
+                    }
+                }, { once: true });
             }
         });
         
