@@ -12,27 +12,16 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="cache-version" content="20250628-2">
+    <meta name="cache-version" content="20250628-3">
     
     <title>Loucas Rongeart</title>
-    <script>
-        // Dynamic cache busting - forces fresh content every time
-        const timestamp = Date.now();
-        document.write('<link rel="stylesheet" href="styles.css?v=' + timestamp + '">');
-        document.write('<link rel="stylesheet" href="shared/project-styles.css?v=' + timestamp + '">');
-    </script>
+    <link rel="stylesheet" href="styles.css?v=20250628-3">
+    <link rel="stylesheet" href="shared/project-styles.css?v=20250628-3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
-    <script>
-        const preloadTimestamp = Date.now();
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = 'shared/header-footer-loader.js?v=' + preloadTimestamp;
-        link.as = 'script';
-        document.head.appendChild(link);
-    </script>
+    <link rel="preload" href="shared/header-footer-loader.js?v=20250628-3" as="script">
     
     <!-- Service Worker and Performance Scripts -->
     <script>
@@ -530,19 +519,13 @@
     </section>
 
     <!-- Include Header -->
-    <script>
-        const scriptTimestamp = Date.now();
-        document.write('<script src="shared/header-footer-loader.js?v=' + scriptTimestamp + '"><\/script>');
-    </script>
+    <script src="shared/header-footer-loader.js?v=20250628-3"></script>
 
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
     
     <!-- Performance Optimization Script -->
-    <script>
-        const perfTimestamp = Date.now();
-        document.write('<script src="js/performance.js?v=' + perfTimestamp + '"><\/script>');
-    </script>
+    <script src="js/performance.js?v=20250628-3"></script>
     
     <!-- Load mobile optimizations CSS asynchronously -->
     <script>
@@ -875,6 +858,29 @@
                 });
             }, 2000); // Wait for gallery to load
         });
+    </script>
+
+    <!-- Cache refresh check -->
+    <script>
+        // Simple cache version check - forces refresh if version mismatch
+        const currentVersion = '20250628-3';
+        const lastVersion = localStorage.getItem('siteVersion');
+        
+        if (lastVersion && lastVersion !== currentVersion) {
+            console.log('Site updated, clearing cache...');
+            // Clear localStorage and reload
+            localStorage.clear();
+            if ('caches' in window) {
+                caches.keys().then(names => {
+                    names.forEach(name => caches.delete(name));
+                });
+            }
+            localStorage.setItem('siteVersion', currentVersion);
+            // Force reload without cache
+            window.location.reload(true);
+        } else {
+            localStorage.setItem('siteVersion', currentVersion);
+        }
     </script>
 </body>
 </html>
