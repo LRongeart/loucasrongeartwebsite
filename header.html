@@ -21,22 +21,25 @@
     
     <!-- Mobile Navigation - Compact Menu -->
     <nav id="mobile-nav" style="display: none;">
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem; width: 100%; max-width: 100%;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.3rem; width: 100%; max-width: 100%;">
             <!-- Column 1 -->
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a>
-                <a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a>
+                <a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a>
+                <a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a>
             </div>
             <!-- Column 2 -->
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial</a>
-                <a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Courses</a>
+                <a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial</a>
+                <a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Courses</a>
             </div>
             <!-- Column 3 -->
             <div style="display: flex; flex-direction: column; align-items: center;">
-                <a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a>
-                <a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a>
-                <a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.2rem; white-space: nowrap; display: block; text-align: center; font-size: 0.55rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a>
+                <a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a>
+                <a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a>
+            </div>
+            <!-- Column 4 -->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.3rem 0.1rem; white-space: nowrap; display: block; text-align: center; font-size: 0.5rem;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a>
             </div>
         </div>
     </nav>
@@ -61,7 +64,7 @@
         align-items: center !important;
     }
     
-    /* Style the three-column mobile navigation */
+    /* Style the four-column mobile navigation */
     #mobile-nav > div {
         width: 100% !important;
         max-width: 100% !important;
@@ -69,9 +72,9 @@
     
     /* Make menu items touch-friendly */
     #mobile-nav a {
-        font-size: 0.55rem !important;
-        padding: 0.3rem 0.2rem !important;
-        min-height: 32px !important;
+        font-size: 0.5rem !important;
+        padding: 0.3rem 0.1rem !important;
+        min-height: 30px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -79,7 +82,7 @@
     
     /* Ensure columns are evenly distributed */
     #mobile-nav > div > div {
-        min-height: 70px !important;
+        min-height: 65px !important;
         justify-content: flex-start !important;
     }
 }
