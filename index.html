@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="Loucas Rongeart - Digital Artist and VFX Professional. View my portfolio of creature design, concept art, and visual effects work.">
     <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
@@ -15,14 +15,13 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" href="shared/header-footer-loader.js" as="script">
-    <link rel="preload" href="content.json" as="fetch" crossorigin>
     
     <!-- Service Worker and Performance Scripts -->
     <script>
         // Register Service Worker for caching and offline functionality
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
+                navigator.serviceWorker.register('./service-worker.js')
                     .then(registration => {
                         console.log('SW registered: ', registration);
                     })
@@ -226,8 +225,8 @@
                 margin: 0 0 1rem 0;
                 letter-spacing: 3px;
                 text-transform: uppercase;
-                opacity: 1;
-                transform: translateY(0);
+                opacity: 0;
+                transform: translateY(30px);
             ">Loucas Rongeart</h1>
             
             <div id="rotating-text" style="
@@ -239,7 +238,8 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                opacity: 1;
+                opacity: 0;
+                transform: translateY(20px);
             ">
                 <span id="typing-text">Character & Creature Artist</span>
                 <span id="cursor" style="
@@ -254,7 +254,8 @@
                 font-size: clamp(1rem, 3vw, 1.3rem);
                 line-height: 1.6;
                 margin-bottom: 3rem;
-                opacity: 1;
+                opacity: 0;
+                transform: translateY(20px);
             ">Specialized in <strong style='color: white;'>Texturing & LookDevelopment</strong> for Hero Assets<br>
             VFX & Feature Film Professional</p>
             
@@ -263,7 +264,8 @@
                 gap: 1rem;
                 justify-content: center;
                 flex-wrap: wrap;
-                opacity: 1;
+                opacity: 0;
+                transform: translateY(20px);
             ">
                 <a href="#portfolio-gallery" style="
                     background: linear-gradient(135deg, #4CAF50, #45a049);
@@ -910,7 +912,13 @@
         // Ensure animations work on page load
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing hero animations...');
-            setTimeout(animateHeroElements, 100);
+            animateHeroElements(); // Run immediately
+        });
+        
+        // Also run on window load as backup
+        window.addEventListener('load', function() {
+            console.log('Window loaded, ensuring animations...');
+            animateHeroElements();
         });
         
         // Rotating text animation

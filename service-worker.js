@@ -5,19 +5,19 @@ const DYNAMIC_CACHE = 'dynamic-v1.0.0';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
-    '/',
-    '/index.html',
-    '/about.html',
-    '/contact.html',
-    '/courses.html',
-    '/styles.css',
-    '/shared/project-styles.css',
-    '/css/mobile-optimizations.css',
-    '/js/performance.js',
-    '/shared/header-footer-loader.js',
-    '/header.html',
-    '/footer.html',
-    '/offline.html'
+    './',
+    './index.html',
+    './about.html',
+    './contact.html',
+    './courses.html',
+    './styles.css',
+    './shared/project-styles.css',
+    './css/mobile-optimizations.css',
+    './js/performance.js',
+    './shared/header-footer-loader.js',
+    './header.html',
+    './footer.html',
+    './offline.html'
 ];
 
 // Install event - cache static assets
