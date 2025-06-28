@@ -203,7 +203,7 @@
         border-bottom: 1px solid rgb(40, 40, 40);
     ">
         <!-- Video Background -->
-        <video id="hero-video" muted loop style="
+        <video id="hero-video" muted loop playsinline preload="metadata" style="
             position: absolute;
             top: 50%;
             left: 50%;
@@ -217,6 +217,7 @@
             object-fit: cover;
             pointer-events: none;
             filter: brightness(1.2) contrast(1.1) saturate(1.1);
+            will-change: auto;
         ">
             <source src="./img/reel/LR_showreel_2023_12.mp4#t=15,126" type="video/mp4">
             <!-- Fallback for browsers that don't support video -->
@@ -795,13 +796,24 @@
 
     <!-- Essential Scripts for Portfolio and Navigation -->
     <script>
-        // Simple video background handler
+        // Simple video background handler with performance monitoring
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.querySelector('#hero-video');
             const fallback = document.getElementById('fallback-bg');
             
             if (video) {
                 console.log('Setting up video...');
+                
+                // Performance monitoring
+                let frameDrops = 0;
+                video.addEventListener('stalled', () => {
+                    frameDrops++;
+                    console.log('Video stalled, frame drops:', frameDrops);
+                    if (frameDrops > 3) {
+                        console.log('Too many drops, showing fallback');
+                        if (fallback) fallback.style.opacity = '0.6';
+                    }
+                });
                 
                 // Simple approach: just try to play after a short delay
                 setTimeout(() => {
@@ -815,7 +827,7 @@
                     });
                 }, 1000);
                 
-                // Simple loop control
+                // Simple loop control with performance check
                 video.addEventListener('timeupdate', function() {
                     if (video.currentTime >= 126) { // 2:06
                         video.currentTime = 15; // Jump back to 15 seconds
@@ -829,6 +841,15 @@
                         video.play();
                     }
                 }, { once: true });
+                
+                // Performance fallback - reduce quality on slow devices
+                setTimeout(() => {
+                    if (frameDrops > 2) {
+                        console.log('Reducing video quality for performance');
+                        video.style.filter = 'brightness(1.2)'; // Remove expensive filters
+                        video.style.transform = 'translate(-50%, -50%)'; // Remove scaling
+                    }
+                }, 10000); // Check after 10 seconds
             }
         });
         

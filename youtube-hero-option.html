@@ -1,0 +1,97 @@
+<!-- YouTube Background Hero Option -->
+<section id="hero" style="
+    background: linear-gradient(135deg, rgb(15, 15, 15), rgb(25, 25, 25));
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid rgb(40, 40, 40);
+">
+    <!-- YouTube Background -->
+    <div id="youtube-bg" style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120vw;
+        height: 120vh;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.8;
+    ">
+        <iframe id="youtube-player"
+            width="100%" 
+            height="100%"
+            src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&start=15&end=126"
+            title="Background Video"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+            style="
+                pointer-events: none;
+                filter: brightness(1.2) contrast(1.1);
+            ">
+        </iframe>
+    </div>
+    
+    <!-- Fallback animated background -->
+    <div id="fallback-bg" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(100, 200, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(255, 100, 150, 0.06) 0%, transparent 50%);
+        animation: backgroundShift 15s ease-in-out infinite;
+        z-index: 0;
+        opacity: 0.6;
+    "></div>
+    
+    <!-- Dark Overlay -->
+    <div class="video-overlay" style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1));
+        z-index: 1;
+    "></div>
+    
+    <!-- Hero Content -->
+    <div style="
+        text-align: center;
+        max-width: 800px;
+        padding: 2rem;
+        position: relative;
+        z-index: 2;
+    ">
+        <!-- Hero content here -->
+    </div>
+</section>
+
+<script>
+// YouTube background with fallback
+document.addEventListener('DOMContentLoaded', function() {
+    const youtubeBg = document.getElementById('youtube-bg');
+    const fallback = document.getElementById('fallback-bg');
+    
+    // Hide YouTube and show fallback if loading fails
+    setTimeout(() => {
+        if (youtubeBg && fallback) {
+            // Check if YouTube loaded properly
+            const iframe = youtubeBg.querySelector('iframe');
+            if (!iframe || iframe.style.display === 'none') {
+                console.log('YouTube failed, showing fallback');
+                youtubeBg.style.display = 'none';
+                fallback.style.opacity = '0.6';
+            }
+        }
+    }, 5000);
+});
+</script>
