@@ -264,16 +264,64 @@
             .courses-container {
                 grid-template-columns: 1fr;
                 gap: 1rem;
+                padding: 0 0.5rem;
             }
             
             .column-header {
                 font-size: 1rem;
                 padding: 0.8rem;
+                margin-bottom: 0.5rem;
             }
             
             .course-card {
                 padding: 0.8rem;
                 min-height: 70px;
+                gap: 0.8rem;
+            }
+            
+            .course-icon img {
+                width: 35px;
+                height: 35px;
+                padding: 0.4rem;
+            }
+            
+            .course-title {
+                font-size: 0.9rem;
+                line-height: 1.2;
+            }
+            
+            /* Stack columns vertically on mobile */
+            .difficulty-column {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .courses-container {
+                padding: 0 0.25rem;
+            }
+            
+            .course-card {
+                padding: 0.6rem;
+                min-height: 60px;
+                gap: 0.6rem;
+            }
+            
+            .course-icon img {
+                width: 30px;
+                height: 30px;
+                padding: 0.3rem;
+            }
+            
+            .course-title {
+                font-size: 0.8rem;
+                font-weight: 500;
+            }
+            
+            .column-header {
+                font-size: 0.9rem;
+                padding: 0.6rem;
+                letter-spacing: 0.5px;
             }
         }
     </style>

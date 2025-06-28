@@ -1,0 +1,273 @@
+/* Mobile-Optimized CSS */
+/* This file contains mobile-specific optimizations and enhancements */
+
+/* Touch Feedback Styles */
+.touch-active {
+    opacity: 0.7 !important;
+    transform: scale(0.98) !important;
+    transition: all 0.1s ease !important;
+}
+
+/* Lazy Loading Styles */
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+img.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+img.error {
+    background: linear-gradient(45deg, #333 25%, transparent 25%), 
+                linear-gradient(-45deg, #333 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #333 75%), 
+                linear-gradient(-45deg, transparent 75%, #333 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhanced Mobile Navigation */
+@media (max-width: 768px) {
+    /* Improve scrolling performance */
+    * {
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Better tap targets */
+    button, a, input, select, textarea {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Optimize text rendering on mobile */
+    body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+    
+    /* Better focus indicators for accessibility */
+    :focus {
+        outline: 2px solid #007acc;
+        outline-offset: 2px;
+    }
+    
+    /* Prevent horizontal scrolling */
+    html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+    
+    /* Optimize gallery for mobile */
+    #gallery-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    /* Mobile-optimized course cards */
+    .course-card {
+        padding: 1rem !important;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, rgb(20, 20, 20), rgb(25, 25, 25)) !important;
+        border: 1px solid rgb(45, 45, 45) !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .course-card:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Better typography for mobile */
+    .project-title {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+        line-height: 1.1 !important;
+    }
+    
+    .project-subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem) !important;
+    }
+    
+    /* Optimize images for mobile */
+    img {
+        max-width: 100%;
+        height: auto;
+        image-rendering: -webkit-optimize-contrast;
+    }
+    
+    /* Better mobile spacing */
+    .about-container {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 1rem !important;
+    }
+    
+    .about-container > div {
+        min-height: auto !important;
+        padding: 1.5rem !important;
+    }
+}
+
+/* Very small screens (phones in portrait) */
+@media (max-width: 480px) {
+    #gallery-grid {
+        padding: 0 0.5rem !important;
+        gap: 0.75rem !important;
+    }
+    
+    .course-card {
+        padding: 0.75rem !important;
+        margin-bottom: 0.25rem;
+    }
+    
+    .project-container {
+        padding: 1rem 0.5rem !important;
+    }
+    
+    .about-container {
+        padding: 0.5rem !important;
+        gap: 1rem !important;
+    }
+    
+    .about-container > div {
+        padding: 1rem !important;
+        border-radius: 6px !important;
+    }
+}
+
+/* High DPI / Retina Display Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Optimize for high DPI displays */
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+    
+    .course-icon img {
+        image-rendering: auto; /* Keep icons smooth */
+    }
+}
+
+/* Reduce Motion for Users Who Prefer It */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .loading-placeholder {
+        animation: none !important;
+        background: #333 !important;
+    }
+}
+
+/* Dark Mode Optimizations */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+    
+    /* Ensure proper contrast in dark mode */
+    .course-card {
+        background: linear-gradient(135deg, rgb(25, 25, 25), rgb(30, 30, 30)) !important;
+        border-color: rgb(50, 50, 50) !important;
+    }
+    
+    .about-container > div {
+        background: rgba(20, 20, 20, 0.4) !important;
+        border-color: rgba(40, 40, 40, 0.6) !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+    
+    .mobile-nav, #mobile-menu-toggle, .back-button {
+        display: none !important;
+    }
+    
+    .project-banner {
+        height: auto !important;
+        background: none !important;
+    }
+    
+    .banner-overlay {
+        background: none !important;
+        color: black !important;
+    }
+}
+
+/* Loading Performance Improvements */
+.preload-hover {
+    transform: translateZ(0); /* Force hardware acceleration */
+    will-change: transform;
+}
+
+/* Optimize animations */
+@keyframes loading {
+    0% { 
+        background-position: 200% 0; 
+        transform: translateZ(0);
+    }
+    100% { 
+        background-position: -200% 0; 
+        transform: translateZ(0);
+    }
+}
+
+/* Better focus styles for accessibility */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Ensure minimum contrast ratios */
+.course-title, .project-title, .project-subtitle {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Optimize for landscape mobile */
+@media (max-width: 896px) and (orientation: landscape) {
+    .project-banner {
+        height: 30vh !important;
+        max-height: 200px !important;
+    }
+    
+    .banner-overlay {
+        padding: 0.5rem 1rem !important;
+    }
+    
+    .project-title {
+        font-size: 2rem !important;
+    }
+    
+    .project-subtitle {
+        font-size: 1rem !important;
+    }
+}

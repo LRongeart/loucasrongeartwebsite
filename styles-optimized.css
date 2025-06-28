@@ -1,0 +1,280 @@
+/* Performance-optimized CSS for Loucas Rongeart Website */
+
+/* CSS Reset and Box Sizing - minified */
+*,*::before,*::after{box-sizing:border-box}
+
+/* CSS Custom Properties */
+:root {
+    --primary-bg: #000000;
+    --secondary-bg: #191919;
+    --accent-bg: #333333;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #aaaaaa;
+    --border-color: #404040;
+    --border-light: rgba(255, 255, 255, 0.2);
+    --gradient-dark: linear-gradient(135deg, #404040, #191919);
+    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-heavy: 0 8px 30px rgba(0, 0, 0, 0.7);
+    --header-height: 70px;
+    --back-button-offset: 30px;
+    --border-radius: 8px;
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* Dark theme optimizations */
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
+
+/* Base styles with performance optimizations */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: var(--primary-bg);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1;
+}
+
+/* Improve scrolling performance */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Hardware acceleration for frequently animated elements */
+.animated-element,
+.gallery-item,
+.course-card,
+.social-link,
+.back-button {
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU layer */
+}
+
+/* Optimized header */
+header {
+    background-color: var(--accent-bg);
+    color: var(--text-primary);
+    padding: 1rem;
+    position: relative;
+    z-index: 1000;
+    contain: layout style;
+}
+
+/* Optimized navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color var(--transition-fast);
+    display: block;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    background-color: var(--border-light);
+    outline: none;
+}
+
+/* Optimized main content sections */
+.main-section {
+    padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 2vw, 1rem);
+    contain: layout style;
+}
+
+#hero { background-color: #f4f4f4; color: #333; }
+#about { background-color: #eaeaea; color: #333; }
+#portfolio { background-color: #f4f4f4; color: #333; }
+#contact { background-color: #eaeaea; color: #333; }
+
+/* High-performance portfolio grid */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: clamp(1rem, 2vw, 2rem);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    contain: layout;
+}
+
+/* Optimized placeholder/gallery items */
+.placeholder,
+.gallery-item {
+    width: 100%;
+    height: 200px;
+    border-radius: var(--border-radius);
+    transition: transform var(--transition-normal);
+    background-color: #666;
+    contain: layout style;
+}
+
+.placeholder:hover,
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Optimized images with lazy loading */
+img {
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+.lazy-image {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+}
+
+/* Performance-optimized loading states */
+.loading-placeholder {
+    background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    contain: layout style;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Footer optimization */
+footer {
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1rem);
+    background-color: var(--accent-bg);
+    color: var(--text-primary);
+    margin-top: auto;
+    contain: layout style;
+}
+
+/* Mobile-first responsive design with performance focus */
+@media (max-width: 768px) {
+    /* Reduce animations and transitions on mobile for better performance */
+    .placeholder:hover,
+    .gallery-item:hover {
+        transform: none;
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem 0;
+    }
+    
+    .placeholder,
+    .gallery-item {
+        height: 150px;
+    }
+    
+    nav ul {
+        gap: 0.5rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li a {
+        padding: 0.75rem 1.5rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-section {
+        padding: 1.5rem 0.75rem;
+    }
+    
+    .portfolio-grid {
+        gap: 0.75rem;
+    }
+    
+    .placeholder,
+    .gallery-item {
+        height: 120px;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    /* Larger touch targets */
+    nav ul li a,
+    .social-link,
+    .course-card {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Remove hover effects that don't work on touch */
+    .placeholder:hover,
+    .gallery-item:hover {
+        transform: none;
+    }
+    
+    /* Add touch feedback */
+    .interactive-element:active {
+        opacity: 0.7;
+        transition: opacity 0.1s;
+    }
+}
+
+/* Print optimizations */
+@media print {
+    * {
+        background: transparent !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #808080;
+        --text-secondary: #ffffff;
+        --text-muted: #cccccc;
+    }
+}

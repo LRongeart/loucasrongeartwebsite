@@ -1,19 +1,138 @@
 <!-- Header and Navigation Menu -->
-<header style="background-color: rgb(15, 15, 15); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
+<header style="background-color: rgb(15, 15, 15); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; position: relative;">
     <div style="display: flex; align-items: center; gap: 1rem;">
         <a href="index.html" id="header-logo-link" style="display: block; line-height: 0;">
             <img id="header-logo" src="img/LR_logo_v02_100.png" alt="Loucas Rongeart Logo" style="height: 50px; width: auto; cursor: pointer; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'" />
         </a>
     </div>
-    <nav>
+    
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-toggle" style="
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.5rem;
+        z-index: 1001;
+    " aria-label="Toggle navigation menu">
+        <span id="hamburger-icon">☰</span>
+    </button>
+    
+    <!-- Desktop Navigation -->
+    <nav id="desktop-nav" style="display: flex;">
         <ul style="list-style: none; display: flex; margin: 0; padding: 0; font-size: 0.75rem;">
-            <li style="margin: 0 1rem;"><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase;">Home</a></li>
-            <li style="margin: 0 1rem;"><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase;">Showreel</a></li>
-            <li style="margin: 0 1rem;"><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase;">Tutorial & Scripting</a></li>
-            <li style="margin: 0 1rem;"><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase;">Notion Courses</a></li>
-            <li style="margin: 0 1rem;"><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase;">About</a></li>
-            <li style="margin: 0 1rem;"><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase;">CV</a></li>
-            <li style="margin: 0 1rem;"><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase;">Contact</a></li>
+            <li style="margin: 0 1rem;"><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a></li>
+            <li style="margin: 0 1rem;"><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a></li>
+            <li style="margin: 0 1rem;"><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial & Scripting</a></li>
+            <li style="margin: 0 1rem;"><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Notion Courses</a></li>
+            <li style="margin: 0 1rem;"><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a></li>
+            <li style="margin: 0 1rem;"><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a></li>
+            <li style="margin: 0 1rem;"><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Mobile Navigation Overlay -->
+    <nav id="mobile-nav" style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(15, 15, 15, 0.98);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 4rem 2rem 2rem;
+        box-sizing: border-box;
+    ">
+        <ul style="
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        ">
+            <li><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a></li>
+            <li><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a></li>
+            <li><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial & Scripting</a></li>
+            <li><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Notion Courses</a></li>
+            <li><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a></li>
+            <li><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a></li>
+            <li><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
         </ul>
     </nav>
 </header>
+
+<style>
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    #mobile-menu-toggle {
+        display: block !important;
+    }
+    
+    #desktop-nav {
+        display: none !important;
+    }
+}
+
+@media (min-width: 769px) {
+    #mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    #mobile-nav {
+        display: none !important;
+    }
+}
+</style>
+
+<script>
+// Mobile Navigation Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    let isMenuOpen = false;
+    
+    if (mobileToggle && mobileNav) {
+        mobileToggle.addEventListener('click', function() {
+            isMenuOpen = !isMenuOpen;
+            
+            if (isMenuOpen) {
+                mobileNav.style.display = 'block';
+                hamburgerIcon.textContent = '✕';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            } else {
+                mobileNav.style.display = 'none';
+                hamburgerIcon.textContent = '☰';
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileNav.style.display = 'none';
+                hamburgerIcon.textContent = '☰';
+                document.body.style.overflow = '';
+                isMenuOpen = false;
+            });
+        });
+        
+        // Close menu when clicking outside
+        mobileNav.addEventListener('click', function(e) {
+            if (e.target === mobileNav) {
+                mobileNav.style.display = 'none';
+                hamburgerIcon.textContent = '☰';
+                document.body.style.overflow = '';
+                isMenuOpen = false;
+            }
+        });
+    }
+});
+</script>
