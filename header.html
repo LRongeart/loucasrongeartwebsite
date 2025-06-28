@@ -6,29 +6,6 @@
         </a>
     </div>
     
-    <!-- Mobile Menu Button -->
-    <button id="mobile-menu-toggle" style="
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0.5rem;
-        z-index: 1001;
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-        user-select: none;
-        -webkit-user-select: none;
-        min-width: 44px;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    " aria-label="Toggle navigation menu" type="button">
-        <span id="hamburger-icon" style="pointer-events: none;">☰</span>
-    </button>
-    
     <!-- Desktop Navigation -->
     <nav id="desktop-nav" style="display: flex;">
         <ul style="list-style: none; display: flex; margin: 0; padding: 0; font-size: 0.75rem;">
@@ -42,40 +19,16 @@
         </ul>
     </nav>
     
-    <!-- Mobile Navigation Overlay -->
-    <nav id="mobile-nav" style="
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(15, 15, 15, 0.98);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        z-index: 1000;
-        padding: 4rem 2rem 2rem;
-        box-sizing: border-box;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-        touch-action: manipulation;
-    ">
-        <ul style="
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            align-items: center;
-        ">
-            <li><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a></li>
-            <li><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a></li>
-            <li><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial & Scripting</a></li>
-            <li><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Notion Courses</a></li>
-            <li><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a></li>
-            <li><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a></li>
-            <li><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
+    <!-- Mobile Navigation - Compact Menu -->
+    <nav id="mobile-nav" style="display: none;">
+        <ul style="list-style: none; display: flex; flex-wrap: wrap; justify-content: center; margin: 0; padding: 0; font-size: 0.55rem; gap: 0.3rem;">
+            <li><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a></li>
+            <li><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a></li>
+            <li><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial</a></li>
+            <li><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Courses</a></li>
+            <li><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a></li>
+            <li><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a></li>
+            <li><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; transition: opacity 0.3s ease; padding: 0.2rem 0.4rem; white-space: nowrap;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -83,173 +36,43 @@
 <style>
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
-    #mobile-menu-toggle {
-        display: flex !important;
-    }
-    
     #desktop-nav {
-        display: none !important;
-    }
-}
-
-@media (min-width: 769px) {
-    #mobile-menu-toggle {
         display: none !important;
     }
     
     #mobile-nav {
-        display: none !important;
+        display: block !important;
+    }
+    
+    /* Adjust header layout for mobile */
+    header {
+        flex-direction: column !important;
+        gap: 0.5rem !important;
+        padding: 0.75rem 1rem !important;
+    }
+    
+    /* Make mobile navigation fit better */
+    #mobile-nav ul {
+        max-width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    /* Ensure text doesn't break and fits on small screens */
+    #mobile-nav a {
+        font-size: 0.5rem !important;
+        padding: 0.15rem 0.3rem !important;
     }
 }
 
-/* Android-specific improvements */
-#mobile-menu-toggle {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-
-#mobile-nav {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-}
-
-/* Improve touch targets for mobile */
-@media (max-width: 768px) {
-    #mobile-nav a {
-        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
-        tap-highlight-color: rgba(255, 255, 255, 0.1);
+@media (min-width: 769px) {
+    #mobile-nav {
+        display: none !important;
+    }
+    
+    #desktop-nav {
+        display: flex !important;
     }
 }
 </style>
 
-<script>
-// Mobile Navigation Toggle with Android compatibility
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Header script loaded');
-    const mobileToggle = document.getElementById('mobile-menu-toggle');
-    const mobileNav = document.getElementById('mobile-nav');
-    const hamburgerIcon = document.getElementById('hamburger-icon');
-    let isMenuOpen = false;
-    
-    console.log('Mobile toggle found:', !!mobileToggle);
-    console.log('Mobile nav found:', !!mobileNav);
-    console.log('User agent:', navigator.userAgent);
-    
-    if (mobileToggle && mobileNav) {
-        console.log('Setting up mobile menu listeners');
-        
-        // Function to toggle menu
-        function toggleMenu() {
-            console.log('Toggle menu called, current state:', isMenuOpen);
-            isMenuOpen = !isMenuOpen;
-            
-            if (isMenuOpen) {
-                console.log('Opening mobile menu');
-                mobileNav.style.display = 'block';
-                hamburgerIcon.textContent = '✕';
-                document.body.style.overflow = 'hidden';
-                document.documentElement.style.overflow = 'hidden'; // Also lock html element
-                // Add a small delay to ensure the menu is rendered
-                setTimeout(() => {
-                    mobileNav.focus();
-                }, 10);
-            } else {
-                console.log('Closing mobile menu');
-                mobileNav.style.display = 'none';
-                hamburgerIcon.textContent = '☰';
-                document.body.style.overflow = '';
-                document.documentElement.style.overflow = '';
-            }
-        }
-        
-        // Function to close menu
-        function closeMenu() {
-            console.log('Close menu called');
-            if (isMenuOpen) {
-                mobileNav.style.display = 'none';
-                hamburgerIcon.textContent = '☰';
-                document.body.style.overflow = '';
-                document.documentElement.style.overflow = '';
-                isMenuOpen = false;
-            }
-        }
-        
-        // Add both click and touch event listeners for better Android support
-        mobileToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Mobile menu click event');
-            toggleMenu();
-        });
-        
-        mobileToggle.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('Mobile menu touch event');
-            toggleMenu();
-        });
-        
-        // Prevent double-firing on devices that support both
-        let touchHandled = false;
-        mobileToggle.addEventListener('touchstart', function(e) {
-            touchHandled = true;
-            setTimeout(() => touchHandled = false, 300);
-        });
-        
-        mobileToggle.addEventListener('click', function(e) {
-            if (touchHandled) {
-                e.preventDefault();
-                return;
-            }
-        });
-        
-        // Close menu when clicking on a link
-        const mobileLinks = mobileNav.querySelectorAll('a');
-        console.log('Mobile links found:', mobileLinks.length);
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                console.log('Mobile link clicked');
-                closeMenu();
-            });
-            
-            link.addEventListener('touchend', function(e) {
-                console.log('Mobile link touched');
-                // Small delay to allow the touch to register as a click
-                setTimeout(() => closeMenu(), 50);
-            });
-        });
-        
-        // Close menu when clicking outside
-        mobileNav.addEventListener('click', function(e) {
-            if (e.target === mobileNav) {
-                console.log('Clicked outside menu, closing');
-                closeMenu();
-            }
-        });
-        
-        mobileNav.addEventListener('touchend', function(e) {
-            if (e.target === mobileNav) {
-                console.log('Touched outside menu, closing');
-                closeMenu();
-            }
-        });
-        
-        // Handle escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && isMenuOpen) {
-                console.log('Escape key pressed, closing menu');
-                closeMenu();
-            }
-        });
-        
-        // Prevent body scroll when menu is open (additional safeguard for iOS/Android)
-        mobileNav.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-        }, { passive: false });
-        
-    } else {
-        console.log('Mobile menu elements not found!');
-    }
-});
-</script>
+
