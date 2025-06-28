@@ -7,14 +7,20 @@
     <meta name="theme-color" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Cache Control for Updates -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
     <title>Loucas Rongeart</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="shared/project-styles.css">
+    <link rel="stylesheet" href="styles.css?v=20250628">
+    <link rel="stylesheet" href="shared/project-styles.css?v=20250628">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="shared/header-footer-loader.js" as="script">
+    <link rel="preload" href="shared/header-footer-loader.js?v=20250628" as="script">
     
     <!-- Service Worker and Performance Scripts -->
     <script>
@@ -478,13 +484,13 @@
     </section>
 
     <!-- Include Header -->
-    <script src="shared/header-footer-loader.js"></script>
+    <script src="shared/header-footer-loader.js?v=20250628"></script>
 
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
     
     <!-- Performance Optimization Script -->
-    <script src="js/performance.js"></script>
+    <script src="js/performance.js?v=20250628"></script>
     
     <!-- Load mobile optimizations CSS asynchronously -->
     <script>
