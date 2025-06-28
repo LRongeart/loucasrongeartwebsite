@@ -9,18 +9,19 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
     <!-- Cache Control for Updates -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
+    <meta name="cache-version" content="20250628-2">
     
     <title>Loucas Rongeart</title>
-    <link rel="stylesheet" href="styles.css?v=20250628">
-    <link rel="stylesheet" href="shared/project-styles.css?v=20250628">
+    <link rel="stylesheet" href="styles.css?v=20250628-2">
+    <link rel="stylesheet" href="shared/project-styles.css?v=20250628-2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="shared/header-footer-loader.js?v=20250628" as="script">
+    <link rel="preload" href="shared/header-footer-loader.js?v=20250628-2" as="script">
     
     <!-- Service Worker and Performance Scripts -->
     <script>
@@ -202,7 +203,7 @@
         border-bottom: 1px solid rgb(40, 40, 40);
     ">
         <!-- Video Background -->
-        <video id="hero-video" muted loop playsinline preload="metadata" style="
+        <video id="hero-video" muted loop style="
             position: absolute;
             top: 50%;
             left: 50%;
@@ -217,7 +218,7 @@
             pointer-events: none;
             filter: brightness(1.0) contrast(1.2);
         ">
-            <source src="./img/reel/LR_showreel_2023_12.mp4" type="video/mp4">
+            <source src="./img/reel/LR_showreel_2023_12.mp4#t=3,126" type="video/mp4">
             <!-- Fallback for browsers that don't support video -->
         </video>
         
@@ -518,13 +519,13 @@
     </section>
 
     <!-- Include Header -->
-    <script src="shared/header-footer-loader.js?v=20250628"></script>
+    <script src="shared/header-footer-loader.js?v=20250628-2"></script>
 
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
     
     <!-- Performance Optimization Script -->
-    <script src="js/performance.js?v=20250628"></script>
+    <script src="js/performance.js?v=20250628-2"></script>
     
     <!-- Load mobile optimizations CSS asynchronously -->
     <script>
@@ -794,81 +795,40 @@
 
     <!-- Essential Scripts for Portfolio and Navigation -->
     <script>
-        // Video background handler with timing control
+        // Simple video background handler
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.querySelector('#hero-video');
             const fallback = document.getElementById('fallback-bg');
             
             if (video) {
-                // Video timing configuration
-                const startTime = 3;   // Start at 3 seconds (skip intro)
-                const endTime = 126;   // End at 2:06 (126 seconds)
+                console.log('Setting up video...');
                 
-                let videoInitialized = false;
-                let isLooping = false;
+                // Simple approach: just try to play after a short delay
+                setTimeout(() => {
+                    video.currentTime = 3; // Start at 3 seconds
+                    video.play().then(() => {
+                        console.log('Video playing');
+                        if (fallback) fallback.style.opacity = '0';
+                    }).catch(() => {
+                        console.log('Autoplay failed, showing fallback');
+                        if (fallback) fallback.style.opacity = '0.6';
+                    });
+                }, 1000);
                 
-                console.log('Video element found, setting up handlers...');
-                
-                video.addEventListener('loadedmetadata', function() {
-                    if (!videoInitialized) {
-                        console.log('Video metadata loaded, duration:', video.duration);
-                        console.log('Setting start time to:', startTime);
-                        video.currentTime = startTime;
-                        videoInitialized = true;
-                    }
-                });
-                
+                // Simple loop control
                 video.addEventListener('timeupdate', function() {
-                    // Loop back to start time when reaching end time
-                    if (video.currentTime >= endTime && !isLooping) {
-                        isLooping = true;
-                        console.log('Looping video back to start time');
-                        video.currentTime = startTime;
-                        setTimeout(() => { isLooping = false; }, 100); // Prevent rapid looping
+                    if (video.currentTime >= 126) { // 2:06
+                        video.currentTime = 3; // Jump back to 3 seconds
                     }
                 });
                 
-                video.addEventListener('canplaythrough', function() {
-                    if (!videoInitialized) {
-                        console.log('Video can play through, starting playback...');
-                        video.currentTime = startTime;
-                        video.play().then(() => {
-                            console.log('Video started successfully');
-                            if (fallback) fallback.style.opacity = '0';
-                            videoInitialized = true;
-                        }).catch(error => {
-                            console.log('Autoplay failed:', error);
-                            if (fallback) fallback.style.opacity = '0.6';
-                        });
-                    }
-                });
-                
-                video.addEventListener('error', function(e) {
-                    console.log('Video error:', e);
-                    if (fallback) {
-                        fallback.style.opacity = '0.6';
-                        fallback.style.display = 'block';
-                    }
-                });
-                
-                // Simple click handler for manual start if autoplay fails
-                document.addEventListener('click', function startVideo() {
+                // Click to play if autoplay failed
+                document.addEventListener('click', function() {
                     if (video.paused) {
-                        console.log('User clicked, starting video...');
-                        video.currentTime = startTime;
-                        video.play().catch(error => {
-                            console.log('Manual play failed:', error);
-                        });
+                        video.currentTime = 3;
+                        video.play();
                     }
                 }, { once: true });
-                
-                // Fallback timeout
-                setTimeout(() => {
-                    if (video.readyState < 2 || video.paused) {
-                        console.log('Video not ready after 3 seconds, showing fallback');
-                        if (fallback) fallback.style.opacity = '0.6';
-                    }
-                }, 3000);
             }
         });
         
