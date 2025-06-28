@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shared/project-styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -844,6 +845,28 @@
 
     <!-- Hero Section Interactive Scripts -->
     <script>
+        // Debug logging for GitHub Pages
+        console.log('Hero section script loading...');
+        
+        // Ensure animations work on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing hero animations...');
+            
+            // Force show hero elements with animations
+            const heroTitle = document.getElementById('hero-title');
+            const rotatingText = document.getElementById('rotating-text');
+            
+            if (heroTitle) {
+                console.log('Hero title found, applying animation...');
+                heroTitle.style.animation = 'slideInUp 1.5s ease-out 0.5s forwards';
+            }
+            
+            if (rotatingText) {
+                console.log('Rotating text found, applying animation...');
+                rotatingText.style.animation = 'slideInUp 1.5s ease-out 1s forwards';
+            }
+        });
+        
         // Rotating text animation
         const texts = [
             "Character & Creature Artist",
@@ -862,6 +885,12 @@
         
         function typeText() {
             const typingElement = document.getElementById('typing-text');
+            if (!typingElement) {
+                console.log('Typing element not found, retrying...');
+                setTimeout(typeText, 500);
+                return;
+            }
+            
             const currentText = texts[currentTextIndex];
             
             if (!isDeleting) {
@@ -887,10 +916,29 @@
             setTimeout(typeText, speed);
         }
         
-        // Start typing animation after initial delay
-        setTimeout(() => {
-            typeText();
-        }, 3000);
+        // Start typing animation after initial delay - make it more reliable
+        function startTypingAnimation() {
+            const typingElement = document.getElementById('typing-text');
+            if (typingElement) {
+                console.log('Starting typing animation...');
+                setTimeout(typeText, 3000);
+            } else {
+                console.log('Typing element not ready, retrying in 1s...');
+                setTimeout(startTypingAnimation, 1000);
+            }
+        }
+        
+        // Multiple triggers to ensure it works
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startTypingAnimation);
+        } else {
+            startTypingAnimation();
+        }
+        
+        window.addEventListener('load', function() {
+            console.log('Window loaded, checking animations...');
+            setTimeout(startTypingAnimation, 500);
+        });
         
         // Scroll-triggered animations
         function checkScrollAnimations() {
@@ -910,6 +958,7 @@
         // Enhanced gallery item animations
         function enhanceGalleryAnimations() {
             const galleryItems = document.querySelectorAll('#gallery-grid > div');
+            console.log('Enhancing gallery animations for', galleryItems.length, 'items');
             
             galleryItems.forEach((item, index) => {
                 // Add staggered animation on load
@@ -948,18 +997,33 @@
             if (viewWorkBtn) {
                 viewWorkBtn.addEventListener('click', function(e) {
                     e.preventDefault();
-                    document.getElementById('portfolio-gallery').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    const portfolioSection = document.getElementById('portfolio-gallery');
+                    if (portfolioSection) {
+                        portfolioSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
             }
         });
         
-        // Initialize animations when page loads
-        window.addEventListener('load', function() {
+        // Initialize animations when page loads - multiple triggers for reliability
+        function initializeAnimations() {
+            console.log('Initializing all animations...');
             checkScrollAnimations();
-            setTimeout(enhanceGalleryAnimations, 1000); // Wait for gallery to load
+            setTimeout(enhanceGalleryAnimations, 2000); // Wait for gallery to load
+        }
+        
+        // Multiple initialization triggers
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeAnimations);
+        } else {
+            initializeAnimations();
+        }
+        
+        window.addEventListener('load', function() {
+            setTimeout(initializeAnimations, 1000);
         });
         
         window.addEventListener('scroll', checkScrollAnimations);
@@ -974,6 +1038,8 @@
                 heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
             }
         });
+        
+        console.log('Hero section script loaded successfully.');
     </script>
 </body>
 </html>
