@@ -860,53 +860,33 @@
             const heroParagraph = document.querySelector('#hero p');
             const heroButtons = document.querySelector('#hero > div > div:last-child');
             
-            // Animate hero title
-            if (heroTitle) {
-                heroTitle.style.opacity = '0';
-                heroTitle.style.transform = 'translateY(30px)';
-                heroTitle.style.transition = 'all 1.5s ease-out';
-                
-                setTimeout(() => {
-                    heroTitle.style.opacity = '1';
-                    heroTitle.style.transform = 'translateY(0)';
-                }, 500);
-            }
+            // Set initial states and animate
+            const elements = [
+                { el: heroTitle, delay: 300 },
+                { el: rotatingText, delay: 600 },
+                { el: heroParagraph, delay: 900 },
+                { el: heroButtons, delay: 1200 }
+            ];
             
-            // Animate rotating text
-            if (rotatingText) {
-                rotatingText.style.opacity = '0';
-                rotatingText.style.transform = 'translateY(30px)';
-                rotatingText.style.transition = 'all 1.5s ease-out';
-                
-                setTimeout(() => {
-                    rotatingText.style.opacity = '1';
-                    rotatingText.style.transform = 'translateY(0)';
-                }, 1000);
-            }
+            elements.forEach(({ el, delay }) => {
+                if (el) {
+                    // Force initial state
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                    
+                    // Animate to visible state
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, delay);
+                }
+            });
             
-            // Animate paragraph
-            if (heroParagraph) {
-                heroParagraph.style.opacity = '0';
-                heroParagraph.style.transform = 'translateY(30px)';
-                heroParagraph.style.transition = 'all 1.5s ease-out';
-                
-                setTimeout(() => {
-                    heroParagraph.style.opacity = '1';
-                    heroParagraph.style.transform = 'translateY(0)';
-                }, 1500);
-            }
-            
-            // Animate buttons
-            if (heroButtons) {
-                heroButtons.style.opacity = '0';
-                heroButtons.style.transform = 'translateY(30px)';
-                heroButtons.style.transition = 'all 1.5s ease-out';
-                
-                setTimeout(() => {
-                    heroButtons.style.opacity = '1';
-                    heroButtons.style.transform = 'translateY(0)';
-                }, 2000);
-            }
+            // Start typing animation after hero elements are visible
+            setTimeout(() => {
+                typeText();
+            }, 1500);
         }
         
         // Ensure animations work on page load
@@ -975,16 +955,12 @@
             const typingElement = document.getElementById('typing-text');
             if (typingElement) {
                 console.log('Starting typing animation...');
-                setTimeout(typeText, 4000); // Start after hero animations
+                typeText();
             } else {
                 console.log('Typing element not ready, retrying in 1s...');
                 setTimeout(startTypingAnimation, 1000);
             }
         }
-        
-        // Multiple triggers to ensure it works
-        document.addEventListener('DOMContentLoaded', startTypingAnimation);
-        window.addEventListener('load', startTypingAnimation);
         
         // Scroll-triggered animations for other sections
         function checkScrollAnimations() {
