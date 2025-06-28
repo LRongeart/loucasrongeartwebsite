@@ -1,32 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYP        .about-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 4rem 2rem 0 2rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1.5fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Loucas Rongeart</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="shared/project-styles.css">
     <style>
         .about-container {
-            max-width: 1200px;
+            max-width: 1800px;
             margin: 0 auto;
             padding: 4rem 2rem;
             display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            gap: 4rem;
+            grid-template-columns: 1.2fr 1.5fr 1fr;
+            grid-template-rows: auto 1fr;
+            gap: 0.5rem;
             align-items: start;
+        }
+        
+        /* Create visual alignment for all sections */
+        .about-container > div {
+            background: rgba(15, 15, 15, 0.3);
+            border: 1px solid rgba(35, 35, 35, 0.5);
+            border-radius: 8px;
+            padding: 2rem;
+            height: 100%;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
         
         .photo-section {
             text-align: center;
+            grid-row: 1 / -1;
+            background: rgba(15, 15, 15, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        
+        .bio-section {
+            grid-row: 1 / -1;
+            background: rgba(15, 15, 15, 0.2);
+        }
+        
+        .credits-section {
+            grid-row: 1 / -1;
+            align-self: start;
+            background: rgb(20, 20, 20) !important;
+            border: 1px solid rgb(35, 35, 35) !important;
+            margin: 0;
         }
         
         .photo-section img {
             width: 100%;
-            max-width: 400px;
             height: auto;
+            max-width: none;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            flex: 0 0 auto;
+        }
+        
+        .photo-spacer {
+            flex: 1;
+            min-height: 100px;
         }
         
         .bio-section h2 {
@@ -41,7 +87,13 @@
             color: #ccc;
             font-size: 1.1rem;
             line-height: 1.7;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .bio-section strong {
+            color: #fff;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
         }
         
         .contact-info {
@@ -72,12 +124,282 @@
             min-width: 60px;
         }
         
+        /* Credits Section Styles */
+        .credits-section {
+            background: rgb(20, 20, 20);
+            border: 1px solid rgb(35, 35, 35);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 0;
+        }
+        
+        .credits-section h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .credits-section h3::before {
+            content: "🎬";
+            font-size: 0.9rem;
+        }
+        
+        .credit-item {
+            margin-bottom: 1.2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgb(35, 35, 35);
+        }
+        
+        .credit-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .credit-title {
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+        
+        .credit-year-type {
+            color: #888;
+            font-size: 0.75rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .credit-director {
+            color: #aaa;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .credit-role {
+            color: #4CAF50;
+            font-size: 0.75rem;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 1024px) {
+            .about-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+            
+            .credits-section {
+                grid-column: 1 / -1;
+                margin-top: 2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .about-container {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+                gap: 1rem;
                 padding: 2rem 1rem;
             }
+            
+            .credits-section {
+                grid-column: 1;
+                margin-top: 1rem;
+            }
+        }
+
+        .bio-content {
+            margin-bottom: 2rem;
+        }
+        
+        /* Gallery Section Styles */
+        .gallery-section {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+        
+        .gallery-title {
+            color: white;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .gallery-container-custom {
+            padding: 0;
+            margin: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-gap: 8px;
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1400px) {
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border: 1px solid #333;
+            border-radius: 4px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-grid div {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-grid div:before,
+        .gallery-grid div:after {
+            transition: 0.3s opacity ease;
+            opacity: 0;
+        }
+
+        .gallery-grid div:after {
+            content: "🔍";
+            font-size: 40px;
+            position: absolute;
+            transform: translate3d(-50%, -50%, 0);
+            color: #fff;
+            left: 50%;
+            top: 50%;
+            display: block;
+            pointer-events: none;
+        }
+
+        .gallery-grid div:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: block;
+            border-radius: 4px;
+        }
+
+        .gallery-grid div:hover:before,
+        .gallery-grid div:hover:after {
+            opacity: 1;
+            transition: 0.3s opacity ease;
+        }
+
+        .gallery-grid div:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal {
+            position: fixed;
+            z-index: 999;
+            width: 80%;
+            max-width: 800px;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                width: 95%;
+            }
+        }
+
+        .modal img {
+            width: 100%;
+            border: 5px solid #fff;
+            border-radius: 8px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            z-index: 998;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 0;
+            left: 0;
+        }
+
+        .modal-body a {
+            position: absolute;
+            display: inline;
+            color: #222;
+            text-decoration: none;
+            line-height: 36px;
+            font-size: 30px;
+            font-weight: lighter;
+            background: #fff;
+            border-radius: 5px;
+            height: 40px;
+            width: 40px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .modal-body a:hover {
+            background: #f0f0f0;
+        }
+
+        .modal-body .modal-close {
+            right: 0;
+            top: 0;
+            border-radius: 0 0 0 5px;
+        }
+
+        .modal-body .modal-next,
+        .modal-body .modal-prev {
+            right: 0;
+            top: calc(50% - 25px);
+            border-radius: 5px 0 0 5px;
+            height: 50px;
+            line-height: 40px;
+            font-size: 60px;
+        }
+
+        .modal-body .modal-prev {
+            left: 0;
+            right: auto;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .modal-body {
+            position: relative;
         }
     </style>
 </head>
@@ -96,42 +418,239 @@
     </div>
     
     <!-- About Content -->
-    <div style="background-color: black; min-height: 60vh;">
+    <div style="background-color: black; padding-bottom: 0;">
         <div class="about-container">
             <!-- Photo Section -->
             <div class="photo-section">
                 <img src="./img/LR_PP_v01_100.jpeg" alt="Loucas Rongeart" />
+                <div class="photo-spacer"></div>
             </div>
             
             <!-- Bio Section -->
             <div class="bio-section">
                 <h2>Loucas Rongeart</h2>
-                <p>
-                    Passionate creature and character artist with extensive experience in digital art, concept design, and creative storytelling. Specializing in bringing mythical beings and fantasy characters to life through detailed anatomical studies and dynamic visual narratives.
-                </p>
-                <p>
-                    My work spans across various mediums including concept art, character design, and environmental storytelling. I combine traditional artistic principles with cutting-edge digital techniques to create compelling visual experiences that captivate and inspire.
-                </p>
-                
+                <p>I'm primarily a Character / Creature artist, mostly specialized in <strong>Texturing</strong> & <strong>LookDevelopment</strong> for Hero Assets for VFX & Feature Film projects.</p>
+                <p>Proficient with most proprietary & off-the-shelf softwares, with a bias for resilient production products such as <strong>Mari</strong>, <strong>Nuke</strong>, <strong>Maya</strong>, <strong>Houdini</strong>, <strong>ZBrush</strong> & <strong>Katana</strong>.</p>
+                <p>Always expanding my horizons & remaining curious are my uttermost goals.</p>
+                <p>For the past 10 years, sharing my passion & know-hows with colleagues and students in broadly different production environments made me a better team-player, produce documented creative processes, and work on my communication skill sets.</p>
+
                 <div class="contact-info">
                     <h3>Get in Touch</h3>
                     <div class="contact-item">
                         <strong>Email:</strong>
-                        <span>loucas.rongeart@example.com</span>
+                        <span>loucas.rongeart@gmail.com</span>
                     </div>
                     <div class="contact-item">
                         <strong>Phone:</strong>
-                        <span>+33 6 12 34 56 78</span>
+                        <span>+33 6 28 02 66 18</span>
                     </div>
                 </div>
             </div>
+            
+            <!-- Credits Section -->
+            <div class="credits-section">
+                <h3>Show Credits</h3>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"Kafka"</div>
+                    <div class="credit-year-type">2024 - Series - Freelance</div>
+                    <div class="credit-director">by David Schalko</div>
+                    <div class="credit-role">Texture & LookDev Artist</div>
+                </div>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"Aquaman and the Lost Kingdom"</div>
+                    <div class="credit-year-type">2023 - Movie - MPC</div>
+                    <div class="credit-director">by James Wan</div>
+                    <div class="credit-role">Key Texture & LookDev Artist</div>
+                </div>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"Dungeon & Dragons: Honor Among Thieves"</div>
+                    <div class="credit-year-type">2023 - Movie - MPC</div>
+                    <div class="credit-director">by John Francis Daley & Jonathan Goldstein</div>
+                    <div class="credit-role">Key Texture & LookDev Artist</div>
+                </div>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"Pinocchio"</div>
+                    <div class="credit-year-type">2022 - Movie - MPC</div>
+                    <div class="credit-director">by Robert Zemeckis</div>
+                    <div class="credit-role">Key Texture & LookDev Artist</div>
+                </div>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"PREY"</div>
+                    <div class="credit-year-type">2022 - Movie - MPC</div>
+                    <div class="credit-director">by Dan Trachtenberg</div>
+                    <div class="credit-role">Key Texture & LookDev Artist</div>
+                </div>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"Disenchanted"</div>
+                    <div class="credit-year-type">2022 - Movie - MPC</div>
+                    <div class="credit-director">by Adam Shankman</div>
+                    <div class="credit-role">Key Texture & LookDev Artist</div>
+                </div>
+                
+                <div class="credit-item">
+                    <div class="credit-title">"The Midnight Sky"</div>
+                    <div class="credit-year-type">2020 - Movie - Framestore</div>
+                    <div class="credit-director">by George Clooney</div>
+                    <div class="credit-role">Junior Texture Artist</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gallery Section -->
+    <div style="background-color: black; padding: 0 2rem 4rem 2rem;">
+        <div class="gallery-section">
+            <div class="gallery-container-custom"></div>
         </div>
     </div>
     
     <!-- Include Footer -->
     <div id="footer-placeholder"></div>
     
-    <script src="shared/project-scripts.js"></script>
+    <!-- React Scripts for Gallery -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js'></script>
+    
+    <script>
+        const imgUrls = [
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/kafka.jpg',
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/aquamanAndTheLastKingdom.jpg',
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/dungeonsAndDragonsHonorAmongThieves.jpg',
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/pinocchio.jpg',
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/prey.jpg',
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/disenchanted.jpg',
+            'https://lrongeart.github.io/LR_ESMA_Cours/gallery/theMidnightSky.jpg'
+        ];
+
+        class Gallery extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { currentIndex: null };
+                this.closeModal = this.closeModal.bind(this);
+                this.findNext = this.findNext.bind(this);
+                this.findPrev = this.findPrev.bind(this);
+                this.renderImageContent = this.renderImageContent.bind(this);
+            }
+
+            renderImageContent(src, index) {
+                return React.createElement("div", { 
+                    onClick: e => this.openModal(e, index),
+                    key: index 
+                }, React.createElement("img", { src: src, alt: `Project ${index + 1}` }));
+            }
+
+            openModal(e, index) {
+                this.setState({ currentIndex: index });
+            }
+
+            closeModal(e) {
+                if (e != undefined) {
+                    e.preventDefault();
+                }
+                this.setState({ currentIndex: null });
+            }
+
+            findPrev(e) {
+                if (e != undefined) {
+                    e.preventDefault();
+                }
+                this.setState(prevState => ({
+                    currentIndex: prevState.currentIndex - 1
+                }));
+            }
+
+            findNext(e) {
+                if (e != undefined) {
+                    e.preventDefault();
+                }
+                this.setState(prevState => ({
+                    currentIndex: prevState.currentIndex + 1
+                }));
+            }
+
+            render() {
+                return React.createElement("div", { className: "gallery-container-custom" },
+                    React.createElement("div", { className: "gallery-grid" },
+                        imgUrls.map(this.renderImageContent)
+                    ),
+                    React.createElement(GalleryModal, {
+                        closeModal: this.closeModal,
+                        findPrev: this.findPrev,
+                        findNext: this.findNext,
+                        hasPrev: this.state.currentIndex > 0,
+                        hasNext: this.state.currentIndex + 1 < imgUrls.length,
+                        src: imgUrls[this.state.currentIndex]
+                    })
+                );
+            }
+        }
+
+        class GalleryModal extends React.Component {
+            constructor() {
+                super();
+                this.handleKeyDown = this.handleKeyDown.bind(this);
+            }
+
+            componentDidMount() {
+                document.body.addEventListener('keydown', this.handleKeyDown);
+            }
+
+            componentWillUnmount() {
+                document.body.removeEventListener('keydown', this.handleKeyDown);
+            }
+
+            handleKeyDown(e) {
+                if (e.keyCode === 27) this.props.closeModal();
+                if (e.keyCode === 37 && this.props.hasPrev) this.props.findPrev();
+                if (e.keyCode === 39 && this.props.hasNext) this.props.findNext();
+            }
+
+            render() {
+                const { closeModal, hasNext, hasPrev, findNext, findPrev, src } = this.props;
+                if (!src) {
+                    return null;
+                }
+                return React.createElement("div", null,
+                    React.createElement("div", { className: "modal-overlay", onClick: closeModal }),
+                    React.createElement("div", { className: "modal" },
+                        React.createElement("div", { className: "modal-body" },
+                            React.createElement("a", { 
+                                href: "#", 
+                                className: "modal-close", 
+                                onClick: closeModal 
+                            }, "×"),
+                            hasPrev && React.createElement("a", { 
+                                href: "#", 
+                                className: "modal-prev", 
+                                onClick: findPrev 
+                            }, "‹"),
+                            hasNext && React.createElement("a", { 
+                                href: "#", 
+                                className: "modal-next", 
+                                onClick: findNext 
+                            }, "›"),
+                            React.createElement("img", { src: src, alt: "Project detail" })
+                        )
+                    )
+                );
+            }
+        }
+
+        // Initialize gallery when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryContainer = document.querySelector('.gallery-container-custom');
+            if (galleryContainer) {
+                ReactDOM.render(React.createElement(Gallery, null), galleryContainer);
+            }
+        });
+    </script>
+    
     <script src="shared/header-footer-loader.js"></script>
 </body>
 </html>
