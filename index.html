@@ -202,7 +202,7 @@
         border-bottom: 1px solid rgb(40, 40, 40);
     ">
         <!-- Video Background -->
-        <video id="hero-video" autoplay muted loop playsinline preload="auto" style="
+        <video id="hero-video" muted loop playsinline preload="metadata" style="
             position: absolute;
             top: 50%;
             left: 50%;
@@ -804,64 +804,40 @@
                 const startTime = 3;   // Start at 3 seconds (skip intro)
                 const endTime = 126;   // End at 2:06 (126 seconds)
                 
+                let videoInitialized = false;
+                let isLooping = false;
+                
                 console.log('Video element found, setting up handlers...');
                 
-                // Force video to load and play
-                video.load();
-                
                 video.addEventListener('loadedmetadata', function() {
-                    console.log('Video metadata loaded, duration:', video.duration);
-                    console.log('Setting start time to:', startTime);
-                    video.currentTime = startTime;
-                });
-                
-                video.addEventListener('loadeddata', function() {
-                    console.log('Video data loaded, attempting to play...');
-                    video.currentTime = startTime;
-                    // Try to play the video
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            console.log('Video is playing successfully');
-                            if (fallback) fallback.style.opacity = '0';
-                        }).catch(error => {
-                            console.log('Autoplay prevented:', error);
-                            console.log('Video will play when user interacts with page');
-                            if (fallback) fallback.style.opacity = '0.6';
-                        });
+                    if (!videoInitialized) {
+                        console.log('Video metadata loaded, duration:', video.duration);
+                        console.log('Setting start time to:', startTime);
+                        video.currentTime = startTime;
+                        videoInitialized = true;
                     }
                 });
                 
                 video.addEventListener('timeupdate', function() {
                     // Loop back to start time when reaching end time
-                    if (video.currentTime >= endTime) {
+                    if (video.currentTime >= endTime && !isLooping) {
+                        isLooping = true;
                         console.log('Looping video back to start time');
                         video.currentTime = startTime;
-                    }
-                });
-                
-                video.addEventListener('loadstart', function() {
-                    console.log('Video started loading...');
-                    if (fallback) fallback.style.opacity = '0.3';
-                });
-                
-                video.addEventListener('canplay', function() {
-                    console.log('Video can play, current time:', video.currentTime);
-                    if (video.currentTime < startTime) {
-                        video.currentTime = startTime;
+                        setTimeout(() => { isLooping = false; }, 100); // Prevent rapid looping
                     }
                 });
                 
                 video.addEventListener('canplaythrough', function() {
-                    console.log('Video can play through, attempting autoplay...');
-                    video.currentTime = startTime;
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            console.log('Video autoplay successful');
+                    if (!videoInitialized) {
+                        console.log('Video can play through, starting playback...');
+                        video.currentTime = startTime;
+                        video.play().then(() => {
+                            console.log('Video started successfully');
                             if (fallback) fallback.style.opacity = '0';
+                            videoInitialized = true;
                         }).catch(error => {
-                            console.log('Autoplay blocked, showing fallback');
+                            console.log('Autoplay failed:', error);
                             if (fallback) fallback.style.opacity = '0.6';
                         });
                     }
@@ -869,60 +845,30 @@
                 
                 video.addEventListener('error', function(e) {
                     console.log('Video error:', e);
-                    console.log('Video failed to load, using fallback animation');
                     if (fallback) {
                         fallback.style.opacity = '0.6';
                         fallback.style.display = 'block';
                     }
                 });
                 
-                video.addEventListener('stalled', function() {
-                    console.log('Video stalled');
-                });
-                
-                video.addEventListener('waiting', function() {
-                    console.log('Video waiting for data');
-                });
-                
-                video.addEventListener('playing', function() {
-                    console.log('Video is now playing');
-                    if (fallback) fallback.style.opacity = '0';
-                });
-                
-                video.addEventListener('pause', function() {
-                    console.log('Video paused');
-                });
-                
-                // Fallback: try to play after a delay
-                setTimeout(() => {
-                    if (video.paused && video.readyState >= 2) {
-                        console.log('Video seems stuck, forcing play...');
+                // Simple click handler for manual start if autoplay fails
+                document.addEventListener('click', function startVideo() {
+                    if (video.paused) {
+                        console.log('User clicked, starting video...');
                         video.currentTime = startTime;
                         video.play().catch(error => {
                             console.log('Manual play failed:', error);
-                            if (fallback) fallback.style.opacity = '0.6';
-                        });
-                    }
-                }, 2000);
-                
-                // Show fallback if video takes too long
-                setTimeout(() => {
-                    if (video.readyState < 2) {
-                        console.log('Video taking too long, showing fallback');
-                        if (fallback) fallback.style.opacity = '0.6';
-                    }
-                }, 5000);
-                
-                // Add click handler to start video if autoplay fails
-                document.addEventListener('click', function() {
-                    if (video.paused) {
-                        console.log('User clicked, attempting to start video...');
-                        video.currentTime = startTime;
-                        video.play().catch(error => {
-                            console.log('Click-triggered play failed:', error);
                         });
                     }
                 }, { once: true });
+                
+                // Fallback timeout
+                setTimeout(() => {
+                    if (video.readyState < 2 || video.paused) {
+                        console.log('Video not ready after 3 seconds, showing fallback');
+                        if (fallback) fallback.style.opacity = '0.6';
+                    }
+                }, 3000);
             }
         });
         
