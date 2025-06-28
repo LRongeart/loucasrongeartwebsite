@@ -63,6 +63,23 @@
             }
         }
         
+        /* CSS Fallback Animations - Auto-trigger if JS fails */
+        #hero-title {
+            animation: slideInUp 1.5s ease-out 0.5s both;
+        }
+        
+        #rotating-text {
+            animation: slideInUp 1.5s ease-out 1s both;
+        }
+        
+        #hero p {
+            animation: slideInUp 1.5s ease-out 1.5s both;
+        }
+        
+        #hero > div > div:last-child {
+            animation: slideInUp 1.5s ease-out 2s both;
+        }
+        
         @keyframes backgroundFloat {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(1deg); }
@@ -225,8 +242,6 @@
                 margin: 0 0 1rem 0;
                 letter-spacing: 3px;
                 text-transform: uppercase;
-                opacity: 0;
-                transform: translateY(30px);
             ">Loucas Rongeart</h1>
             
             <div id="rotating-text" style="
@@ -238,8 +253,6 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                opacity: 0;
-                transform: translateY(20px);
             ">
                 <span id="typing-text">Character & Creature Artist</span>
                 <span id="cursor" style="
@@ -254,8 +267,6 @@
                 font-size: clamp(1rem, 3vw, 1.3rem);
                 line-height: 1.6;
                 margin-bottom: 3rem;
-                opacity: 0;
-                transform: translateY(20px);
             ">Specialized in <strong style='color: white;'>Texturing & LookDevelopment</strong> for Hero Assets<br>
             VFX & Feature Film Professional</p>
             
@@ -264,8 +275,6 @@
                 gap: 1rem;
                 justify-content: center;
                 flex-wrap: wrap;
-                opacity: 0;
-                transform: translateY(20px);
             ">
                 <a href="#portfolio-gallery" style="
                     background: linear-gradient(135deg, #4CAF50, #45a049);
@@ -900,6 +909,12 @@
             console.log('Window loaded, ensuring animations...');
             animateHeroElements();
         });
+        
+        // Emergency fallback - force animations after 2 seconds if nothing happened
+        setTimeout(function() {
+            console.log('Emergency fallback: forcing animations...');
+            animateHeroElements();
+        }, 2000);
         
         // Rotating text animation
         const texts = [
