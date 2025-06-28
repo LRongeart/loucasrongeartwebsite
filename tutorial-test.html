@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Test | Loucas Rongeart</title>
+    <style>
+        body { 
+            background: black; 
+            color: white; 
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .filter-section {
+            background: #111;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+        .filter-tag {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 0.6rem 1.2rem;
+            margin: 0.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .filter-tag.active {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.6);
+        }
+        .tutorial-card {
+            background: #222;
+            padding: 2rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tutorial Test Page</h1>
+        <div class="filter-section">
+            <h3>Filter by Topic</h3>
+            <div id="filter-tags">
+                <div class="filter-tag" onclick="testFilter('python')">python</div>
+                <div class="filter-tag" onclick="testFilter('maya')">maya</div>
+                <div class="filter-tag" onclick="testFilter('blender')">blender</div>
+            </div>
+        </div>
+        <div id="tutorials">
+            <div class="tutorial-card">
+                <h3>Test Tutorial 1</h3>
+                <p>This is a test tutorial with Python and Maya tags.</p>
+                <div class="tags">python, maya</div>
+            </div>
+            <div class="tutorial-card">
+                <h3>Test Tutorial 2</h3>
+                <p>This is a test tutorial with Blender tag.</p>
+                <div class="tags">blender</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testFilter(tag) {
+            console.log('Filter clicked:', tag);
+            alert('Filter clicked: ' + tag);
+        }
+        
+        console.log('Test page loaded successfully');
+    </script>
+</body>
+</html>

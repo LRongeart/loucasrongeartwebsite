@@ -1,4 +1,4 @@
-// Shared utility functions for loading header and footer
+// Shared utility functions for loading header and footer (v2)
 function loadHeaderAndFooter(headerPath = 'header.html', footerPath = 'footer.html') {
     // Load header
     fetch(headerPath)
@@ -8,14 +8,18 @@ function loadHeaderAndFooter(headerPath = 'header.html', footerPath = 'footer.ht
             if (headerPlaceholder) {
                 headerPlaceholder.innerHTML = data;
                 
-                // Fix logo path for project pages
+                // Fix logo path and link for project and tutorial pages
                 const logo = document.getElementById('header-logo');
-                if (logo && window.location.pathname.includes('/project/')) {
+                const logoLink = document.getElementById('header-logo-link');
+                if (logo && (window.location.pathname.includes('/project/') || window.location.pathname.includes('/tutorialsscripting/'))) {
                     logo.src = '../../img/LR_logo_v02_100.png';
                 }
+                if (logoLink && (window.location.pathname.includes('/project/') || window.location.pathname.includes('/tutorialsscripting/'))) {
+                    logoLink.href = '../../index.html';
+                }
                 
-                // Fix navigation links for project pages
-                if (window.location.pathname.includes('/project/')) {
+                // Fix navigation links for project and tutorial pages
+                if (window.location.pathname.includes('/project/') || window.location.pathname.includes('/tutorialsscripting/')) {
                     const links = headerPlaceholder.querySelectorAll('nav a[href^="index.html"], nav a[href^="about.html"], nav a[href^="contact.html"], nav a[href^="cv.html"], nav a[href^="tutorial.html"]');
                     links.forEach(link => {
                         if (!link.href.startsWith('http')) {
@@ -42,9 +46,9 @@ function loadHeaderAndFooter(headerPath = 'header.html', footerPath = 'footer.ht
 // Auto-load header and footer when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
     // Determine the correct paths based on current location
-    const isProjectPage = window.location.pathname.includes('/project/');
-    const headerPath = isProjectPage ? '../../header.html' : 'header.html';
-    const footerPath = isProjectPage ? '../../footer.html' : 'footer.html';
+    const isSubPage = window.location.pathname.includes('/project/') || window.location.pathname.includes('/tutorialsscripting/');
+    const headerPath = isSubPage ? '../../header.html' : 'header.html';
+    const footerPath = isSubPage ? '../../footer.html' : 'footer.html';
     
     loadHeaderAndFooter(headerPath, footerPath);
 });

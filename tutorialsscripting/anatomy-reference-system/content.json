@@ -1,0 +1,167 @@
+{
+    "title": "Building a Digital Anatomy Reference System",
+    "subtitle": "Organization & Reference",
+    "category": "Technical Tutorial",
+    "description": "Create an efficient digital library for anatomical references using Python scripts and database management. Perfect for concept artists who need quick access to creature anatomy, proportions, and structural references.",
+    "tags": ["python", "organization", "anatomy", "reference"],
+    "difficulty": "intermediate",
+    "readTime": "12 min read",
+    "date": "2025-01-05",
+    "author": "Loucas Rongeart",
+    "headerImage": "../../img/deviljho_bg.jpg",
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "As a creature designer, having quick access to anatomical references can make the difference between a believable design and something that feels off. This tutorial shows you how to build a comprehensive digital reference system using Python and simple database tools."
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Planning Your Reference Database"
+        },
+        {
+            "type": "paragraph",
+            "text": "Before diving into code, consider how you'll organize your references. A well-structured system saves time and ensures you can find exactly what you need when inspiration strikes."
+        },
+        {
+            "type": "paragraph",
+            "text": "**Key Organization Categories:**"
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Species Type**: Mammals, reptiles, birds, fish, arthropods, fictional"
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Body System**: Skeletal, muscular, integumentary, nervous"
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Body Region**: Head, torso, limbs, extremities"
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Function**: Locomotion, feeding, defense, display"
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Environment**: Terrestrial, aquatic, aerial, underground"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Setting Up the Database Structure"
+        },
+        {
+            "type": "paragraph",
+            "text": "We'll use SQLite for our database - it's lightweight, doesn't require a server, and works perfectly for personal reference libraries. Here's how to set up the initial structure:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "import sqlite3\nimport os\nfrom datetime import datetime\n\nclass AnatomyDatabase:\n    def __init__(self, db_path=\"anatomy_references.db\"):\n        self.db_path = db_path\n        self.init_database()\n    \n    def init_database(self):\n        \"\"\"Initialize the database with required tables\"\"\"\n        conn = sqlite3.connect(self.db_path)\n        cursor = conn.cursor()\n        \n        # Main references table\n        cursor.execute('''\n            CREATE TABLE IF NOT EXISTS references (\n                id INTEGER PRIMARY KEY AUTOINCREMENT,\n                filename TEXT NOT NULL,\n                file_path TEXT NOT NULL,\n                species TEXT,\n                body_system TEXT,\n                body_region TEXT,\n                function_type TEXT,\n                environment TEXT,\n                description TEXT,\n                tags TEXT,\n                date_added TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n                notes TEXT\n            )\n        ''')\n        \n        # Tags table for better organization\n        cursor.execute('''\n            CREATE TABLE IF NOT EXISTS tags (\n                id INTEGER PRIMARY KEY AUTOINCREMENT,\n                tag_name TEXT UNIQUE NOT NULL,\n                color TEXT DEFAULT '#666666'\n            )\n        ''')\n        \n        # Reference-tag relationship table\n        cursor.execute('''\n            CREATE TABLE IF NOT EXISTS reference_tags (\n                reference_id INTEGER,\n                tag_id INTEGER,\n                FOREIGN KEY (reference_id) REFERENCES references (id),\n                FOREIGN KEY (tag_id) REFERENCES tags (id),\n                PRIMARY KEY (reference_id, tag_id)\n            )\n        ''')\n        \n        conn.commit()\n        conn.close()\n        print(f\"Database initialized at: {self.db_path}\")"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Adding References to the Database"
+        },
+        {
+            "type": "paragraph",
+            "text": "Now let's create functions to add new references to our database. We'll include metadata extraction and automatic thumbnail generation:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "import shutil\nfrom PIL import Image, ExifTags\nimport hashlib\n\nclass AnatomyDatabase:\n    # ... previous code ...\n    \n    def add_reference(self, file_path, metadata):\n        \"\"\"\n        Add a new reference to the database\n        \n        Args:\n            file_path (str): Path to the reference image\n            metadata (dict): Dictionary with reference metadata\n        \"\"\"\n        if not os.path.exists(file_path):\n            print(f\"File not found: {file_path}\")\n            return None\n        \n        # Generate unique filename based on content hash\n        file_hash = self._generate_file_hash(file_path)\n        file_ext = os.path.splitext(file_path)[1]\n        new_filename = f\"{file_hash}{file_ext}\"\n        \n        # Create storage directory structure\n        storage_dir = os.path.join(\"references\", metadata.get('species', 'unknown'))\n        os.makedirs(storage_dir, exist_ok=True)\n        \n        # Copy file to storage location\n        new_file_path = os.path.join(storage_dir, new_filename)\n        shutil.copy2(file_path, new_file_path)\n        \n        # Generate thumbnail\n        thumbnail_path = self._generate_thumbnail(new_file_path)\n        \n        # Insert into database\n        conn = sqlite3.connect(self.db_path)\n        cursor = conn.cursor()\n        \n        cursor.execute('''\n            INSERT INTO references \n            (filename, file_path, species, body_system, body_region, \n             function_type, environment, description, tags, notes)\n            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)\n        ''', (\n            new_filename,\n            new_file_path,\n            metadata.get('species', ''),\n            metadata.get('body_system', ''),\n            metadata.get('body_region', ''),\n            metadata.get('function_type', ''),\n            metadata.get('environment', ''),\n            metadata.get('description', ''),\n            ','.join(metadata.get('tags', [])),\n            metadata.get('notes', '')\n        ))\n        \n        reference_id = cursor.lastrowid\n        conn.commit()\n        conn.close()\n        \n        print(f\"Added reference: {new_filename} (ID: {reference_id})\")\n        return reference_id\n    \n    def _generate_file_hash(self, file_path):\n        \"\"\"Generate MD5 hash of file content\"\"\"\n        hash_md5 = hashlib.md5()\n        with open(file_path, \"rb\") as f:\n            for chunk in iter(lambda: f.read(4096), b\"\"):\n                hash_md5.update(chunk)\n        return hash_md5.hexdigest()[:16]\n    \n    def _generate_thumbnail(self, file_path, size=(200, 200)):\n        \"\"\"Generate thumbnail for quick preview\"\"\"\n        try:\n            with Image.open(file_path) as img:\n                # Rotate based on EXIF data\n                try:\n                    for orientation in ExifTags.TAGS.keys():\n                        if ExifTags.TAGS[orientation] == 'Orientation':\n                            break\n                    exif = img._getexif()\n                    if exif is not None:\n                        orientation_value = exif.get(orientation)\n                        if orientation_value == 3:\n                            img = img.rotate(180, expand=True)\n                        elif orientation_value == 6:\n                            img = img.rotate(270, expand=True)\n                        elif orientation_value == 8:\n                            img = img.rotate(90, expand=True)\n                except:\n                    pass\n                \n                # Create thumbnail\n                img.thumbnail(size, Image.Resampling.LANCZOS)\n                \n                # Save thumbnail\n                thumbnail_dir = \"thumbnails\"\n                os.makedirs(thumbnail_dir, exist_ok=True)\n                \n                base_name = os.path.splitext(os.path.basename(file_path))[0]\n                thumbnail_path = os.path.join(thumbnail_dir, f\"{base_name}_thumb.jpg\")\n                \n                img.save(thumbnail_path, \"JPEG\", quality=85)\n                return thumbnail_path\n                \n        except Exception as e:\n            print(f\"Failed to generate thumbnail: {e}\")\n            return None"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Searching and Filtering References"
+        },
+        {
+            "type": "paragraph",
+            "text": "The real power of your reference system comes from being able to quickly find exactly what you need. Let's implement flexible search functionality:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "class AnatomyDatabase:\n    # ... previous code ...\n    \n    def search_references(self, **kwargs):\n        \"\"\"\n        Search references with flexible criteria\n        \n        Args:\n            species (str): Species type\n            body_system (str): Body system\n            body_region (str): Body region\n            function_type (str): Function type\n            environment (str): Environment\n            tags (list): List of tags to match\n            description_contains (str): Text to search in description\n        \n        Returns:\n            list: Matching references\n        \"\"\"\n        conn = sqlite3.connect(self.db_path)\n        cursor = conn.cursor()\n        \n        # Build dynamic query\n        where_clauses = []\n        params = []\n        \n        for field in ['species', 'body_system', 'body_region', \n                     'function_type', 'environment']:\n            if field in kwargs and kwargs[field]:\n                where_clauses.append(f\"{field} LIKE ?\")\n                params.append(f\"%{kwargs[field]}%\")\n        \n        if 'description_contains' in kwargs and kwargs['description_contains']:\n            where_clauses.append(\"description LIKE ?\")\n            params.append(f\"%{kwargs['description_contains']}%\")\n        \n        # Handle tag searching\n        if 'tags' in kwargs and kwargs['tags']:\n            tag_conditions = []\n            for tag in kwargs['tags']:\n                tag_conditions.append(\"tags LIKE ?\")\n                params.append(f\"%{tag}%\")\n            where_clauses.append(f\"({' OR '.join(tag_conditions)})\")\n        \n        # Construct final query\n        base_query = \"SELECT * FROM references\"\n        if where_clauses:\n            query = f\"{base_query} WHERE {' AND '.join(where_clauses)}\"\n        else:\n            query = base_query\n        \n        query += \" ORDER BY date_added DESC\"\n        \n        cursor.execute(query, params)\n        results = cursor.fetchall()\n        conn.close()\n        \n        return self._format_results(results)\n    \n    def _format_results(self, raw_results):\n        \"\"\"Format database results into dictionaries\"\"\"\n        columns = ['id', 'filename', 'file_path', 'species', 'body_system',\n                  'body_region', 'function_type', 'environment', 'description',\n                  'tags', 'date_added', 'notes']\n        \n        results = []\n        for row in raw_results:\n            result = dict(zip(columns, row))\n            # Parse tags back to list\n            result['tags'] = result['tags'].split(',') if result['tags'] else []\n            results.append(result)\n        \n        return results\n    \n    def get_random_references(self, count=5, **filters):\n        \"\"\"Get random references for inspiration\"\"\"\n        results = self.search_references(**filters)\n        import random\n        random.shuffle(results)\n        return results[:count]"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Building a Simple GUI"
+        },
+        {
+            "type": "paragraph",
+            "text": "A command-line interface is great for automation, but a simple GUI makes the system more accessible for daily use. Here's a basic Tkinter interface:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "import tkinter as tk\nfrom tkinter import ttk, filedialog, messagebox\nfrom PIL import Image, ImageTk\n\nclass AnatomyReferenceGUI:\n    def __init__(self, database):\n        self.db = database\n        self.root = tk.Tk()\n        self.root.title(\"Anatomy Reference Library\")\n        self.root.geometry(\"1200x800\")\n        \n        self.setup_ui()\n        \n    def setup_ui(self):\n        # Main container\n        main_frame = ttk.Frame(self.root)\n        main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)\n        \n        # Search frame\n        search_frame = ttk.LabelFrame(main_frame, text=\"Search References\")\n        search_frame.pack(fill=tk.X, pady=(0, 10))\n        \n        # Search fields\n        ttk.Label(search_frame, text=\"Species:\").grid(row=0, column=0, sticky=tk.W, padx=5, pady=5)\n        self.species_var = tk.StringVar()\n        ttk.Entry(search_frame, textvariable=self.species_var, width=15).grid(row=0, column=1, padx=5, pady=5)\n        \n        ttk.Label(search_frame, text=\"Body System:\").grid(row=0, column=2, sticky=tk.W, padx=5, pady=5)\n        self.body_system_var = tk.StringVar()\n        ttk.Entry(search_frame, textvariable=self.body_system_var, width=15).grid(row=0, column=3, padx=5, pady=5)\n        \n        ttk.Label(search_frame, text=\"Tags:\").grid(row=1, column=0, sticky=tk.W, padx=5, pady=5)\n        self.tags_var = tk.StringVar()\n        ttk.Entry(search_frame, textvariable=self.tags_var, width=30).grid(row=1, column=1, columnspan=2, padx=5, pady=5)\n        \n        # Search button\n        ttk.Button(search_frame, text=\"Search\", command=self.search_references).grid(row=1, column=3, padx=5, pady=5)\n        \n        # Results frame\n        results_frame = ttk.LabelFrame(main_frame, text=\"Results\")\n        results_frame.pack(fill=tk.BOTH, expand=True)\n        \n        # Results treeview\n        self.results_tree = ttk.Treeview(results_frame, columns=('species', 'system', 'region', 'tags'), show='tree headings')\n        self.results_tree.heading('#0', text='Filename')\n        self.results_tree.heading('species', text='Species')\n        self.results_tree.heading('system', text='Body System')\n        self.results_tree.heading('region', text='Region')\n        self.results_tree.heading('tags', text='Tags')\n        \n        # Scrollbar for treeview\n        tree_scroll = ttk.Scrollbar(results_frame, orient=tk.VERTICAL, command=self.results_tree.yview)\n        self.results_tree.configure(yscrollcommand=tree_scroll.set)\n        \n        self.results_tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)\n        tree_scroll.pack(side=tk.RIGHT, fill=tk.Y)\n        \n        # Bind double-click to open image\n        self.results_tree.bind('<Double-1>', self.open_selected_image)\n        \n        # Load initial results\n        self.search_references()\n    \n    def search_references(self):\n        \"\"\"Perform search and update results\"\"\"\n        # Clear existing results\n        for item in self.results_tree.get_children():\n            self.results_tree.delete(item)\n        \n        # Build search criteria\n        criteria = {}\n        if self.species_var.get():\n            criteria['species'] = self.species_var.get()\n        if self.body_system_var.get():\n            criteria['body_system'] = self.body_system_var.get()\n        if self.tags_var.get():\n            criteria['tags'] = [tag.strip() for tag in self.tags_var.get().split(',')]\n        \n        # Perform search\n        results = self.db.search_references(**criteria)\n        \n        # Populate results\n        for result in results:\n            tags_str = ', '.join(result['tags'][:3])  # Show first 3 tags\n            if len(result['tags']) > 3:\n                tags_str += '...'\n            \n            self.results_tree.insert('', tk.END, \n                                   text=result['filename'],\n                                   values=(result['species'], \n                                          result['body_system'],\n                                          result['body_region'],\n                                          tags_str),\n                                   tags=(result['file_path'],))\n    \n    def open_selected_image(self, event):\n        \"\"\"Open selected image in default viewer\"\"\"\n        selection = self.results_tree.selection()[0]\n        file_path = self.results_tree.item(selection, 'tags')[0]\n        \n        try:\n            import subprocess\n            import platform\n            \n            if platform.system() == 'Darwin':  # macOS\n                subprocess.call(['open', file_path])\n            elif platform.system() == 'Windows':  # Windows\n                os.startfile(file_path)\n            else:  # Linux\n                subprocess.call(['xdg-open', file_path])\n        except Exception as e:\n            messagebox.showerror(\"Error\", f\"Could not open image: {e}\")\n    \n    def run(self):\n        \"\"\"Start the GUI\"\"\"\n        self.root.mainloop()\n\n# Usage example\nif __name__ == \"__main__\":\n    db = AnatomyDatabase()\n    gui = AnatomyReferenceGUI(db)\n    gui.run()"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Batch Import and Organization"
+        },
+        {
+            "type": "paragraph",
+            "text": "To quickly populate your database, create batch import tools that can process entire folders of references:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "import os\nimport json\nfrom pathlib import Path\n\ndef batch_import_folder(db, folder_path, default_metadata=None):\n    \"\"\"\n    Import all images from a folder with optional metadata file\n    \n    Args:\n        db: AnatomyDatabase instance\n        folder_path: Path to folder containing images\n        default_metadata: Default metadata to apply to all images\n    \"\"\"\n    folder_path = Path(folder_path)\n    if not folder_path.exists():\n        print(f\"Folder not found: {folder_path}\")\n        return\n    \n    # Look for metadata file\n    metadata_file = folder_path / \"metadata.json\"\n    folder_metadata = {}\n    \n    if metadata_file.exists():\n        with open(metadata_file, 'r') as f:\n            folder_metadata = json.load(f)\n    \n    # Supported image extensions\n    image_extensions = {'.jpg', '.jpeg', '.png', '.tiff', '.bmp', '.gif'}\n    \n    imported_count = 0\n    \n    for file_path in folder_path.iterdir():\n        if file_path.suffix.lower() in image_extensions:\n            # Build metadata for this file\n            metadata = default_metadata.copy() if default_metadata else {}\n            \n            # Apply folder-level metadata\n            metadata.update(folder_metadata.get('default', {}))\n            \n            # Apply file-specific metadata if available\n            file_specific = folder_metadata.get('files', {}).get(file_path.name, {})\n            metadata.update(file_specific)\n            \n            # Try to infer metadata from folder structure\n            if not metadata.get('species'):\n                # Use parent folder name as species if not specified\n                metadata['species'] = folder_path.name.replace('_', ' ').title()\n            \n            try:\n                reference_id = db.add_reference(str(file_path), metadata)\n                if reference_id:\n                    imported_count += 1\n                    print(f\"Imported: {file_path.name}\")\n            except Exception as e:\n                print(f\"Failed to import {file_path.name}: {e}\")\n    \n    print(f\"\\nImported {imported_count} references from {folder_path}\")\n\n# Example metadata.json structure\nmetadata_example = {\n    \"default\": {\n        \"species\": \"canine\",\n        \"body_system\": \"muscular\",\n        \"environment\": \"terrestrial\",\n        \"tags\": [\"dog\", \"anatomy\", \"reference\"]\n    },\n    \"files\": {\n        \"skull_lateral.jpg\": {\n            \"body_region\": \"head\",\n            \"body_system\": \"skeletal\",\n            \"description\": \"Lateral view of canine skull showing dental structure\"\n        },\n        \"limb_muscles.jpg\": {\n            \"body_region\": \"limbs\",\n            \"description\": \"Detailed muscle structure of canine forelimb\"\n        }\n    }\n}\n\n# Save example metadata file\ndef create_example_metadata(folder_path):\n    \"\"\"Create an example metadata.json file in the specified folder\"\"\"\n    metadata_path = Path(folder_path) / \"metadata.json\"\n    with open(metadata_path, 'w') as f:\n        json.dump(metadata_example, f, indent=2)\n    print(f\"Created example metadata file: {metadata_path}\")"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Advanced Features and Extensions"
+        },
+        {
+            "type": "paragraph",
+            "text": "Once your basic system is working, consider these advanced features:"
+        },
+        {
+            "type": "paragraph",
+            "text": "**Machine Learning Integration**: Use computer vision to automatically tag images with detected features like 'skull', 'claws', 'wings', etc."
+        },
+        {
+            "type": "paragraph",
+            "text": "**Similarity Search**: Implement image similarity matching to find references that look similar to your current work."
+        },
+        {
+            "type": "paragraph",
+            "text": "**Web Scraping**: Automatically collect references from scientific databases and museum collections (respecting copyright and usage terms)."
+        },
+        {
+            "type": "paragraph",
+            "text": "**3D Model Integration**: Extend the system to include 3D models, CT scans, and other dimensional references."
+        },
+        {
+            "type": "paragraph",
+            "text": "**Cloud Sync**: Use cloud storage to sync your reference library across multiple devices."
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Conclusion"
+        },
+        {
+            "type": "paragraph",
+            "text": "A well-organized digital anatomy reference system becomes invaluable as your creature design skills develop. The time invested in setting up proper organization and search capabilities pays dividends when you're in the middle of a creative session and need the perfect reference quickly."
+        },
+        {
+            "type": "paragraph",
+            "text": "Start simple with the basic database structure and gradually add features as your needs evolve. The most important aspect is consistency - develop a tagging and organization system that makes sense to you and stick with it."
+        },
+        {
+            "type": "paragraph",
+            "text": "Remember that this system is only as good as the references you put into it. Regularly add new material, clean up outdated entries, and refine your tagging system based on how you actually use the references in your work."
+        }
+    ]
+}

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Automation for Maya Character Rigging | Loucas Rongeart</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../shared/project-styles.css">
+    <style>
+        /* Tutorial-specific styles */
+        .tutorial-article {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background-color: black;
+            color: white;
+            line-height: 1.7;
+        }
+        
+        .tutorial-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgb(40, 40, 40);
+        }
+        
+        .tutorial-category {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .tutorial-subtitle {
+            color: #999;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tutorial-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-meta-item {
+            color: #888;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tutorial-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tutorial-tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tutorial-tag.scripting,
+        .tutorial-tag.python {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+            border-color: rgba(33, 150, 243, 0.3);
+        }
+        
+        .tutorial-tag.maya {
+            background: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+            border-color: rgba(255, 152, 0, 0.3);
+        }
+        
+        .tutorial-tag.blender {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9C27B0;
+            border-color: rgba(156, 39, 176, 0.3);
+        }
+        
+        .tutorial-tag.rigging {
+            background: rgba(255, 87, 34, 0.1);
+            color: #FF5722;
+            border-color: rgba(255, 87, 34, 0.3);
+        }
+        
+        .tutorial-content {
+            margin-top: 3rem;
+        }
+        
+        .tutorial-content h2 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgb(40, 40, 40);
+        }
+        
+        .tutorial-content h3 {
+            color: #ccc;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .tutorial-content p {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .tutorial-content pre {
+            background: rgb(15, 15, 15);
+            border: 1px solid rgb(40, 40, 40);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+        }
+        
+        .tutorial-content code {
+            color: #8BC34A;
+            font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            color: #bbb;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tutorial-content blockquote {
+            background: rgba(76, 175, 80, 0.05);
+            border-left: 4px solid #4CAF50;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            color: #ccc;
+            font-style: italic;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 100px; /* 70px header height + 30px offset */
+            left: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 4px;
+            border: 1px solid rgb(40, 40, 40);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        
+        .back-button:hover {
+            background: rgba(0, 0, 0, 0.95);
+            border-color: rgb(60, 60, 60);
+            transform: translateX(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-article {
+                padding: 2rem 1rem;
+            }
+            
+            .tutorial-title {
+                font-size: 2rem;
+            }
+            
+            .tutorial-meta-info {
+                gap: 1rem;
+            }
+            
+            .back-button {
+                top: 80px; /* Reduced for mobile header height */
+                left: 1rem;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    
+    <a href="../../tutorial.html" class="back-button">← BACK TO TUTORIALS</a>
+    
+    <!-- Tutorial Content -->
+    <div class="tutorial-article" id="tutorial-content">
+        <div class="tutorial-header">
+            <div style="text-align: center; padding: 3rem; color: #666;">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Loading tutorial...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="../../shared/header-footer-loader.js"></script>
+    <script>
+        // Load tutorial content from content.json
+        async function loadTutorialContent() {
+            try {
+                const response = await fetch('./content.json');
+                const data = await response.json();
+                
+                // Update page title
+                document.title = `${data.title} | Loucas Rongeart`;
+                
+                // Render tutorial content
+                renderTutorial(data);
+                
+            } catch (error) {
+                console.error('Error loading tutorial content:', error);
+                document.getElementById('tutorial-content').innerHTML = 
+                    '<div style="text-align: center; padding: 3rem; color: #ff6b6b;"><p>Error loading tutorial content. Please try again later.</p></div>';
+            }
+        }
+        
+        function renderTutorial(data) {
+            const container = document.getElementById('tutorial-content');
+            
+            // Create tags HTML
+            const tagsHtml = data.tags.map(tag => 
+                `<span class="tutorial-tag ${tag}">${tag}</span>`
+            ).join('');
+            
+            // Format difficulty indicator
+            const difficultyIcon = {
+                'beginner': '●',
+                'intermediate': '●●',
+                'advanced': '●●●'
+            }[data.difficulty];
+            
+            // Format date
+            const formattedDate = new Date(data.date).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Create content sections
+            let contentHtml = '';
+            data.content.forEach(section => {
+                switch(section.type) {
+                    case 'paragraph':
+                        contentHtml += `<p>${section.text}</p>`;
+                        break;
+                    case 'heading':
+                        contentHtml += `<h${section.level}>${section.text}</h${section.level}>`;
+                        break;
+                    case 'code':
+                        contentHtml += `<pre><code>${escapeHtml(section.text)}</code></pre>`;
+                        break;
+                    case 'list':
+                        const listTag = section.ordered ? 'ol' : 'ul';
+                        const items = section.items.map(item => `<li>${item}</li>`).join('');
+                        contentHtml += `<${listTag}>${items}</${listTag}>`;
+                        break;
+                    case 'quote':
+                        contentHtml += `<blockquote>${section.text}</blockquote>`;
+                        break;
+                }
+            });
+            
+            container.innerHTML = `
+                <div class="tutorial-header">
+                    <div class="tutorial-category">${data.category}</div>
+                    <h1 class="tutorial-title">${data.title}</h1>
+                    <div class="tutorial-subtitle">${data.subtitle}</div>
+                    
+                    <div class="tutorial-meta-info">
+                        <div class="tutorial-meta-item">
+                            📅 ${formattedDate}
+                        </div>
+                        <div class="tutorial-meta-item">
+                            ⏱️ ${data.readTime}
+                        </div>
+                        <div class="tutorial-meta-item">
+                            ${difficultyIcon} ${data.difficulty}
+                        </div>
+                        <div class="tutorial-meta-item">
+                            ✍️ ${data.author}
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-tags">${tagsHtml}</div>
+                </div>
+                
+                <div class="tutorial-content">
+                    <p style="font-size: 1.1rem; color: #ccc; margin-bottom: 3rem; text-align: center; font-style: italic;">
+                        ${data.description}
+                    </p>
+                    ${contentHtml}
+                </div>
+            `;
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Load tutorial content when page loads
+        document.addEventListener('DOMContentLoaded', loadTutorialContent);
+    </script>
+</body>
+</html>

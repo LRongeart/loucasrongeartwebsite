@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Loading... | Loucas Rongeart</title>
+    <link rel="stylesheet" href="../shared/project-styles.css">
+    <style>
+        /* Tutorial-specific styles */
+        .tutorial-article {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background-color: black;
+            color: white;
+            line-height: 1.7;
+        }
+        
+        .tutorial-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgb(40, 40, 40);
+        }
+        
+        .tutorial-category {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .tutorial-subtitle {
+            color: #999;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tutorial-meta-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tutorial-meta-item {
+            color: #888;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tutorial-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tutorial-tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tutorial-tag.scripting {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+            border-color: rgba(33, 150, 243, 0.3);
+        }
+        
+        .tutorial-tag.maya {
+            background: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+            border-color: rgba(255, 152, 0, 0.3);
+        }
+        
+        .tutorial-tag.blender {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9C27B0;
+            border-color: rgba(156, 39, 176, 0.3);
+        }
+        
+        .tutorial-tag.python {
+            background: rgba(255, 193, 7, 0.1);
+            color: #FFC107;
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+        
+        .tutorial-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .tutorial-content h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin: 3rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgb(40, 40, 40);
+        }
+        
+        .tutorial-content h3 {
+            color: white;
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .tutorial-content p {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tutorial-content ul, .tutorial-content ol {
+            color: #ccc;
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .tutorial-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .tutorial-content code {
+            background: rgba(40, 40, 40, 0.8);
+            color: #4CAF50;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .tutorial-content pre {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid rgb(40, 40, 40);
+            border-radius: 6px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+        
+        .tutorial-content pre code {
+            background: none;
+            padding: 0;
+            color: #4CAF50;
+        }
+        
+        .tutorial-content blockquote {
+            border-left: 4px solid #4CAF50;
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            background: rgba(76, 175, 80, 0.05);
+            color: #bbb;
+            font-style: italic;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .tutorial-section {
+            margin-bottom: 3rem;
+        }
+        
+        .download-section {
+            background: rgba(25, 25, 25, 0.8);
+            border: 1px solid rgb(40, 40, 40);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+        
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-title {
+                font-size: 2rem;
+            }
+            
+            .tutorial-meta-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .tutorial-article {
+                padding: 2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    
+    <a href="../tutorial.html" class="back-button">← BACK TO TUTORIALS</a>
+    
+    <!-- Loading State -->
+    <div id="loading" style="text-align: center; padding: 4rem; color: white;">
+        <p>Loading tutorial...</p>
+    </div>
+    
+    <!-- Tutorial Content -->
+    <div id="tutorial-content" class="tutorial-article" style="display: none;">
+        <div class="tutorial-header">
+            <div id="tutorial-category" class="tutorial-category"></div>
+            <h1 id="tutorial-title" class="tutorial-title"></h1>
+            <p id="tutorial-subtitle" class="tutorial-subtitle"></p>
+            
+            <div class="tutorial-meta-info">
+                <div class="tutorial-meta-item">
+                    📖 <span id="tutorial-readtime"></span>
+                </div>
+                <div class="tutorial-meta-item">
+                    📅 <span id="tutorial-date"></span>
+                </div>
+                <div id="tutorial-difficulty" class="tutorial-meta-item">
+                    ● <span id="tutorial-difficulty-text"></span>
+                </div>
+            </div>
+            
+            <div id="tutorial-tags" class="tutorial-tags">
+                <!-- Tags will be populated here -->
+            </div>
+        </div>
+        
+        <div id="tutorial-main-content" class="tutorial-content">
+            <!-- Main content will be populated here -->
+        </div>
+        
+        <div id="tutorial-downloads" class="download-section" style="display: none;">
+            <!-- Download links will be populated here -->
+        </div>
+    </div>
+    
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="../shared/header-footer-loader.js"></script>
+    <script>
+        // Load tutorial content from JSON
+        async function loadTutorialContent() {
+            try {
+                const response = await fetch('./content.json');
+                const data = await response.json();
+                
+                // Update page title
+                document.getElementById('page-title').textContent = data.meta.title;
+                document.title = data.meta.title;
+                
+                // Update header info
+                document.getElementById('tutorial-category').textContent = data.header.category;
+                document.getElementById('tutorial-title').textContent = data.header.title;
+                document.getElementById('tutorial-subtitle').textContent = data.header.subtitle;
+                document.getElementById('tutorial-readtime').textContent = data.header.readTime;
+                document.getElementById('tutorial-date').textContent = formatDate(data.header.date);
+                document.getElementById('tutorial-difficulty-text').textContent = data.header.difficulty;
+                
+                // Set difficulty styling
+                const difficultyElement = document.getElementById('tutorial-difficulty');
+                difficultyElement.className = `tutorial-meta-item ${data.header.difficulty}`;
+                const difficultyIcons = {
+                    'beginner': '●',
+                    'intermediate': '●●',
+                    'advanced': '●●●'
+                };
+                difficultyElement.innerHTML = `${difficultyIcons[data.header.difficulty]} <span>${data.header.difficulty}</span>`;
+                
+                // Update tags
+                const tagsContainer = document.getElementById('tutorial-tags');
+                tagsContainer.innerHTML = '';
+                data.header.tags.forEach(tag => {
+                    const tagElement = document.createElement('span');
+                    tagElement.className = `tutorial-tag ${tag}`;
+                    tagElement.textContent = tag;
+                    tagsContainer.appendChild(tagElement);
+                });
+                
+                // Update main content
+                const contentContainer = document.getElementById('tutorial-main-content');
+                contentContainer.innerHTML = '';
+                
+                data.content.sections.forEach(section => {
+                    const sectionElement = document.createElement('div');
+                    sectionElement.className = 'tutorial-section';
+                    sectionElement.innerHTML = section.html;
+                    contentContainer.appendChild(sectionElement);
+                });
+                
+                // Update downloads if available
+                if (data.downloads && data.downloads.length > 0) {
+                    const downloadsContainer = document.getElementById('tutorial-downloads');
+                    downloadsContainer.style.display = 'block';
+                    downloadsContainer.innerHTML = '<h3>Downloads</h3>';
+                    
+                    data.downloads.forEach(download => {
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = download.url;
+                        downloadLink.className = 'download-button';
+                        downloadLink.textContent = download.title;
+                        downloadLink.download = download.filename || '';
+                        downloadsContainer.appendChild(downloadLink);
+                    });
+                }
+                
+                // Show content and hide loading
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('tutorial-content').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error loading tutorial content:', error);
+                document.getElementById('loading').innerHTML = '<p style="color: #ff6b6b;">Error loading tutorial content. Please try again.</p>';
+            }
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+        
+        // Load content when page loads
+        document.addEventListener('DOMContentLoaded', loadTutorialContent);
+    </script>
+</body>
+</html>

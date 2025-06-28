@@ -1,0 +1,130 @@
+{
+    "title": "Python Automation for Maya Character Rigging",
+    "subtitle": "Advanced Scripting",
+    "category": "Technical Tutorial",
+    "description": "Learn how to automate repetitive character rigging tasks in Maya using Python. This comprehensive guide covers creating custom tools, batch processing, and building efficient workflows for creature and character setup.",
+    "tags": ["python", "maya", "scripting", "rigging"],
+    "difficulty": "intermediate",
+    "readTime": "15 min read",
+    "date": "2025-01-15",
+    "author": "Loucas Rongeart",
+    "headerImage": "../../img/deviljho_bg.jpg",
+    "content": [
+        {
+            "type": "paragraph",
+            "text": "Character rigging in Maya can be incredibly time-consuming, especially when working on multiple characters or creatures that share similar skeletal structures. Python automation can dramatically reduce setup time while ensuring consistency across your rigs."
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Setting Up Your Python Environment"
+        },
+        {
+            "type": "paragraph",
+            "text": "Before diving into automation scripts, ensure your Maya Python environment is properly configured. Maya comes with its own Python interpreter, but you'll want to set up external editors and debugging tools for efficient development."
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "import maya.cmds as cmds\nimport maya.mel as mel\nfrom functools import partial\n\n# Basic setup for Maya Python scripting\ndef setup_workspace():\n    \"\"\"\n    Initialize the workspace for character rigging automation\n    \"\"\"\n    # Clear scene and set up units\n    cmds.file(new=True, force=True)\n    cmds.currentUnit(linear='cm', angle='deg', time='film')\n    \n    # Set up viewport for rigging\n    cmds.modelEditor('modelPanel4', edit=True, displayAppearance='wireframe')\n    \n    print(\"Workspace ready for character rigging!\")"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Creating Automated Joint Chains"
+        },
+        {
+            "type": "paragraph",
+            "text": "One of the most repetitive tasks in character rigging is creating joint chains for limbs. Let's build a function that automatically creates properly oriented joint chains based on position data."
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "def create_joint_chain(positions, name_prefix=\"joint\"):\n    \"\"\"\n    Create a joint chain from a list of world positions\n    \n    Args:\n        positions (list): List of [x, y, z] positions\n        name_prefix (str): Prefix for joint names\n    \n    Returns:\n        list: Created joint names\n    \"\"\"\n    joints = []\n    \n    for i, pos in enumerate(positions):\n        # Clear selection before creating joint\n        cmds.select(clear=True)\n        \n        # Create joint at position\n        joint_name = f\"{name_prefix}_{i+1:02d}\"\n        joint = cmds.joint(name=joint_name, position=pos)\n        joints.append(joint)\n        \n        # Parent to previous joint if not the first\n        if i > 0:\n            cmds.parent(joint, joints[i-1])\n    \n    # Orient joints properly\n    if len(joints) > 1:\n        cmds.joint(joints[0], edit=True, orientJoint='xyz', \n                  secondaryAxisOrient='yup', children=True)\n        \n        # Zero out the last joint's orientation\n        cmds.joint(joints[-1], edit=True, orientJoint='none')\n    \n    return joints"
+        },
+        {
+            "type": "paragraph",
+            "text": "This function creates a properly oriented joint chain that can be used for arms, legs, spines, or any other limb structure. The key is ensuring consistent orientation across all joints for predictable deformation."
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Batch Processing Multiple Characters"
+        },
+        {
+            "type": "paragraph",
+            "text": "When working on projects with multiple characters, you'll want to apply the same rigging setup to multiple meshes. Here's how to create a batch processing system:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "import os\nimport json\n\ndef batch_rig_characters(config_file):\n    \"\"\"\n    Batch process multiple characters based on a config file\n    \n    Args:\n        config_file (str): Path to JSON config with character data\n    \"\"\"\n    with open(config_file, 'r') as f:\n        config = json.load(f)\n    \n    for character_data in config['characters']:\n        print(f\"Processing {character_data['name']}...\")\n        \n        # Load character mesh\n        mesh_file = character_data['mesh_file']\n        cmds.file(mesh_file, i=True, namespace=character_data['name'])\n        \n        # Create rig based on character type\n        if character_data['type'] == 'biped':\n            create_biped_rig(character_data)\n        elif character_data['type'] == 'quadruped':\n            create_quadruped_rig(character_data)\n        \n        # Save rigged file\n        output_path = character_data['output_file']\n        cmds.file(rename=output_path)\n        cmds.file(save=True, type='mayaAscii')\n        \n        print(f\"Completed {character_data['name']}!\")"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Building Custom UI Tools"
+        },
+        {
+            "type": "paragraph",
+            "text": "Creating custom UI tools makes your automation scripts accessible to other team members. Maya's Python UI framework allows you to build professional-looking tools:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "def create_rigging_ui():\n    \"\"\"\n    Create a custom UI for rigging automation tools\n    \"\"\"\n    # Delete existing window if it exists\n    if cmds.window('riggingToolsWindow', exists=True):\n        cmds.deleteUI('riggingToolsWindow')\n    \n    # Create main window\n    window = cmds.window('riggingToolsWindow', \n                        title='Character Rigging Tools', \n                        widthHeight=(300, 400))\n    \n    # Main layout\n    main_layout = cmds.columnLayout(adjustableColumn=True)\n    \n    # Joint creation section\n    cmds.frameLayout(label='Joint Creation', collapsable=True)\n    cmds.button(label='Create Spine Chain', \n               command=partial(create_spine_chain))\n    cmds.button(label='Create Arm Chain', \n               command=partial(create_arm_chain))\n    cmds.button(label='Create Leg Chain', \n               command=partial(create_leg_chain))\n    cmds.setParent('..')\n    \n    # Constraint section\n    cmds.frameLayout(label='Constraints', collapsable=True)\n    cmds.button(label='Auto-Orient Constraints', \n               command=partial(auto_orient_constraints))\n    cmds.button(label='Create IK Setup', \n               command=partial(create_ik_setup))\n    cmds.setParent('..')\n    \n    # Show window\n    cmds.showWindow(window)"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Error Handling and Debugging"
+        },
+        {
+            "type": "paragraph",
+            "text": "Robust automation scripts need proper error handling. Maya's Python environment can be unpredictable, so always include comprehensive error checking:"
+        },
+        {
+            "type": "code",
+            "language": "python",
+            "text": "def safe_create_constraint(driver, driven, constraint_type='parent'):\n    \"\"\"\n    Safely create constraints with error handling\n    \n    Args:\n        driver (str): Driver object name\n        driven (str): Driven object name\n        constraint_type (str): Type of constraint to create\n    \n    Returns:\n        str or None: Constraint name if successful, None if failed\n    \"\"\"\n    try:\n        # Validate objects exist\n        if not cmds.objExists(driver):\n            cmds.warning(f\"Driver object '{driver}' does not exist\")\n            return None\n            \n        if not cmds.objExists(driven):\n            cmds.warning(f\"Driven object '{driven}' does not exist\")\n            return None\n        \n        # Create constraint based on type\n        if constraint_type == 'parent':\n            constraint = cmds.parentConstraint(driver, driven)[0]\n        elif constraint_type == 'point':\n            constraint = cmds.pointConstraint(driver, driven)[0]\n        elif constraint_type == 'orient':\n            constraint = cmds.orientConstraint(driver, driven)[0]\n        else:\n            cmds.warning(f\"Unknown constraint type: {constraint_type}\")\n            return None\n            \n        print(f\"Created {constraint_type} constraint: {constraint}\")\n        return constraint\n        \n    except Exception as e:\n        cmds.error(f\"Failed to create constraint: {str(e)}\")\n        return None"
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Performance Optimization Tips"
+        },
+        {
+            "type": "paragraph",
+            "text": "When automating complex rigs, performance becomes crucial. Here are key optimization strategies:"
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Batch Operations**: Group similar operations together to minimize Maya's evaluation cycles."
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Disable Viewport Updates**: Use `cmds.refresh(suspend=True)` during heavy operations."
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Use Sets for Organization**: Maya sets are more efficient than string-based searches."
+        },
+        {
+            "type": "paragraph",
+            "text": "• **Cache Object Lists**: Store frequently accessed object names in variables."
+        },
+        {
+            "type": "heading",
+            "level": 2,
+            "text": "Conclusion"
+        },
+        {
+            "type": "paragraph",
+            "text": "Python automation in Maya character rigging can save countless hours and ensure consistency across your projects. Start with simple joint creation scripts and gradually build more complex systems as your confidence grows. Remember to always test your scripts on simple scenes before applying them to production assets."
+        },
+        {
+            "type": "paragraph",
+            "text": "The key to successful automation is understanding both the artistic requirements and the technical limitations of Maya's rigging system. Build your tools incrementally, and don't hesitate to create multiple specialized scripts rather than one monolithic tool."
+        }
+    ]
+}

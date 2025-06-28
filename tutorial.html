@@ -6,6 +6,546 @@
     <title>Tutorial & Scripting | Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="shared/project-styles.css">
+    <style>
+        .tutorial-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background-color: black;
+            min-height: 60vh;
+        }
+        
+        .tutorial-description {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Filter Section Styles */
+        .filter-section {
+            background: linear-gradient(135deg, rgb(12, 12, 12), rgb(15, 15, 15));
+            border: 1px solid rgb(35, 35, 35);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .filter-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .filter-clear {
+            background: transparent;
+            border: 1px solid rgb(60, 60, 60);
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-clear:hover {
+            border-color: rgb(80, 80, 80);
+            color: #aaa;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .filter-tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+        
+        .filter-tag:hover {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: rgba(76, 175, 80, 0.5);
+            transform: translateY(-1px);
+        }
+        
+        .filter-tag.active {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: rgba(76, 175, 80, 0.6);
+            color: #5cbf60;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+        }
+        
+        .filter-tag.scripting {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+            border-color: rgba(33, 150, 243, 0.3);
+        }
+        
+        .filter-tag.scripting:hover {
+            background: rgba(33, 150, 243, 0.2);
+            border-color: rgba(33, 150, 243, 0.5);
+        }
+        
+        .filter-tag.scripting.active {
+            background: rgba(33, 150, 243, 0.3);
+            border-color: rgba(33, 150, 243, 0.6);
+            color: #42a5f5;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+        }
+        
+        .filter-tag.maya {
+            background: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+            border-color: rgba(255, 152, 0, 0.3);
+        }
+        
+        .filter-tag.maya:hover {
+            background: rgba(255, 152, 0, 0.2);
+            border-color: rgba(255, 152, 0, 0.5);
+        }
+        
+        .filter-tag.maya.active {
+            background: rgba(255, 152, 0, 0.3);
+            border-color: rgba(255, 152, 0, 0.6);
+            color: #ffb74d;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+        }
+        
+        .filter-tag.blender {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9C27B0;
+            border-color: rgba(156, 39, 176, 0.3);
+        }
+        
+        .filter-tag.blender:hover {
+            background: rgba(156, 39, 176, 0.2);
+            border-color: rgba(156, 39, 176, 0.5);
+        }
+        
+        .filter-tag.blender.active {
+            background: rgba(156, 39, 176, 0.3);
+            border-color: rgba(156, 39, 176, 0.6);
+            color: #ba68c8;
+            box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+        }
+        
+        .filter-tag.python {
+            background: rgba(255, 193, 7, 0.1);
+            color: #FFC107;
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+        
+        .filter-tag.python:hover {
+            background: rgba(255, 193, 7, 0.2);
+            border-color: rgba(255, 193, 7, 0.5);
+        }
+        
+        .filter-tag.python.active {
+            background: rgba(255, 193, 7, 0.3);
+            border-color: rgba(255, 193, 7, 0.6);
+            color: #ffca28;
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+        }
+        
+        .filter-tag.zbrush {
+            background: rgba(244, 67, 54, 0.1);
+            color: #f44336;
+            border-color: rgba(244, 67, 54, 0.3);
+        }
+        
+        .filter-tag.zbrush:hover {
+            background: rgba(244, 67, 54, 0.2);
+            border-color: rgba(244, 67, 54, 0.5);
+        }
+        
+        .filter-tag.zbrush.active {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: rgba(244, 67, 54, 0.6);
+            color: #ef5350;
+            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+        }
+        
+        .filter-tag.modeling {
+            background: rgba(96, 125, 139, 0.1);
+            color: #607D8B;
+            border-color: rgba(96, 125, 139, 0.3);
+        }
+        
+        .filter-tag.modeling:hover {
+            background: rgba(96, 125, 139, 0.2);
+            border-color: rgba(96, 125, 139, 0.5);
+        }
+        
+        .filter-tag.modeling.active {
+            background: rgba(96, 125, 139, 0.3);
+            border-color: rgba(96, 125, 139, 0.6);
+            color: #90a4ae;
+            box-shadow: 0 2px 8px rgba(96, 125, 139, 0.2);
+        }
+        
+        .filter-tag.sculpting,
+        .filter-tag.rigging,
+        .filter-tag.creatures,
+        .filter-tag.organization,
+        .filter-tag.anatomy,
+        .filter-tag.reference,
+        .filter-tag.detail,
+        .filter-tag.characters,
+        .filter-tag.pipeline,
+        .filter-tag.automation,
+        .filter-tag.tools {
+            background: rgba(121, 85, 72, 0.1);
+            color: #795548;
+            border-color: rgba(121, 85, 72, 0.3);
+        }
+        
+        .filter-tag.sculpting:hover,
+        .filter-tag.rigging:hover,
+        .filter-tag.creatures:hover,
+        .filter-tag.organization:hover,
+        .filter-tag.anatomy:hover,
+        .filter-tag.reference:hover,
+        .filter-tag.detail:hover,
+        .filter-tag.characters:hover,
+        .filter-tag.pipeline:hover,
+        .filter-tag.automation:hover,
+        .filter-tag.tools:hover {
+            background: rgba(121, 85, 72, 0.2);
+            border-color: rgba(121, 85, 72, 0.5);
+        }
+        
+        .filter-tag.sculpting.active,
+        .filter-tag.rigging.active,
+        .filter-tag.creatures.active,
+        .filter-tag.organization.active,
+        .filter-tag.anatomy.active,
+        .filter-tag.reference.active,
+        .filter-tag.detail.active,
+        .filter-tag.characters.active,
+        .filter-tag.pipeline.active,
+        .filter-tag.automation.active,
+        .filter-tag.tools.active {
+            background: rgba(121, 85, 72, 0.3);
+            border-color: rgba(121, 85, 72, 0.6);
+            color: #a1887f;
+            box-shadow: 0 2px 8px rgba(121, 85, 72, 0.2);
+        }
+        
+        .tutorial-grid.filtered .tutorial-card {
+            display: none;
+        }
+        
+        .tutorial-grid.filtered .tutorial-card.visible {
+            display: flex;
+        }
+        
+        .tutorial-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .tutorial-card {
+            background: linear-gradient(135deg, rgb(15, 15, 15), rgb(18, 18, 18));
+            border: 1px solid rgb(40, 40, 40);
+            border-radius: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            align-items: stretch;
+        }
+        
+        .tutorial-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
+            border-color: rgb(60, 60, 60);
+        }
+        
+        .tutorial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, rgb(50, 50, 50), rgb(70, 70, 70));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .tutorial-card:hover::before {
+            opacity: 1;
+        }
+        
+        .tutorial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 2rem;
+        }
+        
+        .tutorial-title-section {
+            flex: 1;
+        }
+        
+        .tutorial-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .tutorial-subtitle {
+            color: #999;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .tutorial-tag {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .tutorial-tag.scripting {
+            background: rgba(33, 150, 243, 0.1);
+            color: #2196F3;
+            border-color: rgba(33, 150, 243, 0.3);
+        }
+        
+        .tutorial-tag.maya {
+            background: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+            border-color: rgba(255, 152, 0, 0.3);
+        }
+        
+        .tutorial-tag.blender {
+            background: rgba(156, 39, 176, 0.1);
+            color: #9C27B0;
+            border-color: rgba(156, 39, 176, 0.3);
+        }
+        
+        .tutorial-tag.python {
+            background: rgba(255, 193, 7, 0.1);
+            color: #FFC107;
+            border-color: rgba(255, 193, 7, 0.3);
+        }
+        
+        .tutorial-date {
+            color: #666;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            margin-top: 0.5rem;
+        }
+        
+        .tutorial-description {
+            color: #bbb;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tutorial-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgb(40, 40, 40);
+        }
+        
+        .tutorial-read-time {
+            color: #888;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tutorial-read-time::before {
+            content: "📖";
+            font-size: 0.8rem;
+        }
+        
+        .tutorial-difficulty {
+            color: #888;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tutorial-difficulty.beginner {
+            color: #4CAF50;
+        }
+        
+        .tutorial-difficulty.intermediate {
+            color: #FF9800;
+        }
+        
+        .tutorial-difficulty.advanced {
+            color: #f44336;
+        }
+        
+        
+        .tutorial-image-container {
+            position: relative;
+            width: 350px;
+            flex-shrink: 0;
+        }
+        
+        .tutorial-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+        
+        .tutorial-image-overlay {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(15, 15, 15, 0), rgba(15, 15, 15, 1));
+            pointer-events: none;
+        }
+        
+        .tutorial-content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            justify-content: space-between;
+        }
+        
+        .tutorial-content-text {
+            flex: 1;
+        }
+        
+        .tutorial-description {
+            color: #bbb;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tutorial-meta-separator {
+            width: 100%;
+            height: 1px;
+            background: rgb(40, 40, 40);
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .tutorial-container {
+                padding: 2rem 1rem;
+            }
+            
+            .filter-section {
+                padding: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .filter-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .filter-tags {
+                gap: 0.5rem;
+            }
+            
+            .filter-tag {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+            
+            .tutorial-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .tutorial-meta {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+            
+            .tutorial-tags {
+                justify-content: flex-start;
+            }
+            
+            .tutorial-card {
+                flex-direction: column;
+                min-height: 300px;
+            }
+            
+            .tutorial-image-container {
+                width: 100%;
+                height: 180px;
+            }
+            
+            .tutorial-image-overlay {
+                background: linear-gradient(to bottom, rgba(15, 15, 15, 0), rgba(15, 15, 15, 1));
+                width: 100%;
+                height: 50px;
+                bottom: 0;
+                top: auto;
+                right: 0;
+            }
+            
+            .tutorial-content-wrapper {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -22,20 +562,28 @@
     </div>
     
     <!-- Content Section -->
-    <div class="project-container">
-        <p class="project-description">
-            Explore my educational tutorials, technical documentation, and scripting solutions for digital art workflows. From creature design methodologies to automation tools, discover resources to enhance your creative process.
+    <div class="tutorial-container">
+        <p class="tutorial-description">
+            Explore my collection of tutorials, technical documentation, and scripting solutions for digital art workflows. From creature design methodologies to automation tools, discover resources to enhance your creative process.
         </p>
         
-        <h2 class="section-title">Coming Soon</h2>
-        <div style="text-align: center; padding: 3rem; color: #666;">
-            <p style="font-size: 1.2rem; margin-bottom: 1rem;">Tutorial content and scripting resources will be available here soon.</p>
-            <p>Check back for updates on workflow tutorials, technical guides, and automation scripts.</p>
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-header">
+                <h3 class="filter-title">Filter by Topic</h3>
+                <button class="filter-clear" id="clear-filters">Clear All</button>
+            </div>
+            <div class="filter-tags" id="filter-tags">
+                <!-- Filter tags will be dynamically loaded here -->
+            </div>
         </div>
         
-        <div class="project-details">
-            <h3>What to Expect</h3>
-            <p>This section will feature comprehensive tutorials covering creature design techniques, character development workflows, and custom scripting solutions to streamline digital art production. Content will include step-by-step guides, video tutorials, and downloadable resources.</p>
+        <!-- Tutorial Articles Grid -->
+        <div class="tutorial-grid" id="tutorial-grid">
+            <!-- Tutorial articles will be dynamically loaded here -->
+            <div style="text-align: center; padding: 3rem; color: #666;">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">Loading tutorials...</p>
+            </div>
         </div>
     </div>
     
@@ -44,5 +592,177 @@
     
     <script src="shared/project-scripts.js"></script>
     <script src="shared/header-footer-loader.js"></script>
+    <script>
+        let allTutorials = [];
+        let activeFilters = new Set();
+        
+        // Load tutorial data and populate the grid
+        async function loadTutorials() {
+            try {
+                const response = await fetch('./tutorials.json');
+                const data = await response.json();
+                allTutorials = data.tutorials;
+                
+                // Create filter tags
+                createFilterTags();
+                
+                // Display all tutorials initially
+                displayTutorials(allTutorials);
+                
+            } catch (error) {
+                console.error('Error loading tutorials:', error);
+                document.getElementById('tutorial-grid').innerHTML = 
+                    '<div style="text-align: center; padding: 3rem; color: #ff6b6b;"><p>Error loading tutorials. Please try again later.</p></div>';
+            }
+        }
+        
+        function createFilterTags() {
+            // Extract all unique tags from tutorials
+            const allTags = new Set();
+            allTutorials.forEach(tutorial => {
+                tutorial.tags.forEach(tag => allTags.add(tag));
+            });
+            
+            // Sort tags alphabetically
+            const sortedTags = Array.from(allTags).sort();
+            
+            const filterContainer = document.getElementById('filter-tags');
+            filterContainer.innerHTML = '';
+            
+            sortedTags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = `filter-tag ${tag}`;
+                tagElement.textContent = tag;
+                tagElement.onclick = () => toggleFilter(tag, tagElement);
+                filterContainer.appendChild(tagElement);
+            });
+        }
+        
+        function toggleFilter(tag, element) {
+            if (activeFilters.has(tag)) {
+                activeFilters.delete(tag);
+                element.classList.remove('active');
+            } else {
+                activeFilters.add(tag);
+                element.classList.add('active');
+            }
+            
+            filterTutorials();
+        }
+        
+        function clearAllFilters() {
+            activeFilters.clear();
+            
+            // Remove active class from all filter tags
+            document.querySelectorAll('.filter-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            
+            // Show all tutorials
+            displayTutorials(allTutorials);
+        }
+        
+        function filterTutorials() {
+            if (activeFilters.size === 0) {
+                // No filters active, show all tutorials
+                displayTutorials(allTutorials);
+                return;
+            }
+            
+            // Filter tutorials that have at least one of the active tags
+            const filteredTutorials = allTutorials.filter(tutorial => {
+                return tutorial.tags.some(tag => activeFilters.has(tag));
+            });
+            
+            displayTutorials(filteredTutorials);
+        }
+        
+        function displayTutorials(tutorials) {
+            const grid = document.getElementById('tutorial-grid');
+            
+            if (tutorials.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #666;">
+                        <p style="font-size: 1.2rem; margin-bottom: 1rem;">No tutorials found</p>
+                        <p>Try adjusting your filters or browse all tutorials.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = '';
+            
+            tutorials.forEach(tutorial => {
+                const card = createTutorialCard(tutorial);
+                grid.appendChild(card);
+            });
+        }
+        
+        function createTutorialCard(tutorial) {
+            const card = document.createElement('div');
+            card.className = 'tutorial-card';
+            card.onclick = () => {
+                // Navigate to tutorial page
+                window.location.href = `./tutorialsscripting/${tutorial.id}/`;
+            };
+            
+            const tagsHtml = tutorial.tags.map(tag => 
+                `<span class="tutorial-tag ${tag}">${tag}</span>`
+            ).join('');
+            
+            const difficultyClass = tutorial.difficulty;
+            const difficultyIcon = {
+                'beginner': '●',
+                'intermediate': '●●',
+                'advanced': '●●●'
+            }[tutorial.difficulty];
+            
+            card.innerHTML = `
+                <div class="tutorial-image-container">
+                    <img src="${tutorial.image}" alt="${tutorial.title}" class="tutorial-image" />
+                    <div class="tutorial-image-overlay"></div>
+                </div>
+                <div class="tutorial-content-wrapper">
+                    <div class="tutorial-header">
+                        <div class="tutorial-title-section">
+                            <div class="tutorial-subtitle">${tutorial.subtitle}</div>
+                            <h3 class="tutorial-title">${tutorial.title}</h3>
+                            <div class="tutorial-tags">${tagsHtml}</div>
+                        </div>
+                        <div class="tutorial-date">${formatDate(tutorial.date)}</div>
+                    </div>
+                    <div class="tutorial-content-text">
+                        <p class="tutorial-description">${tutorial.description}</p>
+                    </div>
+                    <div class="tutorial-meta-separator"></div>
+                    <div class="tutorial-meta">
+                        <div class="tutorial-read-time">${tutorial.readTime}</div>
+                        <div class="tutorial-difficulty ${difficultyClass}">
+                            ${difficultyIcon} ${tutorial.difficulty}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+        
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+        }
+        
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTutorials();
+            
+            // Add event listener for clear filters button
+            document.getElementById('clear-filters').onclick = clearAllFilters;
+        });
+    </script>
 </body>
 </html>

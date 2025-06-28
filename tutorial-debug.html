@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Debug | Loucas Rongeart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+        .tutorial-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background-color: black;
+            min-height: 60vh;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: white; text-align: center; padding: 2rem;">Tutorial Debug Page</h1>
+    
+    <div class="tutorial-container">
+        <p style="color: #ccc; text-align: center;">
+            This is a debug version to test if the basic HTML structure works.
+        </p>
+        
+        <div id="status" style="color: yellow; text-align: center; padding: 1rem;">
+            Loading...
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('status').innerHTML = 'Page loaded successfully!';
+            document.getElementById('status').style.color = 'green';
+        });
+    </script>
+</body>
+</html>

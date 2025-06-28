@@ -219,6 +219,207 @@ body {
     left: 0;
 }
 
+/* Tutorial Tag Colors - Notion-style design system */
+.tutorial-tag {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    padding: 0.3rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin: 0.2rem;
+    transition: all 0.3s ease;
+}
+
+.tutorial-tag:hover {
+    transform: translateY(-1px);
+    opacity: 0.9;
+}
+
+/* Primary Software Tags */
+.tutorial-tag.maya {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+    border-color: rgba(255, 152, 0, 0.3);
+}
+
+.tutorial-tag.blender {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: rgba(156, 39, 176, 0.3);
+}
+
+.tutorial-tag.zbrush {
+    background: rgba(255, 87, 34, 0.1);
+    color: #FF5722;
+    border-color: rgba(255, 87, 34, 0.3);
+}
+
+.tutorial-tag.houdini {
+    background: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+.tutorial-tag.substance {
+    background: rgba(103, 58, 183, 0.1);
+    color: #673AB7;
+    border-color: rgba(103, 58, 183, 0.3);
+}
+
+/* Programming Languages */
+.tutorial-tag.python {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+.tutorial-tag.scripting {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+    border-color: rgba(33, 150, 243, 0.3);
+}
+
+.tutorial-tag.mel {
+    background: rgba(63, 81, 181, 0.1);
+    color: #3F51B5;
+    border-color: rgba(63, 81, 181, 0.3);
+}
+
+.tutorial-tag.cpp {
+    background: rgba(96, 125, 139, 0.1);
+    color: #607D8B;
+    border-color: rgba(96, 125, 139, 0.3);
+}
+
+/* Technique Categories */
+.tutorial-tag.modeling {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.tutorial-tag.sculpting {
+    background: rgba(233, 30, 99, 0.1);
+    color: #E91E63;
+    border-color: rgba(233, 30, 99, 0.3);
+}
+
+.tutorial-tag.rigging {
+    background: rgba(255, 87, 34, 0.1);
+    color: #FF5722;
+    border-color: rgba(255, 87, 34, 0.3);
+}
+
+.tutorial-tag.animation {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: rgba(156, 39, 176, 0.3);
+}
+
+.tutorial-tag.texturing {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+    border-color: rgba(255, 152, 0, 0.3);
+}
+
+.tutorial-tag.lighting {
+    background: rgba(255, 235, 59, 0.1);
+    color: #FFEB3B;
+    border-color: rgba(255, 235, 59, 0.3);
+}
+
+.tutorial-tag.rendering {
+    background: rgba(96, 125, 139, 0.1);
+    color: #607D8B;
+    border-color: rgba(96, 125, 139, 0.3);
+}
+
+/* Workflow & Organization */
+.tutorial-tag.pipeline {
+    background: rgba(0, 188, 212, 0.1);
+    color: #00BCD4;
+    border-color: rgba(0, 188, 212, 0.3);
+}
+
+.tutorial-tag.automation {
+    background: rgba(63, 81, 181, 0.1);
+    color: #3F51B5;
+    border-color: rgba(63, 81, 181, 0.3);
+}
+
+.tutorial-tag.workflow {
+    background: rgba(139, 195, 74, 0.1);
+    color: #8BC34A;
+    border-color: rgba(139, 195, 74, 0.3);
+}
+
+.tutorial-tag.organization {
+    background: rgba(121, 85, 72, 0.1);
+    color: #795548;
+    border-color: rgba(121, 85, 72, 0.3);
+}
+
+/* Subject Matter */
+.tutorial-tag.creatures {
+    background: rgba(233, 30, 99, 0.1);
+    color: #E91E63;
+    border-color: rgba(233, 30, 99, 0.3);
+}
+
+.tutorial-tag.characters {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: rgba(156, 39, 176, 0.3);
+}
+
+.tutorial-tag.anatomy {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+.tutorial-tag.reference {
+    background: rgba(158, 158, 158, 0.1);
+    color: #9E9E9E;
+    border-color: rgba(158, 158, 158, 0.3);
+}
+
+.tutorial-tag.detail {
+    background: rgba(255, 193, 7, 0.1);
+    color: #FFC107;
+    border-color: rgba(255, 193, 7, 0.3);
+}
+
+/* Difficulty Levels */
+.tutorial-tag.beginner {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+    border-color: rgba(76, 175, 80, 0.3);
+}
+
+.tutorial-tag.intermediate {
+    background: rgba(255, 152, 0, 0.1);
+    color: #FF9800;
+    border-color: rgba(255, 152, 0, 0.3);
+}
+
+.tutorial-tag.advanced {
+    background: rgba(244, 67, 54, 0.1);
+    color: #F44336;
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+.tutorial-tag.expert {
+    background: rgba(156, 39, 176, 0.1);
+    color: #9C27B0;
+    border-color: rgba(156, 39, 176, 0.3);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     :root {

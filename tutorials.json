@@ -1,0 +1,64 @@
+{
+    "tutorials": [
+        {
+            "id": "python-automation-maya",
+            "title": "Python Automation for Maya Character Rigging",
+            "subtitle": "Advanced Scripting",
+            "description": "Learn how to automate repetitive character rigging tasks in Maya using Python. This comprehensive guide covers creating custom tools, batch processing, and building efficient workflows for creature and character setup.",
+            "tags": ["python", "maya", "scripting", "rigging"],
+            "difficulty": "intermediate",
+            "readTime": "15 min read",
+            "date": "2025-01-15",
+            "image": "./tutorialsscripting/python-automation-maya/preview.jpg",
+            "url": "./tutorialsscripting/python-automation-maya/"
+        },
+        {
+            "id": "blender-creature-workflow",
+            "title": "Creature Design Workflow in Blender",
+            "subtitle": "Modeling & Sculpting",
+            "description": "A complete workflow for creating detailed creature designs in Blender. From initial concept sculpting to final model optimization, including retopology, texturing, and rendering techniques specifically for fantasy creatures.",
+            "tags": ["blender", "modeling", "sculpting", "creatures"],
+            "difficulty": "beginner",
+            "readTime": "20 min read",
+            "date": "2025-01-10",
+            "image": "./tutorialsscripting/blender-creature-workflow/preview.jpg",
+            "url": "./tutorialsscripting/blender-creature-workflow/"
+        },
+        {
+            "id": "anatomy-reference-system",
+            "title": "Building a Digital Anatomy Reference System",
+            "subtitle": "Organization & Reference",
+            "description": "Create an efficient digital library for anatomical references using Python scripts and database management. Perfect for concept artists who need quick access to creature anatomy, proportions, and structural references.",
+            "tags": ["python", "organization", "anatomy", "reference"],
+            "difficulty": "intermediate",
+            "readTime": "12 min read",
+            "date": "2025-01-05",
+            "image": "./tutorialsscripting/anatomy-reference-system/preview.jpg",
+            "url": "./tutorialsscripting/anatomy-reference-system/"
+        },
+        {
+            "id": "advanced-zbrush-techniques",
+            "title": "Advanced ZBrush Techniques for Character Detail",
+            "subtitle": "Digital Sculpting",
+            "description": "Master advanced ZBrush workflows for adding intricate details to your creature designs. Covers custom brushes, advanced masking techniques, and efficient detail workflows for production-ready assets.",
+            "tags": ["zbrush", "sculpting", "detail", "characters"],
+            "difficulty": "advanced",
+            "readTime": "25 min read",
+            "date": "2024-12-28",
+            "image": "./tutorialsscripting/advanced-zbrush-techniques/preview.jpg",
+            "url": "./tutorialsscripting/advanced-zbrush-techniques/"
+        },
+        {
+            "id": "pipeline-automation-tools",
+            "title": "Custom Pipeline Automation Tools",
+            "subtitle": "Technical Solutions",
+            "description": "Build custom tools to streamline your art production pipeline. Learn to create batch processors, file organizers, and automated export tools that save hours of manual work in your daily workflow.",
+            "tags": ["python", "pipeline", "automation", "tools"],
+            "difficulty": "advanced",
+            "readTime": "18 min read",
+            "date": "2024-12-20",
+            "image": "./tutorialsscripting/pipeline-automation-tools/preview.jpg",
+            "url": "./tutorialsscripting/pipeline-automation-tools/"
+        }
+    ]
+}
