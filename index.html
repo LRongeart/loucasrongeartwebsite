@@ -226,9 +226,8 @@
                 margin: 0 0 1rem 0;
                 letter-spacing: 3px;
                 text-transform: uppercase;
-                opacity: 0;
-                transform: translateY(30px);
-                animation: slideInUp 1.5s ease-out 0.5s forwards;
+                opacity: 1;
+                transform: translateY(0);
             ">Loucas Rongeart</h1>
             
             <div id="rotating-text" style="
@@ -240,8 +239,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                opacity: 0;
-                animation: slideInUp 1.5s ease-out 1s forwards;
+                opacity: 1;
             ">
                 <span id="typing-text">Character & Creature Artist</span>
                 <span id="cursor" style="
@@ -256,8 +254,7 @@
                 font-size: clamp(1rem, 3vw, 1.3rem);
                 line-height: 1.6;
                 margin-bottom: 3rem;
-                opacity: 0;
-                animation: slideInUp 1.5s ease-out 1.5s forwards;
+                opacity: 1;
             ">Specialized in <strong style='color: white;'>Texturing & LookDevelopment</strong> for Hero Assets<br>
             VFX & Feature Film Professional</p>
             
@@ -266,8 +263,7 @@
                 gap: 1rem;
                 justify-content: center;
                 flex-wrap: wrap;
-                opacity: 0;
-                animation: slideInUp 1.5s ease-out 2s forwards;
+                opacity: 1;
             ">
                 <a href="#portfolio-gallery" style="
                     background: linear-gradient(135deg, #4CAF50, #45a049);
@@ -853,23 +849,68 @@
         // Debug logging for GitHub Pages
         console.log('Hero section script loading...');
         
+        // Animate elements using JavaScript for better reliability
+        function animateHeroElements() {
+            console.log('Starting JavaScript-based animations...');
+            
+            const heroTitle = document.getElementById('hero-title');
+            const rotatingText = document.getElementById('rotating-text');
+            const heroParagraph = document.querySelector('#hero p');
+            const heroButtons = document.querySelector('#hero > div > div:last-child');
+            
+            // Animate hero title
+            if (heroTitle) {
+                heroTitle.style.opacity = '0';
+                heroTitle.style.transform = 'translateY(30px)';
+                heroTitle.style.transition = 'all 1.5s ease-out';
+                
+                setTimeout(() => {
+                    heroTitle.style.opacity = '1';
+                    heroTitle.style.transform = 'translateY(0)';
+                }, 500);
+            }
+            
+            // Animate rotating text
+            if (rotatingText) {
+                rotatingText.style.opacity = '0';
+                rotatingText.style.transform = 'translateY(30px)';
+                rotatingText.style.transition = 'all 1.5s ease-out';
+                
+                setTimeout(() => {
+                    rotatingText.style.opacity = '1';
+                    rotatingText.style.transform = 'translateY(0)';
+                }, 1000);
+            }
+            
+            // Animate paragraph
+            if (heroParagraph) {
+                heroParagraph.style.opacity = '0';
+                heroParagraph.style.transform = 'translateY(30px)';
+                heroParagraph.style.transition = 'all 1.5s ease-out';
+                
+                setTimeout(() => {
+                    heroParagraph.style.opacity = '1';
+                    heroParagraph.style.transform = 'translateY(0)';
+                }, 1500);
+            }
+            
+            // Animate buttons
+            if (heroButtons) {
+                heroButtons.style.opacity = '0';
+                heroButtons.style.transform = 'translateY(30px)';
+                heroButtons.style.transition = 'all 1.5s ease-out';
+                
+                setTimeout(() => {
+                    heroButtons.style.opacity = '1';
+                    heroButtons.style.transform = 'translateY(0)';
+                }, 2000);
+            }
+        }
+        
         // Ensure animations work on page load
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded, initializing hero animations...');
-            
-            // Force show hero elements with animations
-            const heroTitle = document.getElementById('hero-title');
-            const rotatingText = document.getElementById('rotating-text');
-            
-            if (heroTitle) {
-                console.log('Hero title found, applying animation...');
-                heroTitle.style.animation = 'slideInUp 1.5s ease-out 0.5s forwards';
-            }
-            
-            if (rotatingText) {
-                console.log('Rotating text found, applying animation...');
-                rotatingText.style.animation = 'slideInUp 1.5s ease-out 1s forwards';
-            }
+            setTimeout(animateHeroElements, 100);
         });
         
         // Rotating text animation
@@ -926,7 +967,7 @@
             const typingElement = document.getElementById('typing-text');
             if (typingElement) {
                 console.log('Starting typing animation...');
-                setTimeout(typeText, 3000);
+                setTimeout(typeText, 4000); // Start after hero animations
             } else {
                 console.log('Typing element not ready, retrying in 1s...');
                 setTimeout(startTypingAnimation, 1000);
@@ -934,18 +975,10 @@
         }
         
         // Multiple triggers to ensure it works
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startTypingAnimation);
-        } else {
-            startTypingAnimation();
-        }
+        document.addEventListener('DOMContentLoaded', startTypingAnimation);
+        window.addEventListener('load', startTypingAnimation);
         
-        window.addEventListener('load', function() {
-            console.log('Window loaded, checking animations...');
-            setTimeout(startTypingAnimation, 500);
-        });
-        
-        // Scroll-triggered animations
+        // Scroll-triggered animations for other sections
         function checkScrollAnimations() {
             const elements = document.querySelectorAll('.animate-on-scroll');
             const windowHeight = window.innerHeight;
@@ -955,7 +988,8 @@
                 const elementVisible = 150;
                 
                 if (elementTop < windowHeight - elementVisible) {
-                    element.classList.add('visible');
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
                 }
             });
         }
@@ -966,8 +1000,6 @@
             console.log('Enhancing gallery animations for', galleryItems.length, 'items');
             
             galleryItems.forEach((item, index) => {
-                // Add staggered animation on load
-                item.style.animationDelay = `${index * 0.1}s`;
                 item.classList.add('gallery-item');
                 
                 // Enhanced hover effects
@@ -975,6 +1007,7 @@
                     this.style.transform = 'translateY(-8px) scale(1.02)';
                     this.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.8)';
                     this.style.zIndex = '10';
+                    this.style.transition = 'all 0.3s ease';
                 });
                 
                 item.addEventListener('mouseleave', function() {
@@ -1017,32 +1050,13 @@
         function initializeAnimations() {
             console.log('Initializing all animations...');
             checkScrollAnimations();
-            setTimeout(enhanceGalleryAnimations, 2000); // Wait for gallery to load
+            setTimeout(enhanceGalleryAnimations, 3000); // Wait for gallery to load
         }
         
         // Multiple initialization triggers
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initializeAnimations);
-        } else {
-            initializeAnimations();
-        }
-        
-        window.addEventListener('load', function() {
-            setTimeout(initializeAnimations, 1000);
-        });
-        
+        document.addEventListener('DOMContentLoaded', initializeAnimations);
+        window.addEventListener('load', initializeAnimations);
         window.addEventListener('scroll', checkScrollAnimations);
-        
-        // Parallax effect for hero background
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const hero = document.getElementById('hero');
-            const heroBackground = hero?.querySelector('div');
-            
-            if (heroBackground && scrolled < hero.offsetHeight) {
-                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
-            }
-        });
         
         console.log('Hero section script loaded successfully.');
     </script>
