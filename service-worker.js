@@ -12,7 +12,7 @@ const STATIC_ASSETS = [
     '/courses.html',
     '/styles.css',
     '/shared/project-styles.css',
-    '/css/mobile-optimized.css',
+    '/css/mobile-optimizations.css',
     '/js/performance.js',
     '/shared/header-footer-loader.js',
     '/header.html',

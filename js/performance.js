@@ -171,8 +171,7 @@ class TouchOptimizer {
 class CSSLoader {
     static loadNonCriticalCSS() {
         const nonCriticalCSS = [
-            'css/mobile-optimized.css',
-            'css/animations.css'
+            'css/mobile-optimizations.css'
         ];
 
         nonCriticalCSS.forEach(href => {

@@ -651,6 +651,11 @@
                     return;
                 }
                 
+                if (!data || !data.items || !Array.isArray(data.items)) {
+                    console.error('Invalid data structure:', data);
+                    return;
+                }
+                
                 galleryGrid.innerHTML = ''; // Clear existing items
                 console.log('Processing', data.items.length, 'items');
 
