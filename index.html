@@ -33,8 +33,7 @@
         
         // Preload critical resources
         const criticalResources = [
-            'shared/header-footer-loader.js',
-            'css/mobile-optimized.css'
+            'shared/header-footer-loader.js'
         ];
         
         criticalResources.forEach(resource => {
@@ -52,6 +51,108 @@
             background-color: black; /* Replace background below the menu with black */
         }
         
+        /* Hero Section Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes backgroundFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* Scroll-triggered animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced portfolio gallery animations */
+        .gallery-item {
+            will-change: transform;
+            contain: layout style;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8) !important;
+        }
+        
+        /* Improved hover effects for client logos */
+        .client-logo {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .client-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(76, 175, 80, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .client-logo:hover::before {
+            left: 100%;
+        }
+        
+        /* Typing animation for rotating text */
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Enhanced mobile animations */
+        @media (max-width: 768px) {
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .gallery-item:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+
         /* Performance optimization: Use transform3d for hardware acceleration */
         .gallery-item {
             will-change: transform;
@@ -84,6 +185,151 @@
 <body>
     <!-- Header Placeholder -->
     <div id="header-placeholder"></div>
+
+    <!-- Hero Section -->
+    <section id="hero" style="
+        background: linear-gradient(135deg, rgb(15, 15, 15), rgb(25, 25, 25));
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        border-bottom: 1px solid rgb(40, 40, 40);
+    ">
+        <!-- Background Pattern -->
+        <div style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(60, 60, 60, 0.1) 1px, transparent 1px),
+                              radial-gradient(circle at 80% 50%, rgba(60, 60, 60, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: backgroundFloat 20s ease-in-out infinite;
+            opacity: 0.3;
+        "></div>
+        
+        <div style="
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        ">
+            <h1 id="hero-title" style="
+                color: white;
+                font-size: clamp(2.5rem, 8vw, 5rem);
+                font-weight: 300;
+                margin: 0 0 1rem 0;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: slideInUp 1.5s ease-out 0.5s forwards;
+            ">Loucas Rongeart</h1>
+            
+            <div id="rotating-text" style="
+                color: #4CAF50;
+                font-size: clamp(1.2rem, 4vw, 2rem);
+                font-weight: 500;
+                margin-bottom: 2rem;
+                min-height: 3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                animation: slideInUp 1.5s ease-out 1s forwards;
+            ">
+                <span id="typing-text">Character & Creature Artist</span>
+                <span id="cursor" style="
+                    color: white;
+                    animation: blink 1.5s infinite;
+                    margin-left: 2px;
+                ">|</span>
+            </div>
+            
+            <p style="
+                color: #ccc;
+                font-size: clamp(1rem, 3vw, 1.3rem);
+                line-height: 1.6;
+                margin-bottom: 3rem;
+                opacity: 0;
+                animation: slideInUp 1.5s ease-out 1.5s forwards;
+            ">Specialized in <strong style='color: white;'>Texturing & LookDevelopment</strong> for Hero Assets<br>
+            VFX & Feature Film Professional</p>
+            
+            <div style="
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                opacity: 0;
+                animation: slideInUp 1.5s ease-out 2s forwards;
+            ">
+                <a href="#portfolio-gallery" style="
+                    background: linear-gradient(135deg, #4CAF50, #45a049);
+                    color: white;
+                    text-decoration: none;
+                    padding: 1rem 2rem;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+                " onmouseover="
+                    this.style.transform = 'translateY(-3px)';
+                    this.style.boxShadow = '0 8px 30px rgba(76, 175, 80, 0.5)';
+                " onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '0 4px 20px rgba(76, 175, 80, 0.3)';
+                ">View My Work</a>
+                
+                <a href="about.html" style="
+                    background: transparent;
+                    color: white;
+                    text-decoration: none;
+                    padding: 1rem 2rem;
+                    border: 2px solid rgb(60, 60, 60);
+                    border-radius: 8px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    transition: all 0.3s ease;
+                " onmouseover="
+                    this.style.borderColor = 'white';
+                    this.style.transform = 'translateY(-3px)';
+                " onmouseout="
+                    this.style.borderColor = 'rgb(60, 60, 60)';
+                    this.style.transform = 'translateY(0)';
+                ">About Me</a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div style="
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        ">
+            <div style="
+                width: 2px;
+                height: 30px;
+                background: linear-gradient(to bottom, transparent, white);
+                margin: 0 auto 0.5rem;
+            "></div>
+            <div style="
+                color: #ccc;
+                font-size: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            ">Scroll</div>
+        </div>
+    </section>
 
     <!-- Showreel Section -->
     <section id="showreel" style="
@@ -157,6 +403,170 @@
         </div>
     </section>
 
+    <!-- Client Logos & Testimonials Section -->
+    <section id="clients-testimonials" style="
+        background: linear-gradient(135deg, rgb(20, 20, 20), rgb(15, 15, 15));
+        padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+        border-top: 1px solid rgb(40, 40, 40);
+        position: relative;
+        overflow: hidden;
+    ">
+        <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+            <!-- Section Title -->
+            <h2 style="
+                color: white;
+                font-size: clamp(2rem, 5vw, 3rem);
+                font-weight: 300;
+                margin-bottom: 3rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: slideInUp 1s ease-out forwards;
+            " class="animate-on-scroll">Trusted by Industry Leaders</h2>
+            
+            <!-- Client Logos -->
+            <div style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 2rem;
+                margin-bottom: 4rem;
+                align-items: center;
+            ">
+                <!-- MPC Logo -->
+                <div style="
+                    background: rgba(40, 40, 40, 0.3);
+                    padding: 2rem;
+                    border-radius: 8px;
+                    border: 1px solid rgba(60, 60, 60, 0.3);
+                    transition: all 0.3s ease;
+                    opacity: 0;
+                    transform: translateY(30px);
+                    animation: slideInUp 1s ease-out 0.2s forwards;
+                " class="animate-on-scroll client-logo" onmouseover="
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.borderColor = 'rgba(76, 175, 80, 0.5)';
+                " onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.borderColor = 'rgba(60, 60, 60, 0.3)';
+                ">
+                    <div style="
+                        color: white;
+                        font-size: 1.5rem;
+                        font-weight: 600;
+                        letter-spacing: 3px;
+                    ">MPC</div>
+                    <div style="
+                        color: #4CAF50;
+                        font-size: 0.8rem;
+                        margin-top: 0.5rem;
+                        text-transform: uppercase;
+                    ">Key Texture & LookDev Artist</div>
+                </div>
+                
+                <!-- Framestore Logo -->
+                <div style="
+                    background: rgba(40, 40, 40, 0.3);
+                    padding: 2rem;
+                    border-radius: 8px;
+                    border: 1px solid rgba(60, 60, 60, 0.3);
+                    transition: all 0.3s ease;
+                    opacity: 0;
+                    transform: translateY(30px);
+                    animation: slideInUp 1s ease-out 0.4s forwards;
+                " class="animate-on-scroll client-logo" onmouseover="
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.borderColor = 'rgba(76, 175, 80, 0.5)';
+                " onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.borderColor = 'rgba(60, 60, 60, 0.3)';
+                ">
+                    <div style="
+                        color: white;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                    ">FRAMESTORE</div>
+                    <div style="
+                        color: #4CAF50;
+                        font-size: 0.8rem;
+                        margin-top: 0.5rem;
+                        text-transform: uppercase;
+                    ">Junior Texture Artist</div>
+                </div>
+                
+                <!-- Freelance Work -->
+                <div style="
+                    background: rgba(40, 40, 40, 0.3);
+                    padding: 2rem;
+                    border-radius: 8px;
+                    border: 1px solid rgba(60, 60, 60, 0.3);
+                    transition: all 0.3s ease;
+                    opacity: 0;
+                    transform: translateY(30px);
+                    animation: slideInUp 1s ease-out 0.6s forwards;
+                " class="animate-on-scroll client-logo" onmouseover="
+                    this.style.transform = 'translateY(-5px)';
+                    this.style.borderColor = 'rgba(76, 175, 80, 0.5)';
+                " onmouseout="
+                    this.style.transform = 'translateY(0)';
+                    this.style.borderColor = 'rgba(60, 60, 60, 0.3)';
+                ">
+                    <div style="
+                        color: white;
+                        font-size: 1.2rem;
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                    ">FREELANCE</div>
+                    <div style="
+                        color: #4CAF50;
+                        font-size: 0.8rem;
+                        margin-top: 0.5rem;
+                        text-transform: uppercase;
+                    ">Independent Projects</div>
+                </div>
+            </div>
+            
+            <!-- Testimonial -->
+            <div style="
+                background: rgba(25, 25, 25, 0.5);
+                border: 1px solid rgba(60, 60, 60, 0.3);
+                border-radius: 12px;
+                padding: 3rem;
+                max-width: 800px;
+                margin: 0 auto;
+                position: relative;
+                opacity: 0;
+                transform: translateY(30px);
+                animation: slideInUp 1s ease-out 0.8s forwards;
+            " class="animate-on-scroll">
+                <div style="
+                    color: #4CAF50;
+                    font-size: 3rem;
+                    position: absolute;
+                    top: 1rem;
+                    left: 2rem;
+                    opacity: 0.3;
+                ">"</div>
+                
+                <p style="
+                    color: #ccc;
+                    font-size: clamp(1.1rem, 3vw, 1.4rem);
+                    line-height: 1.6;
+                    font-style: italic;
+                    margin: 0 0 2rem 0;
+                    text-align: center;
+                ">Loucas brings exceptional technical expertise and creative vision to every project. His attention to detail in texturing and look development consistently elevates the quality of hero assets.</p>
+                
+                <div style="
+                    color: white;
+                    font-weight: 600;
+                    text-align: center;
+                ">— VFX Industry Professional</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Include Header -->
     <script src="shared/header-footer-loader.js"></script>
 
@@ -171,7 +581,7 @@
         function loadMobileCSS() {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
-            link.href = 'css/mobile-optimized.css';
+            link.href = 'css/mobile-optimizations.css';
             link.media = 'print';
             link.onload = function() {
                 this.media = 'all';
@@ -430,6 +840,140 @@
                 console.log('Fallback content added');
             }
         }, 2000); // Wait 2 seconds for JSON loading to complete
+    </script>
+
+    <!-- Hero Section Interactive Scripts -->
+    <script>
+        // Rotating text animation
+        const texts = [
+            "Character & Creature Artist",
+            "Texture & LookDev Specialist", 
+            "VFX Professional",
+            "Digital Art Instructor",
+            "Creative Visionary"
+        ];
+        
+        let currentTextIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deletingSpeed = 50;
+        const delayBetweenTexts = 2000;
+        
+        function typeText() {
+            const typingElement = document.getElementById('typing-text');
+            const currentText = texts[currentTextIndex];
+            
+            if (!isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+                
+                if (charIndex === currentText.length) {
+                    setTimeout(() => {
+                        isDeleting = true;
+                    }, delayBetweenTexts);
+                }
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+                
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    currentTextIndex = (currentTextIndex + 1) % texts.length;
+                }
+            }
+            
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeText, speed);
+        }
+        
+        // Start typing animation after initial delay
+        setTimeout(() => {
+            typeText();
+        }, 3000);
+        
+        // Scroll-triggered animations
+        function checkScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const windowHeight = window.innerHeight;
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // Enhanced gallery item animations
+        function enhanceGalleryAnimations() {
+            const galleryItems = document.querySelectorAll('#gallery-grid > div');
+            
+            galleryItems.forEach((item, index) => {
+                // Add staggered animation on load
+                item.style.animationDelay = `${index * 0.1}s`;
+                item.classList.add('gallery-item');
+                
+                // Enhanced hover effects
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                    this.style.boxShadow = '0 12px 40px rgba(0, 0, 0, 0.8)';
+                    this.style.zIndex = '10';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.5)';
+                    this.style.zIndex = '1';
+                });
+                
+                // Touch device support
+                item.addEventListener('touchstart', function() {
+                    this.style.transform = 'translateY(-4px) scale(1.01)';
+                });
+                
+                item.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(0) scale(1)';
+                    }, 150);
+                });
+            });
+        }
+        
+        // Smooth scroll for hero buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewWorkBtn = document.querySelector('a[href="#portfolio-gallery"]');
+            if (viewWorkBtn) {
+                viewWorkBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('portfolio-gallery').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+        });
+        
+        // Initialize animations when page loads
+        window.addEventListener('load', function() {
+            checkScrollAnimations();
+            setTimeout(enhanceGalleryAnimations, 1000); // Wait for gallery to load
+        });
+        
+        window.addEventListener('scroll', checkScrollAnimations);
+        
+        // Parallax effect for hero background
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.getElementById('hero');
+            const heroBackground = hero?.querySelector('div');
+            
+            if (heroBackground && scrolled < hero.offsetHeight) {
+                heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
     </script>
 </body>
 </html>
