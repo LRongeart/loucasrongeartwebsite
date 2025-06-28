@@ -202,26 +202,32 @@
         overflow: hidden;
         border-bottom: 1px solid rgb(40, 40, 40);
     ">
-        <!-- Video Background -->
-        <video id="hero-video" muted loop playsinline preload="metadata" style="
+        <!-- YouTube Background -->
+        <div id="youtube-bg" style="
             position: absolute;
             top: 50%;
             left: 50%;
-            min-width: 120%;
-            min-height: 120%;
-            width: auto;
-            height: auto;
+            width: 120vw;
+            height: 120vh;
+            transform: translate(-50%, -50%);
             z-index: 0;
-            transform: translate(-50%, -50%) scale(1.1);
-            opacity: 0.9;
-            object-fit: cover;
             pointer-events: none;
-            filter: brightness(1.2) contrast(1.1) saturate(1.1);
-            will-change: auto;
+            opacity: 0.9;
         ">
-            <source src="./img/reel/LR_showreel_2023_12.mp4#t=15,126" type="video/mp4">
-            <!-- Fallback for browsers that don't support video -->
-        </video>
+            <iframe id="youtube-player"
+                width="100%" 
+                height="100%"
+                src="https://www.youtube.com/embed/nOY9aZCUjno?autoplay=1&mute=1&loop=1&playlist=nOY9aZCUjno&controls=0&showinfo=0&rel=0&iv_load_policy=3&modestbranding=1&start=15&end=126"
+                title="Loucas Rongeart Showreel Background"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+                style="
+                    pointer-events: none;
+                    filter: brightness(1.2) contrast(1.1) saturate(1.1);
+                ">
+            </iframe>
+        </div>
         
         <!-- Fallback animated background for when video doesn't load -->
         <div id="fallback-bg" style="
@@ -796,60 +802,46 @@
 
     <!-- Essential Scripts for Portfolio and Navigation -->
     <script>
-        // Simple video background handler with performance monitoring
+        // YouTube background handler with fallback
         document.addEventListener('DOMContentLoaded', function() {
-            const video = document.querySelector('#hero-video');
+            const youtubeBg = document.getElementById('youtube-bg');
             const fallback = document.getElementById('fallback-bg');
             
-            if (video) {
-                console.log('Setting up video...');
+            if (youtubeBg && fallback) {
+                console.log('Setting up YouTube background...');
                 
-                // Performance monitoring
-                let frameDrops = 0;
-                video.addEventListener('stalled', () => {
-                    frameDrops++;
-                    console.log('Video stalled, frame drops:', frameDrops);
-                    if (frameDrops > 3) {
-                        console.log('Too many drops, showing fallback');
-                        if (fallback) fallback.style.opacity = '0.6';
-                    }
-                });
+                // Initially hide fallback while YouTube loads
+                fallback.style.opacity = '0.3';
                 
-                // Simple approach: just try to play after a short delay
+                // Check if YouTube loaded properly after 5 seconds
                 setTimeout(() => {
-                    video.currentTime = 15; // Start at 15 seconds
-                    video.play().then(() => {
-                        console.log('Video playing');
-                        if (fallback) fallback.style.opacity = '0';
-                    }).catch(() => {
-                        console.log('Autoplay failed, showing fallback');
+                    const iframe = youtubeBg.querySelector('iframe');
+                    if (iframe) {
+                        console.log('YouTube background loaded successfully');
+                        fallback.style.opacity = '0'; // Hide fallback
+                    } else {
+                        console.log('YouTube failed to load, showing fallback');
+                        fallback.style.opacity = '0.6'; // Show fallback
+                    }
+                }, 5000);
+                
+                // Fallback for connection issues
+                setTimeout(() => {
+                    // If still loading after 10 seconds, assume slow connection
+                    if (fallback.style.opacity !== '0') {
+                        console.log('Slow connection detected, using fallback');
+                        fallback.style.opacity = '0.6';
+                    }
+                }, 10000);
+                
+                // Error handling for iframe
+                const iframe = youtubeBg.querySelector('iframe');
+                if (iframe) {
+                    iframe.addEventListener('error', function() {
+                        console.log('YouTube iframe error, showing fallback');
                         if (fallback) fallback.style.opacity = '0.6';
                     });
-                }, 1000);
-                
-                // Simple loop control with performance check
-                video.addEventListener('timeupdate', function() {
-                    if (video.currentTime >= 126) { // 2:06
-                        video.currentTime = 15; // Jump back to 15 seconds
-                    }
-                });
-                
-                // Click to play if autoplay failed
-                document.addEventListener('click', function() {
-                    if (video.paused) {
-                        video.currentTime = 15;
-                        video.play();
-                    }
-                }, { once: true });
-                
-                // Performance fallback - reduce quality on slow devices
-                setTimeout(() => {
-                    if (frameDrops > 2) {
-                        console.log('Reducing video quality for performance');
-                        video.style.filter = 'brightness(1.2)'; // Remove expensive filters
-                        video.style.transform = 'translate(-50%, -50%)'; // Remove scaling
-                    }
-                }, 10000); // Check after 10 seconds
+                }
             }
         });
         
