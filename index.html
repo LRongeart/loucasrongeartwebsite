@@ -264,7 +264,6 @@
         padding: clamp(1rem, 4vw, 2rem); 
         text-align: center; 
         border-bottom: 1px solid rgb(40, 40, 40);
-        display: block !important;
     ">
         <div style="max-width: 800px; margin: 0 auto;">
             <a href="https://vimeo.com/895353165" target="_blank" rel="noopener noreferrer" style="
@@ -313,7 +312,6 @@
         background-color: black; 
         padding: clamp(5px, 1vw, 5px); 
         min-height: 60vh; 
-        display: block !important;
         width: 100%;
         margin: 0;
     ">
@@ -510,27 +508,22 @@
     </script>
 
     <script>
-        function showSection(sectionId) {
-            document.querySelectorAll('section').forEach(section => {
-                // Portfolio gallery and showreel are always visible, others are controlled by hash
-                if (section.id === 'portfolio-gallery' || section.id === 'showreel') {
-                    return; // Don't hide the portfolio gallery or showreel
-                }
-                
-                // Show the requested section or hide all others
-                section.style.display = section.id === sectionId ? 'block' : 'none';
-            });
-        }
-
-        function handleHashChange() {
-            const sectionId = window.location.hash.replace('#', '');
-            showSection(sectionId);
-        }
-
-        window.addEventListener('hashchange', handleHashChange);
-
-        // Initial load
-        handleHashChange();
+        // Simple smooth scroll for navigation - no complex visibility logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewWorkBtn = document.querySelector('a[href="#portfolio-gallery"]');
+            if (viewWorkBtn) {
+                viewWorkBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const portfolioSection = document.getElementById('portfolio-gallery');
+                    if (portfolioSection) {
+                        portfolioSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+        });
     </script>
 
     <script>
