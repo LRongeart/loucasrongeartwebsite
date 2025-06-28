@@ -49,8 +49,9 @@ body {
 /* Banner Section */
 .project-banner {
     width: 100%;
-    height: 40vh;
-    min-height: 300px;
+    height: 20vh;
+    min-height: 150px;
+    max-height: 200px;
     aspect-ratio: 2.5/1;
     background-size: cover;
     background-position: center;
@@ -66,7 +67,18 @@ body {
     left: 0;
     right: 0;
     background: linear-gradient(transparent, rgba(0,0,0,0.8));
-    padding: 3rem 2rem 2rem;
+    padding: 1rem 2rem 1rem;
+}
+
+/* Remove the repositioned title styles since we're keeping titles in the banner */
+.page-title-section {
+    display: none;
+}
+
+/* Show the banner title styles again */
+.banner-overlay .project-title,
+.banner-overlay .project-subtitle {
+    display: block;
 }
 
 .project-title {
@@ -438,12 +450,13 @@ body {
     }
     
     .project-banner {
-        height: 30vh;
-        min-height: 250px;
+        height: 15vh;
+        min-height: 120px;
+        max-height: 150px;
     }
     
     .banner-overlay {
-        padding: 2rem 1rem 1.5rem;
+        padding: 1rem 1rem 0.5rem;
     }
     
     .project-container {

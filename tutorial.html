@@ -94,10 +94,17 @@
         }
         
         .filter-tag.active {
-            background: rgba(76, 175, 80, 0.3);
-            border-color: rgba(76, 175, 80, 0.6);
-            color: #5cbf60;
-            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+            background: rgba(76, 175, 80, 0.4);
+            border-color: rgba(76, 175, 80, 0.7);
+            color: #81c784;
+            box-shadow: 0 2px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .filter-tag.active::after {
+            content: " ✓";
+            color: #4CAF50;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.scripting {
@@ -112,10 +119,17 @@
         }
         
         .filter-tag.scripting.active {
-            background: rgba(33, 150, 243, 0.3);
-            border-color: rgba(33, 150, 243, 0.6);
-            color: #42a5f5;
-            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2);
+            background: rgba(33, 150, 243, 0.4);
+            border-color: rgba(33, 150, 243, 0.7);
+            color: #64b5f6;
+            box-shadow: 0 2px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        .filter-tag.scripting.active::after {
+            content: " ✓";
+            color: #2196F3;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.maya {
@@ -130,10 +144,17 @@
         }
         
         .filter-tag.maya.active {
-            background: rgba(255, 152, 0, 0.3);
-            border-color: rgba(255, 152, 0, 0.6);
-            color: #ffb74d;
-            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+            background: rgba(255, 152, 0, 0.4);
+            border-color: rgba(255, 152, 0, 0.7);
+            color: #ffcc02;
+            box-shadow: 0 2px 12px rgba(255, 152, 0, 0.3);
+        }
+        
+        .filter-tag.maya.active::after {
+            content: " ✓";
+            color: #FF9800;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.blender {
@@ -148,10 +169,17 @@
         }
         
         .filter-tag.blender.active {
-            background: rgba(156, 39, 176, 0.3);
-            border-color: rgba(156, 39, 176, 0.6);
-            color: #ba68c8;
-            box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+            background: rgba(156, 39, 176, 0.4);
+            border-color: rgba(156, 39, 176, 0.7);
+            color: #ce93d8;
+            box-shadow: 0 2px 12px rgba(156, 39, 176, 0.3);
+        }
+        
+        .filter-tag.blender.active::after {
+            content: " ✓";
+            color: #9C27B0;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.python {
@@ -166,10 +194,17 @@
         }
         
         .filter-tag.python.active {
-            background: rgba(255, 193, 7, 0.3);
-            border-color: rgba(255, 193, 7, 0.6);
-            color: #ffca28;
-            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
+            background: rgba(255, 193, 7, 0.4);
+            border-color: rgba(255, 193, 7, 0.7);
+            color: #ffeb3b;
+            box-shadow: 0 2px 12px rgba(255, 193, 7, 0.3);
+        }
+        
+        .filter-tag.python.active::after {
+            content: " ✓";
+            color: #FFC107;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.zbrush {
@@ -184,10 +219,17 @@
         }
         
         .filter-tag.zbrush.active {
-            background: rgba(244, 67, 54, 0.3);
-            border-color: rgba(244, 67, 54, 0.6);
-            color: #ef5350;
-            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+            background: rgba(244, 67, 54, 0.4);
+            border-color: rgba(244, 67, 54, 0.7);
+            color: #ff7961;
+            box-shadow: 0 2px 12px rgba(244, 67, 54, 0.3);
+        }
+        
+        .filter-tag.zbrush.active::after {
+            content: " ✓";
+            color: #f44336;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.modeling {
@@ -202,10 +244,17 @@
         }
         
         .filter-tag.modeling.active {
-            background: rgba(96, 125, 139, 0.3);
-            border-color: rgba(96, 125, 139, 0.6);
-            color: #90a4ae;
-            box-shadow: 0 2px 8px rgba(96, 125, 139, 0.2);
+            background: rgba(96, 125, 139, 0.4);
+            border-color: rgba(96, 125, 139, 0.7);
+            color: #b0bec5;
+            box-shadow: 0 2px 12px rgba(96, 125, 139, 0.3);
+        }
+        
+        .filter-tag.modeling.active::after {
+            content: " ✓";
+            color: #607D8B;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .filter-tag.sculpting,
@@ -250,10 +299,27 @@
         .filter-tag.pipeline.active,
         .filter-tag.automation.active,
         .filter-tag.tools.active {
-            background: rgba(121, 85, 72, 0.3);
-            border-color: rgba(121, 85, 72, 0.6);
-            color: #a1887f;
-            box-shadow: 0 2px 8px rgba(121, 85, 72, 0.2);
+            background: rgba(121, 85, 72, 0.4);
+            border-color: rgba(121, 85, 72, 0.7);
+            color: #bcaaa4;
+            box-shadow: 0 2px 12px rgba(121, 85, 72, 0.3);
+        }
+        
+        .filter-tag.sculpting.active::after,
+        .filter-tag.rigging.active::after,
+        .filter-tag.creatures.active::after,
+        .filter-tag.organization.active::after,
+        .filter-tag.anatomy.active::after,
+        .filter-tag.reference.active::after,
+        .filter-tag.detail.active::after,
+        .filter-tag.characters.active::after,
+        .filter-tag.pipeline.active::after,
+        .filter-tag.automation.active::after,
+        .filter-tag.tools.active::after {
+            content: " ✓";
+            color: #795548;
+            font-weight: bold;
+            margin-left: 0.5rem;
         }
         
         .tutorial-grid.filtered .tutorial-card {
