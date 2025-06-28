@@ -91,22 +91,31 @@
 </style>
 
 <script>
-// Mobile Navigation Toggle
+// Mobile Navigation Toggle with debugging
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Header script loaded');
     const mobileToggle = document.getElementById('mobile-menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
     const hamburgerIcon = document.getElementById('hamburger-icon');
     let isMenuOpen = false;
     
+    console.log('Mobile toggle found:', !!mobileToggle);
+    console.log('Mobile nav found:', !!mobileNav);
+    
     if (mobileToggle && mobileNav) {
+        console.log('Setting up mobile menu listeners');
+        
         mobileToggle.addEventListener('click', function() {
+            console.log('Mobile menu toggle clicked');
             isMenuOpen = !isMenuOpen;
             
             if (isMenuOpen) {
+                console.log('Opening mobile menu');
                 mobileNav.style.display = 'block';
                 hamburgerIcon.textContent = '✕';
                 document.body.style.overflow = 'hidden'; // Prevent scrolling
             } else {
+                console.log('Closing mobile menu');
                 mobileNav.style.display = 'none';
                 hamburgerIcon.textContent = '☰';
                 document.body.style.overflow = ''; // Restore scrolling
@@ -115,8 +124,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close menu when clicking on a link
         const mobileLinks = mobileNav.querySelectorAll('a');
+        console.log('Mobile links found:', mobileLinks.length);
         mobileLinks.forEach(link => {
             link.addEventListener('click', function() {
+                console.log('Mobile link clicked');
                 mobileNav.style.display = 'none';
                 hamburgerIcon.textContent = '☰';
                 document.body.style.overflow = '';
@@ -127,12 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Close menu when clicking outside
         mobileNav.addEventListener('click', function(e) {
             if (e.target === mobileNav) {
+                console.log('Clicked outside menu, closing');
                 mobileNav.style.display = 'none';
                 hamburgerIcon.textContent = '☰';
                 document.body.style.overflow = '';
                 isMenuOpen = false;
             }
         });
+    } else {
+        console.log('Mobile menu elements not found!');
     }
 });
 </script>
