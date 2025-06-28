@@ -16,8 +16,17 @@
         cursor: pointer;
         padding: 0.5rem;
         z-index: 1001;
-    " aria-label="Toggle navigation menu">
-        <span id="hamburger-icon">☰</span>
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+        user-select: none;
+        -webkit-user-select: none;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    " aria-label="Toggle navigation menu" type="button">
+        <span id="hamburger-icon" style="pointer-events: none;">☰</span>
     </button>
     
     <!-- Desktop Navigation -->
@@ -43,9 +52,13 @@
         height: 100vh;
         background-color: rgba(15, 15, 15, 0.98);
         backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         z-index: 1000;
         padding: 4rem 2rem 2rem;
         box-sizing: border-box;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        touch-action: manipulation;
     ">
         <ul style="
             list-style: none;
@@ -56,13 +69,13 @@
             gap: 2rem;
             align-items: center;
         ">
-            <li><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a></li>
-            <li><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a></li>
-            <li><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial & Scripting</a></li>
-            <li><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Notion Courses</a></li>
-            <li><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a></li>
-            <li><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a></li>
-            <li><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
+            <li><a href="index.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Home</a></li>
+            <li><a href="https://vimeo.com/895353165" target="_blank" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Showreel</a></li>
+            <li><a href="tutorial.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Tutorial & Scripting</a></li>
+            <li><a href="courses.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Notion Courses</a></li>
+            <li><a href="about.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">About</a></li>
+            <li><a href="cv.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">CV</a></li>
+            <li><a href="contact.html" style="color: white; text-decoration: none; text-transform: uppercase; font-size: 1.2rem; transition: opacity 0.3s ease; padding: 1rem; min-height: 44px; display: flex; align-items: center; touch-action: manipulation;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Contact</a></li>
         </ul>
     </nav>
 </header>
@@ -71,7 +84,7 @@
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
     #mobile-menu-toggle {
-        display: block !important;
+        display: flex !important;
     }
     
     #desktop-nav {
@@ -88,10 +101,30 @@
         display: none !important;
     }
 }
+
+/* Android-specific improvements */
+#mobile-menu-toggle {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#mobile-nav {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+    #mobile-nav a {
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+        tap-highlight-color: rgba(255, 255, 255, 0.1);
+    }
+}
 </style>
 
 <script>
-// Mobile Navigation Toggle with debugging
+// Mobile Navigation Toggle with Android compatibility
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Header script loaded');
     const mobileToggle = document.getElementById('mobile-menu-toggle');
@@ -101,24 +134,73 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log('Mobile toggle found:', !!mobileToggle);
     console.log('Mobile nav found:', !!mobileNav);
+    console.log('User agent:', navigator.userAgent);
     
     if (mobileToggle && mobileNav) {
         console.log('Setting up mobile menu listeners');
         
-        mobileToggle.addEventListener('click', function() {
-            console.log('Mobile menu toggle clicked');
+        // Function to toggle menu
+        function toggleMenu() {
+            console.log('Toggle menu called, current state:', isMenuOpen);
             isMenuOpen = !isMenuOpen;
             
             if (isMenuOpen) {
                 console.log('Opening mobile menu');
                 mobileNav.style.display = 'block';
                 hamburgerIcon.textContent = '✕';
-                document.body.style.overflow = 'hidden'; // Prevent scrolling
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden'; // Also lock html element
+                // Add a small delay to ensure the menu is rendered
+                setTimeout(() => {
+                    mobileNav.focus();
+                }, 10);
             } else {
                 console.log('Closing mobile menu');
                 mobileNav.style.display = 'none';
                 hamburgerIcon.textContent = '☰';
-                document.body.style.overflow = ''; // Restore scrolling
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+            }
+        }
+        
+        // Function to close menu
+        function closeMenu() {
+            console.log('Close menu called');
+            if (isMenuOpen) {
+                mobileNav.style.display = 'none';
+                hamburgerIcon.textContent = '☰';
+                document.body.style.overflow = '';
+                document.documentElement.style.overflow = '';
+                isMenuOpen = false;
+            }
+        }
+        
+        // Add both click and touch event listeners for better Android support
+        mobileToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Mobile menu click event');
+            toggleMenu();
+        });
+        
+        mobileToggle.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Mobile menu touch event');
+            toggleMenu();
+        });
+        
+        // Prevent double-firing on devices that support both
+        let touchHandled = false;
+        mobileToggle.addEventListener('touchstart', function(e) {
+            touchHandled = true;
+            setTimeout(() => touchHandled = false, 300);
+        });
+        
+        mobileToggle.addEventListener('click', function(e) {
+            if (touchHandled) {
+                e.preventDefault();
+                return;
             }
         });
         
@@ -126,12 +208,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileLinks = mobileNav.querySelectorAll('a');
         console.log('Mobile links found:', mobileLinks.length);
         mobileLinks.forEach(link => {
-            link.addEventListener('click', function() {
+            link.addEventListener('click', function(e) {
                 console.log('Mobile link clicked');
-                mobileNav.style.display = 'none';
-                hamburgerIcon.textContent = '☰';
-                document.body.style.overflow = '';
-                isMenuOpen = false;
+                closeMenu();
+            });
+            
+            link.addEventListener('touchend', function(e) {
+                console.log('Mobile link touched');
+                // Small delay to allow the touch to register as a click
+                setTimeout(() => closeMenu(), 50);
             });
         });
         
@@ -139,12 +224,30 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileNav.addEventListener('click', function(e) {
             if (e.target === mobileNav) {
                 console.log('Clicked outside menu, closing');
-                mobileNav.style.display = 'none';
-                hamburgerIcon.textContent = '☰';
-                document.body.style.overflow = '';
-                isMenuOpen = false;
+                closeMenu();
             }
         });
+        
+        mobileNav.addEventListener('touchend', function(e) {
+            if (e.target === mobileNav) {
+                console.log('Touched outside menu, closing');
+                closeMenu();
+            }
+        });
+        
+        // Handle escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isMenuOpen) {
+                console.log('Escape key pressed, closing menu');
+                closeMenu();
+            }
+        });
+        
+        // Prevent body scroll when menu is open (additional safeguard for iOS/Android)
+        mobileNav.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+        
     } else {
         console.log('Mobile menu elements not found!');
     }
