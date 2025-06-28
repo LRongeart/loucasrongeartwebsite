@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail | Loucas Rongeart</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../../shared/project-styles.css">
+    <link rel="stylesheet" href="../../shared/course-template.css">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    
+    <a href="../../courses.html" class="back-button course-themed">← BACK TO COURSES</a>
+    
+    <!-- Banner Section -->
+    <div class="project-banner course-banner" id="course-banner">
+        <div class="banner-overlay">
+            <h1 class="project-title" id="course-title">Course Title</h1>
+            <p class="project-subtitle" id="course-description">Course Description</p>
+        </div>
+    </div>
+    
+    <!-- Course Info -->
+    <div class="course-info-section">
+        <div class="course-info-container">
+            <div class="course-meta-info">
+                <div class="course-difficulty-badge course-themed" id="course-difficulty">Advanced</div>
+                <div class="course-duration-badge course-themed" id="course-duration">6 weeks</div>
+                <div class="course-tags" id="course-tags">
+                    <!-- Tags will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notion Embed -->
+    <div class="notion-embed-section">
+        <div class="notion-container">
+            <div class="loading-indicator" id="loading-indicator">
+                <div class="loading-spinner course-themed"></div>
+                <p>Loading course content...</p>
+                <small>Trying multiple embedding methods for optimal display</small>
+            </div>
+            <iframe 
+                id="notion-iframe"
+                src="" 
+                width="100%" 
+                height="100vh" 
+                frameborder="0"
+                style="border-radius: 0; box-shadow: none; display: none; border: none;">
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="../../shared/header-footer-loader.js"></script>
+    <script src="../../shared/course-template.js"></script>
+</body>
+</html>

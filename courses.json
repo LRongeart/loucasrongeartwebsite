@@ -89,6 +89,222 @@
                 "background": "rgba(255, 193, 7, 0.1)",
                 "border": "rgba(255, 193, 7, 0.3)"
             }
+        },
+        {
+            "id": "nuke-bgnr-000-3d-scanline",
+            "title": "NUKE-BGNR-000 — 3D & SCANLINE-RENDERER",
+            "description": "Understanding 3D space and the Scanline Renderer in Nuke for compositing workflows.",
+            "tags": ["Beginner", "3D", "Scanline", "Rendering"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/04dd1de747ce4b509d78b255b6a4c2b5",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "Self-paced",
+            "courseFile": "courses/beginner/nuke-bgnr-000-3d-scanline.html",
+            "colorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-bgnr-001-camera-mapping",
+            "title": "NUKE-BGNR-001 — CAMERA-MAPPING",
+            "description": "Learn camera mapping techniques for extending and enhancing shots in Nuke.",
+            "tags": ["Beginner", "Camera", "Mapping", "3D"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/1a8fe667461749e4b44163bc35720862",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "Self-paced",
+            "courseFile": "courses/beginner/nuke-bgnr-001-camera-mapping.html",
+            "colorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-bgnr-002-prman-aovs",
+            "title": "NUKE-BGNR-002 — PRMAN TO COMP: AOVs",
+            "description": "Working with PRMan AOVs (Arbitrary Output Variables) in compositing workflows.",
+            "tags": ["Beginner", "PRMan", "AOVs", "Rendering"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/00212e3cf4e5496296c70f040fec21b1",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "Self-paced",
+            "courseFile": "courses/beginner/nuke-bgnr-002-prman-aovs.html",
+            "colorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-bgnr-003-prman-lightgroups",
+            "title": "NUKE-BGNR-003 — PRMAN TO COMP: LIGHTGROUPS",
+            "description": "Understanding and working with PRMan light groups for flexible lighting control in comp.",
+            "tags": ["Beginner", "PRMan", "Lighting", "Light Groups"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/2491578fb69e4d8581feda9305c55e4c",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "Self-paced",
+            "courseFile": "courses/beginner/nuke-bgnr-003-prman-lightgroups.html",
+            "colorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-bgnr-004-prman-renderlayers",
+            "title": "NUKE-BGNR-004 — PRMAN TO COMP: RENDERLAYERS",
+            "description": "Working with PRMan render layers for efficient compositing workflows.",
+            "tags": ["Beginner", "PRMan", "Render Layers", "Pipeline"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/dfc0678ed9494e249c0a7b2def418a23",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "Self-paced",
+            "courseFile": "courses/beginner/nuke-bgnr-004-prman-renderlayers.html",
+            "colorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-bgnr-005-prman-batch-render",
+            "title": "NUKE-BGNR-005 — PRMAN TO COMP: BATCH RENDER",
+            "description": "Setting up and managing batch rendering workflows with PRMan for compositing.",
+            "tags": ["Beginner", "PRMan", "Batch Render", "Pipeline"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/4a83661296c546beb01c4c541cafe8b1",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "Self-paced",
+            "courseFile": "courses/beginner/nuke-bgnr-005-prman-batch-render.html",
+            "colorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-conf-000-camera-tracking",
+            "title": "NUKE-CONF-000— CAMERA-TRACKING",
+            "description": "Advanced camera tracking techniques for complex shots and camera movements.",
+            "tags": ["Confirmed", "Camera Tracking", "3D", "Matchmove"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/1f962f3cff2a4406abd6cfce0ca636d7",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Confirmed",
+            "duration": "Self-paced",
+            "courseFile": "courses/confirmed/nuke-conf-000-camera-tracking.html",
+            "colorTheme": {
+                "primary": "#4CAF50",
+                "primaryRgb": "76, 175, 80",
+                "secondary": "#388E3C",
+                "background": "rgba(76, 175, 80, 0.1)",
+                "border": "rgba(76, 175, 80, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-conf-001-fine-layer-denoising",
+            "title": "NUKE-CONF-001— FiNE & LAYER DENOISING",
+            "description": "Advanced denoising techniques using FiNE and layer-based approaches.",
+            "tags": ["Confirmed", "Denoising", "FiNE", "Cleanup"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/10a3ffd6645746f8a20258bf718c68cd",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Confirmed",
+            "duration": "Self-paced",
+            "courseFile": "courses/confirmed/nuke-conf-001-fine-layer-denoising.html",
+            "colorTheme": {
+                "primary": "#4CAF50",
+                "primaryRgb": "76, 175, 80",
+                "secondary": "#388E3C",
+                "background": "rgba(76, 175, 80, 0.1)",
+                "border": "rgba(76, 175, 80, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-conf-002-aov-setups-shots",
+            "title": "NUKE-CONF-002— AOV SETUPS FOR SHOTS",
+            "description": "Professional AOV setup strategies for complex shot compositions.",
+            "tags": ["Confirmed", "AOVs", "Shot Setup", "Pipeline"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/1e6706c208f380ce8727d64693f36e24",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Confirmed",
+            "duration": "Self-paced",
+            "courseFile": "courses/confirmed/nuke-conf-002-aov-setups-shots.html",
+            "colorTheme": {
+                "primary": "#4CAF50",
+                "primaryRgb": "76, 175, 80",
+                "secondary": "#388E3C",
+                "background": "rgba(76, 175, 80, 0.1)",
+                "border": "rgba(76, 175, 80, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-conf-003-comp-rebuild",
+            "title": "NUKE-CONF-003— COMP REBUILD",
+            "description": "Advanced techniques for rebuilding and reconstructing complex composites.",
+            "tags": ["Confirmed", "Compositing", "Rebuild", "Problem Solving"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/07063711ead04989b9aba54aac54d9ad",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Confirmed",
+            "duration": "Self-paced",
+            "courseFile": "courses/confirmed/nuke-conf-003-comp-rebuild.html",
+            "colorTheme": {
+                "primary": "#4CAF50",
+                "primaryRgb": "76, 175, 80",
+                "secondary": "#388E3C",
+                "background": "rgba(76, 175, 80, 0.1)",
+                "border": "rgba(76, 175, 80, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-adv-000-creating-gizmos",
+            "title": "NUKE-ADV-000— CREATING GIZMOS",
+            "description": "Advanced techniques for creating custom gizmos and tools in Nuke.",
+            "tags": ["Advanced", "Gizmos", "Tool Development", "Scripting"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/5236c0f8bce542168d5187d8be08dc21",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Advanced",
+            "duration": "Self-paced",
+            "courseFile": "courses/advanced/nuke-adv-000-creating-gizmos.html",
+            "colorTheme": {
+                "primary": "#2196F3",
+                "primaryRgb": "33, 150, 243",
+                "secondary": "#1976D2",
+                "background": "rgba(33, 150, 243, 0.1)",
+                "border": "rgba(33, 150, 243, 0.3)"
+            }
+        },
+        {
+            "id": "nuke-adv-001-esma-tls-pipeline",
+            "title": "NUKE-ADV-001— ESMA-TLS NUKE PIPELINE TOOLS",
+            "description": "Professional pipeline tools and workflows for advanced Nuke production environments.",
+            "tags": ["Advanced", "Pipeline", "Tools", "ESMA-TLS"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/21d706c208f3808a8086c2d3a335fe5b",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Advanced",
+            "duration": "Self-paced",
+            "courseFile": "courses/advanced/nuke-adv-001-esma-tls-pipeline.html",
+            "colorTheme": {
+                "primary": "#2196F3",
+                "primaryRgb": "33, 150, 243",
+                "secondary": "#1976D2",
+                "background": "rgba(33, 150, 243, 0.1)",
+                "border": "rgba(33, 150, 243, 0.3)"
+            }
         }
     ],
     "courseTemplates": {
