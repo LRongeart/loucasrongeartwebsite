@@ -1,0 +1,74 @@
+{
+    "courses": [
+        {
+            "id": "nuke-intro-useful-links",
+            "title": "NUKE—INTRO-000— USEFUL LINKS",
+            "description": "Essential Nuke resources, documentation, and useful links for getting started with compositing.",
+            "tags": ["Introduction", "Resources"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/b7c1cc70ae4948f5ba6600f9e0481046",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Introduction",
+            "duration": "Self-paced"
+        },
+        {
+            "id": "houdini-intro",
+            "title": "Introduction to Houdini",
+            "description": "Get started with procedural modeling and effects in SideFX Houdini.",
+            "tags": ["Introduction", "Beginner"],
+            "notionUrl": "https://loucasrongeart.notion.site/Introduction-Houdini",
+            "previewImage": "./img/course-previews/houdini-icon.png",
+            "difficulty": "Introduction",
+            "duration": "4 weeks"
+        },
+        {
+            "id": "maya-basics",
+            "title": "Maya Fundamentals",
+            "description": "Learn the essential tools and workflows in Autodesk Maya for 3D modeling and animation.",
+            "tags": ["Introduction", "Beginner"],
+            "notionUrl": "https://loucasrongeart.notion.site/Maya-Fundamentals-Course",
+            "previewImage": "./img/course-previews/maya-icon.png",
+            "difficulty": "Beginner",
+            "duration": "8 weeks"
+        },
+        {
+            "id": "nuke-compositing",
+            "title": "Nuke Compositing Essentials",
+            "description": "Learn professional compositing techniques using Foundry's Nuke.",
+            "tags": ["Beginner", "Confirmed"],
+            "notionUrl": "https://loucasrongeart.notion.site/Nuke-Compositing-Essentials",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Beginner",
+            "duration": "6 weeks"
+        },
+        {
+            "id": "lookdev-workflow",
+            "title": "LookDev Pipeline for VFX",
+            "description": "Complete workflow for look development in VFX and feature film production.",
+            "tags": ["Confirmed", "Advanced"],
+            "notionUrl": "https://loucasrongeart.notion.site/LookDev-Pipeline-VFX",
+            "previewImage": "./img/course-previews/lookdev-icon.png",
+            "difficulty": "Confirmed",
+            "duration": "10 weeks"
+        },
+        {
+            "id": "zbrush-sculpting",
+            "title": "Character Sculpting in ZBrush",
+            "description": "Advanced character and creature sculpting techniques for film and VFX.",
+            "tags": ["Confirmed", "Advanced"],
+            "notionUrl": "https://loucasrongeart.notion.site/ZBrush-Character-Sculpting",
+            "previewImage": "./img/course-previews/zbrush-icon.png",
+            "difficulty": "Confirmed",
+            "duration": "8 weeks"
+        },
+        {
+            "id": "texturing-mari",
+            "title": "Advanced Texturing with Mari",
+            "description": "Master professional texturing techniques using Foundry's Mari for hero assets.",
+            "tags": ["Advanced", "Confirmed"],
+            "notionUrl": "https://loucasrongeart.notion.site/Advanced-Texturing-Mari",
+            "previewImage": "./img/course-previews/mari-icon.png",
+            "difficulty": "Advanced",
+            "duration": "12 weeks"
+        }
+    ]
+}

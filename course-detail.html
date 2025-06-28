@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Detail | Loucas Rongeart</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="shared/project-styles.css">
+</head>
+<body>
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    
+    <a href="courses.html" class="back-button">← BACK TO COURSES</a>
+    
+    <!-- Banner Section -->
+    <div class="project-banner" id="course-banner">
+        <div class="banner-overlay">
+            <h1 class="project-title" id="course-title">Course Title</h1>
+            <p class="project-subtitle" id="course-description">Course Description</p>
+        </div>
+    </div>
+    
+    <!-- Course Info -->
+    <div style="background-color: black; padding: 2rem;">
+        <div class="course-info-container">
+            <div class="course-meta-info">
+                <div class="course-difficulty-badge" id="course-difficulty">Beginner</div>
+                <div class="course-duration-badge" id="course-duration">6 weeks</div>
+                <div class="course-tags" id="course-tags">
+                    <!-- Tags will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notion Embed -->
+    <div style="background-color: black; min-height: 80vh;">
+        <div class="notion-container">
+            <div class="loading-indicator" id="loading-indicator">
+                <div class="loading-spinner"></div>
+                <p>Loading course content...</p>
+                <small>Trying multiple embedding methods for optimal display</small>
+            </div>
+            <iframe 
+                id="notion-iframe"
+                src="" 
+                width="100%" 
+                height="800px" 
+                frameborder="0"
+                style="border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); display: none;">
+            </iframe>
+        </div>
+    </div>
+    
+    <!-- Include Footer -->
+    <div id="footer-placeholder"></div>
+    
+    <script src="shared/header-footer-loader.js"></script>
+    <script>
+        // Get course ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('id');
+
+        if (courseId) {
+            // Load course data
+            fetch('courses.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Loaded courses data:', data);
+                    const course = data.courses.find(c => c.id === courseId);
+                    if (course) {
+                        console.log('Found course:', course);
+                        loadCourseDetails(course);
+                    } else {
+                        console.error('Course not found with ID:', courseId);
+                        document.body.innerHTML = `<h1>Course not found</h1><p>Course ID: ${courseId}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading course:', error);
+                    document.body.innerHTML = `<h1>Error loading course</h1><p>Error: ${error.message}</p><p>Course ID: ${courseId}</p>`;
+                });
+        } else {
+            window.location.href = 'courses.html';
+        }
+
+        function loadCourseDetails(course) {
+            // Update page title
+            document.title = `${course.title} | Loucas Rongeart`;
+            
+            // Update banner
+            document.getElementById('course-title').textContent = course.title;
+            document.getElementById('course-description').textContent = course.description;
+            document.getElementById('course-banner').style.backgroundImage = `url('${course.previewImage}')`;
+            
+            // Update course info
+            document.getElementById('course-difficulty').textContent = course.difficulty;
+            document.getElementById('course-duration').textContent = course.duration;
+            
+            // Update tags
+            const tagsContainer = document.getElementById('course-tags');
+            tagsContainer.innerHTML = course.tags.map(tag => 
+                `<span class="course-tag">${tag}</span>`
+            ).join('');
+            
+            // Try multiple embedding strategies for Notion
+            embedNotionPage(course.notionUrl);
+        }
+
+        function embedNotionPage(originalUrl) {
+            const iframe = document.getElementById('notion-iframe');
+            const notionContainer = iframe.parentElement;
+            const loadingIndicator = document.getElementById('loading-indicator');
+            
+            // Show loading indicator
+            loadingIndicator.style.display = 'flex';
+            iframe.style.display = 'none';
+            
+            // Create fallback content
+            const fallbackContent = `
+                <div class="notion-fallback">
+                    <div class="fallback-content">
+                        <h3>📖 Course Content</h3>
+                        <p>This course content is hosted on Notion. Click the button below to access the full interactive content.</p>
+                        <a href="${originalUrl}" target="_blank" class="notion-link-btn">
+                            🚀 Open Course in Notion
+                        </a>
+                        <div class="notion-preview">
+                            <h4>Course Preview:</h4>
+                            <p>Access comprehensive course materials, exercises, and resources directly in Notion.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Multiple URL formats to try
+            const urlsToTry = [
+                originalUrl + '?embed=true&hideSidebar=true&hideHeader=true',
+                originalUrl + '?pvs=4&embed=true',
+                originalUrl + '?embed=true',
+                originalUrl,
+                originalUrl.replace('notion.site', 'notion.so') + '?embed=true',
+                originalUrl.replace('notion.site', 'notion.so')
+            ];
+
+            let currentUrlIndex = 0;
+            let embedSuccess = false;
+
+            function tryNextUrl() {
+                if (currentUrlIndex >= urlsToTry.length || embedSuccess) {
+                    if (!embedSuccess) {
+                        loadingIndicator.style.display = 'none';
+                        notionContainer.innerHTML = fallbackContent;
+                    }
+                    return;
+                }
+
+                const urlToTry = urlsToTry[currentUrlIndex];
+                console.log(`Trying Notion URL: ${urlToTry}`);
+
+                // Create a new iframe for each attempt
+                const newIframe = document.createElement('iframe');
+                newIframe.id = 'notion-iframe';
+                newIframe.width = '100%';
+                newIframe.height = '800px';
+                newIframe.frameBorder = '0';
+                newIframe.style.cssText = 'border-radius: 8px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); background: white; display: none;';
+                
+                // Add security attributes for better embedding
+                newIframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation');
+                newIframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+                
+                newIframe.onload = function() {
+                    setTimeout(() => {
+                        try {
+                            // Check if the iframe loaded successfully
+                            const iframeDoc = newIframe.contentDocument || newIframe.contentWindow.document;
+                            if (iframeDoc && iframeDoc.body && iframeDoc.body.innerHTML.length > 100) {
+                                console.log(`Successfully embedded: ${urlToTry}`);
+                                embedSuccess = true;
+                                loadingIndicator.style.display = 'none';
+                                newIframe.style.display = 'block';
+                                return;
+                            }
+                        } catch (e) {
+                            // Cross-origin access blocked - this might actually mean content is loaded
+                            console.log(`Cross-origin blocked for: ${urlToTry} - assuming content loaded`);
+                            embedSuccess = true;
+                            loadingIndicator.style.display = 'none';
+                            newIframe.style.display = 'block';
+                            return;
+                        }
+                        
+                        // If we get here, try next URL
+                        currentUrlIndex++;
+                        tryNextUrl();
+                    }, 3000);
+                };
+
+                newIframe.onerror = function() {
+                    console.log(`Failed to load: ${urlToTry}`);
+                    currentUrlIndex++;
+                    tryNextUrl();
+                };
+
+                // Replace the old iframe
+                const oldIframe = document.getElementById('notion-iframe');
+                if (oldIframe) {
+                    oldIframe.parentNode.replaceChild(newIframe, oldIframe);
+                } else {
+                    notionContainer.appendChild(newIframe);
+                }
+                
+                // Set the source
+                newIframe.src = urlToTry;
+                currentUrlIndex++;
+            }
+
+            // Start trying URLs
+            tryNextUrl();
+
+            // Final fallback after all attempts
+            setTimeout(() => {
+                if (!embedSuccess) {
+                    loadingIndicator.style.display = 'none';
+                    notionContainer.innerHTML = fallbackContent;
+                }
+            }, 15000); // Wait 15 seconds total before giving up
+        }
+    </script>
+
+    <style>
+        .course-info-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .course-meta-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .course-difficulty-badge {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #4CAF50;
+        }
+
+        .course-duration-badge {
+            background: rgba(33, 150, 243, 0.2);
+            color: #2196F3;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #2196F3;
+        }
+
+        .course-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .course-tag {
+            background: rgba(156, 39, 176, 0.2);
+            color: #9C27B0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(156, 39, 176, 0.3);
+        }
+
+        .notion-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .notion-container iframe {
+            background: white;
+        }
+
+        /* Fallback content styling */
+        .notion-fallback {
+            background: linear-gradient(135deg, rgb(15, 15, 15), rgb(18, 18, 18));
+            border: 1px solid rgb(40, 40, 40);
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fallback-content h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .fallback-content p {
+            color: #ccc;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .notion-link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .notion-link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+        }
+
+        .notion-preview {
+            background: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgb(60, 60, 60);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .notion-preview h4 {
+            color: #4CAF50;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .notion-preview p {
+            color: #aaa;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Loading indicator */
+        .loading-indicator {
+            background: linear-gradient(135deg, rgb(15, 15, 15), rgb(18, 18, 18));
+            border: 1px solid rgb(40, 40, 40);
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(76, 175, 80, 0.3);
+            border-left: 4px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-indicator p {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-indicator small {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .course-meta-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .notion-container {
+                padding: 1rem;
+            }
+
+            .notion-container iframe {
+                height: 600px;
+            }
+        }
+
+        /* Enhance the back button for this page */
+        .back-button {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .back-button:hover {
+            background: rgba(76, 175, 80, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</body>
+</html>
