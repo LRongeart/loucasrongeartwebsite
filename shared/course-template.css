@@ -1,0 +1,240 @@
+/* Course Template Styles */
+/* Uses CSS custom properties for dynamic theming */
+
+/* Course-themed elements */
+.course-themed {
+    color: var(--course-primary, #4CAF50) !important;
+    border-color: var(--course-primary, #4CAF50) !important;
+}
+
+.course-themed.back-button {
+    background: var(--course-background, rgba(76, 175, 80, 0.2));
+    border: 1px solid var(--course-primary, #4CAF50);
+}
+
+.course-themed.back-button:hover {
+    background: var(--course-border, rgba(76, 175, 80, 0.3));
+    transform: translateY(-2px);
+}
+
+/* Course banner theming */
+.course-banner {
+    position: relative;
+}
+
+.course-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg, 
+        rgba(var(--course-primary-rgb, 76, 175, 80), 0.1), 
+        rgba(var(--course-primary-rgb, 76, 175, 80), 0.05)
+    );
+    pointer-events: none;
+}
+
+/* Course info section */
+.course-info-section {
+    background-color: black;
+    padding: 2rem;
+}
+
+.course-info-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.course-meta-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.course-difficulty-badge,
+.course-duration-badge {
+    background: var(--course-background, rgba(76, 175, 80, 0.2));
+    color: var(--course-primary, #4CAF50);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--course-border, rgba(76, 175, 80, 0.3));
+}
+
+.course-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.course-tag {
+    background: var(--course-background, rgba(156, 39, 176, 0.2));
+    color: var(--course-primary, #9C27B0);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    border: 1px solid var(--course-border, rgba(156, 39, 176, 0.3));
+}
+
+/* Notion embed section */
+.notion-embed-section {
+    background-color: black;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.notion-container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.notion-container iframe {
+    background: white;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Loading indicator with course theming */
+.loading-indicator {
+    background: linear-gradient(135deg, rgb(15, 15, 15), rgb(18, 18, 18));
+    border: 1px solid rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--course-border, rgba(76, 175, 80, 0.3));
+    border-left: 4px solid var(--course-primary, #4CAF50);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-indicator p {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.loading-indicator small {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Fallback content styling with theming */
+.notion-fallback {
+    background: linear-gradient(135deg, rgb(15, 15, 15), rgb(18, 18, 18));
+    border: 1px solid rgb(40, 40, 40);
+    border-radius: 8px;
+    padding: 3rem;
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fallback-content h3 {
+    color: white;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.fallback-content p {
+    color: #ccc;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.notion-link-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--course-primary, #4CAF50), var(--course-secondary, #45a049));
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+    border: 1px solid var(--course-primary, #4CAF50);
+}
+
+.notion-link-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(var(--course-primary-rgb, 76, 175, 80), 0.3);
+}
+
+.notion-preview {
+    background: rgba(40, 40, 40, 0.5);
+    border: 1px solid rgb(60, 60, 60);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.notion-preview h4 {
+    color: var(--course-primary, #4CAF50);
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.notion-preview p {
+    color: #aaa;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .course-meta-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .notion-container {
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .notion-container iframe {
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .course-info-section {
+        padding: 1rem;
+    }
+}

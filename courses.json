@@ -8,67 +8,140 @@
             "notionUrl": "https://loucasrongeart.notion.site/ebd/b7c1cc70ae4948f5ba6600f9e0481046",
             "previewImage": "./img/course-previews/nuke-icon.png",
             "difficulty": "Introduction",
-            "duration": "Self-paced"
+            "duration": "Self-paced",
+            "courseFile": "courses/introduction/nuke-intro-useful-links.html",
+            "colorTheme": {
+                "primary": "#FFC107",
+                "primaryRgb": "255, 193, 7",
+                "secondary": "#FF8F00",
+                "background": "rgba(255, 193, 7, 0.1)",
+                "border": "rgba(255, 193, 7, 0.3)"
+            }
         },
         {
-            "id": "houdini-intro",
-            "title": "Introduction to Houdini",
-            "description": "Get started with procedural modeling and effects in SideFX Houdini.",
-            "tags": ["Introduction", "Beginner"],
-            "notionUrl": "https://loucasrongeart.notion.site/Introduction-Houdini",
-            "previewImage": "./img/course-previews/houdini-icon.png",
-            "difficulty": "Introduction",
-            "duration": "4 weeks"
-        },
-        {
-            "id": "maya-basics",
-            "title": "Maya Fundamentals",
-            "description": "Learn the essential tools and workflows in Autodesk Maya for 3D modeling and animation.",
-            "tags": ["Introduction", "Beginner"],
-            "notionUrl": "https://loucasrongeart.notion.site/Maya-Fundamentals-Course",
-            "previewImage": "./img/course-previews/maya-icon.png",
-            "difficulty": "Beginner",
-            "duration": "8 weeks"
-        },
-        {
-            "id": "nuke-compositing",
-            "title": "Nuke Compositing Essentials",
-            "description": "Learn professional compositing techniques using Foundry's Nuke.",
-            "tags": ["Beginner", "Confirmed"],
-            "notionUrl": "https://loucasrongeart.notion.site/Nuke-Compositing-Essentials",
+            "id": "nuke-intro-001-installation",
+            "title": "NUKE—INTRO-001— NUKE INSTALLATION",
+            "description": "Complete guide to installing Nuke and setting up your compositing environment.",
+            "tags": ["Introduction", "Installation", "Setup"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/cb175e3fc68d44088777ecd4857c233d",
             "previewImage": "./img/course-previews/nuke-icon.png",
-            "difficulty": "Beginner",
-            "duration": "6 weeks"
+            "difficulty": "Introduction",
+            "duration": "Self-paced",
+            "courseFile": "courses/introduction/nuke-intro-001-installation.html",
+            "colorTheme": {
+                "primary": "#FFC107",
+                "primaryRgb": "255, 193, 7",
+                "secondary": "#FF8F00",
+                "background": "rgba(255, 193, 7, 0.1)",
+                "border": "rgba(255, 193, 7, 0.3)"
+            }
         },
         {
-            "id": "lookdev-workflow",
-            "title": "LookDev Pipeline for VFX",
-            "description": "Complete workflow for look development in VFX and feature film production.",
-            "tags": ["Confirmed", "Advanced"],
-            "notionUrl": "https://loucasrongeart.notion.site/LookDev-Pipeline-VFX",
-            "previewImage": "./img/course-previews/lookdev-icon.png",
-            "difficulty": "Confirmed",
-            "duration": "10 weeks"
+            "id": "nuke-intro-002-displays-layers",
+            "title": "NUKE—INTRO-002— DISPLAYS, LAYERS, CHANNELS & EXR",
+            "description": "Understanding displays, layers, channels, and EXR workflows in Nuke.",
+            "tags": ["Introduction", "Channels", "EXR", "Workflows"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/9edae4742f3c4a26aeeadd42a44d46f9",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Introduction",
+            "duration": "Self-paced",
+            "courseFile": "courses/introduction/nuke-intro-002-displays-layers.html",
+            "colorTheme": {
+                "primary": "#FFC107",
+                "primaryRgb": "255, 193, 7",
+                "secondary": "#FF8F00",
+                "background": "rgba(255, 193, 7, 0.1)",
+                "border": "rgba(255, 193, 7, 0.3)"
+            }
         },
         {
-            "id": "zbrush-sculpting",
-            "title": "Character Sculpting in ZBrush",
-            "description": "Advanced character and creature sculpting techniques for film and VFX.",
-            "tags": ["Confirmed", "Advanced"],
-            "notionUrl": "https://loucasrongeart.notion.site/ZBrush-Character-Sculpting",
-            "previewImage": "./img/course-previews/zbrush-icon.png",
-            "difficulty": "Confirmed",
-            "duration": "8 weeks"
+            "id": "nuke-intro-003-vfx-story",
+            "title": "NUKE—INTRO-003— A STORY ABOUT VISUAL EFFECTS",
+            "description": "The history and evolution of visual effects and how Nuke fits into the pipeline.",
+            "tags": ["Introduction", "VFX History", "Pipeline"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/02ff894016eb44b2ad60f12f252efc7e",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Introduction",
+            "duration": "Self-paced",
+            "courseFile": "courses/introduction/nuke-intro-003-vfx-story.html",
+            "colorTheme": {
+                "primary": "#FFC107",
+                "primaryRgb": "255, 193, 7",
+                "secondary": "#FF8F00",
+                "background": "rgba(255, 193, 7, 0.1)",
+                "border": "rgba(255, 193, 7, 0.3)"
+            }
         },
         {
-            "id": "texturing-mari",
-            "title": "Advanced Texturing with Mari",
-            "description": "Master professional texturing techniques using Foundry's Mari for hero assets.",
-            "tags": ["Advanced", "Confirmed"],
-            "notionUrl": "https://loucasrongeart.notion.site/Advanced-Texturing-Mari",
-            "previewImage": "./img/course-previews/mari-icon.png",
-            "difficulty": "Advanced",
-            "duration": "12 weeks"
+            "id": "nuke-intro-004-ui-shortcuts",
+            "title": "NUKE—INTRO-004— NUKE UI, SHORTCUTS & QoL",
+            "description": "Master the Nuke interface, essential shortcuts, and quality of life improvements.",
+            "tags": ["Introduction", "UI", "Shortcuts", "Productivity"],
+            "notionUrl": "https://loucasrongeart.notion.site/ebd/1e3532a3b4db46b7878f885c44f568c0",
+            "previewImage": "./img/course-previews/nuke-icon.png",
+            "difficulty": "Introduction",
+            "duration": "Self-paced",
+            "courseFile": "courses/introduction/nuke-intro-004-ui-shortcuts.html",
+            "colorTheme": {
+                "primary": "#FFC107",
+                "primaryRgb": "255, 193, 7",
+                "secondary": "#FF8F00",
+                "background": "rgba(255, 193, 7, 0.1)",
+                "border": "rgba(255, 193, 7, 0.3)"
+            }
+        }
+    ],
+    "courseTemplates": {
+        "introduction": {
+            "defaultColorTheme": {
+                "primary": "#FFC107",
+                "primaryRgb": "255, 193, 7",
+                "secondary": "#FF8F00",
+                "background": "rgba(255, 193, 7, 0.1)",
+                "border": "rgba(255, 193, 7, 0.3)"
+            },
+            "templateFile": "shared/course-template.html"
+        },
+        "beginner": {
+            "defaultColorTheme": {
+                "primary": "#F44336",
+                "primaryRgb": "244, 67, 54",
+                "secondary": "#D32F2F",
+                "background": "rgba(244, 67, 54, 0.1)",
+                "border": "rgba(244, 67, 54, 0.3)"
+            },
+            "templateFile": "shared/course-template.html"
+        },
+        "confirmed": {
+            "defaultColorTheme": {
+                "primary": "#4CAF50",
+                "primaryRgb": "76, 175, 80",
+                "secondary": "#388E3C",
+                "background": "rgba(76, 175, 80, 0.1)",
+                "border": "rgba(76, 175, 80, 0.3)"
+            },
+            "templateFile": "shared/course-template.html"
+        },
+        "advanced": {
+            "defaultColorTheme": {
+                "primary": "#2196F3",
+                "primaryRgb": "33, 150, 243",
+                "secondary": "#1976D2",
+                "background": "rgba(33, 150, 243, 0.1)",
+                "border": "rgba(33, 150, 243, 0.3)"
+            },
+            "templateFile": "shared/course-template.html"
+        }
+    },
+    "introductionCoursesList": [
+        {
+            "id": "nuke-intro-useful-links",
+            "title": "NUKE—INTRO-000— USEFUL LINKS",
+            "description": "Essential Nuke resources, documentation, and useful links for getting started with compositing.",
+            "notionEmbedUrl": "https://loucasrongeart.notion.site/ebd/b7c1cc70ae4948f5ba6600f9e0481046",
+            "duration": "Self-paced",
+            "tags": ["Resources", "Links"],
+            "status": "ready"
         }
     ]
 }

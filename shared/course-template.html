@@ -3,10 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Detail | Loucas Rongeart</title>
+    <title>{{courseTitle}} | Loucas Rongeart</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="shared/project-styles.css">
-    <link rel="stylesheet" href="shared/course-template.css">
+    <style>
+        /* Dynamic course color variables - will be injected by JavaScript */
+        :root {
+            --course-primary: {{primaryColor}};
+            --course-primary-rgb: {{primaryRgb}};
+            --course-secondary: {{secondaryColor}};
+            --course-background: {{backgroundColor}};
+            --course-border: {{borderColor}};
+        }
+    </style>
 </head>
 <body>
     <!-- Header Placeholder -->
@@ -17,8 +26,8 @@
     <!-- Banner Section -->
     <div class="project-banner course-banner" id="course-banner">
         <div class="banner-overlay">
-            <h1 class="project-title" id="course-title">Course Title</h1>
-            <p class="project-subtitle" id="course-description">Course Description</p>
+            <h1 class="project-title" id="course-title">{{courseTitle}}</h1>
+            <p class="project-subtitle" id="course-description">{{courseDescription}}</p>
         </div>
     </div>
     
@@ -26,8 +35,8 @@
     <div class="course-info-section">
         <div class="course-info-container">
             <div class="course-meta-info">
-                <div class="course-difficulty-badge course-themed" id="course-difficulty">Beginner</div>
-                <div class="course-duration-badge course-themed" id="course-duration">6 weeks</div>
+                <div class="course-difficulty-badge course-themed" id="course-difficulty">{{courseDifficulty}}</div>
+                <div class="course-duration-badge course-themed" id="course-duration">{{courseDuration}}</div>
                 <div class="course-tags" id="course-tags">
                     <!-- Tags will be populated dynamically -->
                 </div>
@@ -45,7 +54,7 @@
             </div>
             <iframe 
                 id="notion-iframe"
-                src="" 
+                src="{{notionUrl}}" 
                 width="100%" 
                 height="100vh" 
                 frameborder="0"
