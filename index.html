@@ -79,9 +79,35 @@
         }
         
         /* Simple, elegant animations for key elements */
+        @keyframes backgroundShift {
+            0% { 
+                background-position: 0% 50%, 100% 50%, 50% 0%; 
+                transform: rotate(0deg) scale(1);
+            }
+            33% { 
+                background-position: 30% 70%, 70% 30%, 80% 20%; 
+                transform: rotate(1deg) scale(1.02);
+            }
+            66% { 
+                background-position: 80% 20%, 20% 80%, 10% 90%; 
+                transform: rotate(-1deg) scale(0.98);
+            }
+            100% { 
+                background-position: 0% 50%, 100% 50%, 50% 0%; 
+                transform: rotate(0deg) scale(1);
+            }
+        }
+        
         @keyframes backgroundFloat {
             0%, 100% { transform: translateY(0px) rotate(0deg); }
             50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        
+        @keyframes backgroundShift {
+            0% { background-position: 0% 0%, 100% 0%, 50% 100%; }
+            33% { background-position: 100% 50%, 0% 100%, 0% 0%; }
+            66% { background-position: 50% 100%, 50% 0%, 100% 50%; }
+            100% { background-position: 0% 0%, 100% 0%, 50% 100%; }
         }
         
         @keyframes blink {
@@ -119,6 +145,15 @@
             
             .gallery-item:hover {
                 transform: translateY(-4px) scale(1.01);
+            }
+            
+            /* Mobile video background adjustments */
+            #hero iframe {
+                opacity: 0.25 !important; /* Reduced opacity on mobile for better readability */
+            }
+            
+            #hero .video-overlay {
+                background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)) !important;
             }
         }
 
@@ -166,18 +201,66 @@
         overflow: hidden;
         border-bottom: 1px solid rgb(40, 40, 40);
     ">
-        <!-- Background Pattern -->
+        <!-- Video Background -->
+        <video id="hero-video" autoplay muted loop playsinline preload="auto" style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 120%;
+            min-height: 120%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translate(-50%, -50%) scale(1.1);
+            opacity: 0.5;
+            object-fit: cover;
+            pointer-events: none;
+            filter: brightness(0.8) contrast(1.1);
+        ">
+            <source src="./img/reel/LR_showreel_2023_12.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+        </video>
+        
+        <!-- Fallback animated background for when video doesn't load -->
+        <div id="fallback-bg" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(100, 200, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 100, 150, 0.06) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+            z-index: 0;
+            opacity: 0.6;
+        "></div>
+        
+        <!-- Dark Overlay for Better Text Readability -->
+        <div class="video-overlay" style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+            z-index: 1;
+        "></div>
+        
+        <!-- Background Pattern (subtle over video) -->
         <div style="
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: radial-gradient(circle at 20% 50%, rgba(60, 60, 60, 0.1) 1px, transparent 1px),
-                              radial-gradient(circle at 80% 50%, rgba(60, 60, 60, 0.1) 1px, transparent 1px);
+            background-image: radial-gradient(circle at 20% 50%, rgba(60, 60, 60, 0.05) 1px, transparent 1px),
+                              radial-gradient(circle at 80% 50%, rgba(60, 60, 60, 0.05) 1px, transparent 1px);
             background-size: 100px 100px;
             animation: backgroundFloat 20s ease-in-out infinite;
             opacity: 0.3;
+            z-index: 1;
         "></div>
         
         <div style="
@@ -185,7 +268,7 @@
             max-width: 800px;
             padding: 2rem;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         ">
             <h1 id="hero-title" style="
                 color: white;
@@ -711,6 +794,138 @@
 
     <!-- Essential Scripts for Portfolio and Navigation -->
     <script>
+        // Video background handler with timing control
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('#hero-video');
+            const fallback = document.getElementById('fallback-bg');
+            
+            if (video) {
+                // Video timing configuration
+                const startTime = 3;   // Start at 3 seconds (skip intro)
+                const endTime = 126;   // End at 2:06 (126 seconds)
+                
+                console.log('Video element found, setting up handlers...');
+                
+                // Force video to load and play
+                video.load();
+                
+                video.addEventListener('loadedmetadata', function() {
+                    console.log('Video metadata loaded, duration:', video.duration);
+                    console.log('Setting start time to:', startTime);
+                    video.currentTime = startTime;
+                });
+                
+                video.addEventListener('loadeddata', function() {
+                    console.log('Video data loaded, attempting to play...');
+                    video.currentTime = startTime;
+                    // Try to play the video
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('Video is playing successfully');
+                            if (fallback) fallback.style.opacity = '0';
+                        }).catch(error => {
+                            console.log('Autoplay prevented:', error);
+                            console.log('Video will play when user interacts with page');
+                            if (fallback) fallback.style.opacity = '0.6';
+                        });
+                    }
+                });
+                
+                video.addEventListener('timeupdate', function() {
+                    // Loop back to start time when reaching end time
+                    if (video.currentTime >= endTime) {
+                        console.log('Looping video back to start time');
+                        video.currentTime = startTime;
+                    }
+                });
+                
+                video.addEventListener('loadstart', function() {
+                    console.log('Video started loading...');
+                    if (fallback) fallback.style.opacity = '0.3';
+                });
+                
+                video.addEventListener('canplay', function() {
+                    console.log('Video can play, current time:', video.currentTime);
+                    if (video.currentTime < startTime) {
+                        video.currentTime = startTime;
+                    }
+                });
+                
+                video.addEventListener('canplaythrough', function() {
+                    console.log('Video can play through, attempting autoplay...');
+                    video.currentTime = startTime;
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            console.log('Video autoplay successful');
+                            if (fallback) fallback.style.opacity = '0';
+                        }).catch(error => {
+                            console.log('Autoplay blocked, showing fallback');
+                            if (fallback) fallback.style.opacity = '0.6';
+                        });
+                    }
+                });
+                
+                video.addEventListener('error', function(e) {
+                    console.log('Video error:', e);
+                    console.log('Video failed to load, using fallback animation');
+                    if (fallback) {
+                        fallback.style.opacity = '0.6';
+                        fallback.style.display = 'block';
+                    }
+                });
+                
+                video.addEventListener('stalled', function() {
+                    console.log('Video stalled');
+                });
+                
+                video.addEventListener('waiting', function() {
+                    console.log('Video waiting for data');
+                });
+                
+                video.addEventListener('playing', function() {
+                    console.log('Video is now playing');
+                    if (fallback) fallback.style.opacity = '0';
+                });
+                
+                video.addEventListener('pause', function() {
+                    console.log('Video paused');
+                });
+                
+                // Fallback: try to play after a delay
+                setTimeout(() => {
+                    if (video.paused && video.readyState >= 2) {
+                        console.log('Video seems stuck, forcing play...');
+                        video.currentTime = startTime;
+                        video.play().catch(error => {
+                            console.log('Manual play failed:', error);
+                            if (fallback) fallback.style.opacity = '0.6';
+                        });
+                    }
+                }, 2000);
+                
+                // Show fallback if video takes too long
+                setTimeout(() => {
+                    if (video.readyState < 2) {
+                        console.log('Video taking too long, showing fallback');
+                        if (fallback) fallback.style.opacity = '0.6';
+                    }
+                }, 5000);
+                
+                // Add click handler to start video if autoplay fails
+                document.addEventListener('click', function() {
+                    if (video.paused) {
+                        console.log('User clicked, attempting to start video...');
+                        video.currentTime = startTime;
+                        video.play().catch(error => {
+                            console.log('Click-triggered play failed:', error);
+                        });
+                    }
+                }, { once: true });
+            }
+        });
+        
         // Simple smooth scroll for hero buttons
         document.addEventListener('DOMContentLoaded', function() {
             const viewWorkBtn = document.querySelector('a[href="#portfolio-gallery"]');
